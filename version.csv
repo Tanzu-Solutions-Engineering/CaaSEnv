@@ -1,0 +1,40 @@
+Caas Env Component, Build, Current Version, Latest Version Available
+NSX-T Version   ,  2.4.2.0.0.14269501, ,
+PKS Version     ,  1.4.1-build-4     ,,
+Ops Mgr         ,  2.5.13-build.232  ,,
+Harbor          ,  v1.8.1.build4    ,,
+vSphere version ,  6.7.0.42000      , 6.7 Update 3b, 6.7 Update 3b
+VMware ESXi     ,  6.7.0 15160138   , 6.7 P01 ( > 6.7 )	, 6.7 P01
+,,,
+,,,
+Harbor Version , 1.9.4 ,,
+               , 456.* ,,
+,,,
+PKS , 1.5.1                 ,,  1.6.1
+    , PKS - 1.4.* or 1.5.*  ,, 1.5.* or 1.6.0
+    , NSX-T                 ,,
+    ,                       , -- 2.5.0 -- , -- 2.5.0 --
+    ,                       ,,  2.5.1
+    ,                       , 2.4.3, 2.4.3
+    ,                       , 2.4.2,
+    ,                       , 2.4.1,
+    ,                       , 2.4.0,
+    , Hypervisor (ESXi)     ,,
+    ,                       , 6.7 U3, 6.7 U3
+    ,                       , -- 6.7 U2 --, -- 6.7 U2 --
+    ,                       , 6.5 U3, 6.5 U3
+    ,                       , 6.5 U2, 6.5 U2
+    , vCenter Server        , ,
+    ,                       , 6.7 U3 , 6.7 U3
+    ,                       , -- 6.7 U2 --, -- 6.7 U2 --	
+    ,                       , ,
+    ,                       , 6.7 U1, 
+    ,                       , 6.5 U3, 6.5 U3	
+    ,                       , 6.5 U2, 6.5 U2
+    , Ops Mgr               ,, 2.8.0
+    ,                       , 2.7.3–2.7.10 , 2.7.9–2.7.10
+    ,                       , 2.6.6–2.6.20, 2.6.19–2.6.20
+    ,                       , 2.5.12–2.5.27,
+    ,                       , -- 2.7.10 -- , -- 2.7.10 --
+    , Stemcells (Ubuntu Xenial),  ,
+    ,                          , 315.81, 456.51
