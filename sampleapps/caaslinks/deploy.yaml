@@ -28,9 +28,10 @@ spec:
           mountPath: /workdir
         command:
         - wget
+        - "--no-check-certificate"
         - "-O"
         - "/workdir/index.html"
-        - "https://raw.githubusercontent.com/Pivotal-Field-Engineering/CaaSEnv/master/linkspage.html"
+        - "https://raw.githubusercontent.com/Pivotal-Field-Engineering/CaaSEnv/master/sampleapps/caaslinks/linkspage.html"
       containers:
       - image: nginx
         name: caaslinks
