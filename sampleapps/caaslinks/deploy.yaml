@@ -1,0 +1,42 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: caaslinks
+  name: caaslinks
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: caaslinks
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+      labels:
+        run: caaslinks
+    spec:
+      volumes:
+      - name: workdir
+        emptyDir: {}
+      initContainers:
+      - image: busybox
+        name: copypage
+        volumeMounts:
+        - name: workdir
+          mountPath: /workdir
+        command:
+        - wget
+        - "-O"
+        - "/workdir/index.html"
+        - "https://raw.githubusercontent.com/Pivotal-Field-Engineering/CaaSEnv/master/linkspage.html"
+      containers:
+      - image: nginx
+        name: caaslinks
+        volumeMounts:
+        - name: workdir
+          mountPath: /usr/share/nginx/html
+        ports:
+        - containerPort: 80
+          name: main
