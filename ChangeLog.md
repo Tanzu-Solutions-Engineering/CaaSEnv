@@ -12,10 +12,10 @@ Format should be:
 
 ## Logs
 
-**02-18-20** *Add helm/tiller to workshop1
+**02-18-20** *Add helm/tiller to workshop1*
  - Used helm to deploy prometheus/grafana
 
-**02-15-20** *Upgrade NSX-T, Ops Manager, PKS & Harbor
+**02-15-20** *Upgrade NSX-T, Ops Manager, PKS & Harbor*
  - Had to remove K8s clusters in order to release nsx edge appliances
  - Recreated workshop1 and other clusters
 
