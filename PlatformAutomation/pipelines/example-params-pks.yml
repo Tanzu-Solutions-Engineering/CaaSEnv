@@ -1,0 +1,27 @@
+---
+# many of these mnay be passed directly or interpolayted by credhub integration with concourse
+foundation: pks # foundation name is used in retrieving values from config repo and concourse - not used in retrieve pipeline
+debug: true
+
+credhub_server: https://REPLACEME:8844
+s3.endpoint: https://REPLACEME
+s3.buckets_pivnet_products: REPLACEME
+s3.buckets_backup_bucket: REPLACEME
+s3.region_name: REPLACEME
+s3.access_key_id: REPLACEME # interpolated from credhub /concourse/teamname/s3.access_key_id
+s3.secret_access_key: REPLACEME # interpolated from credhub /concourse/teamname/s3.secret_access_key_id
+github_username: REPLACEME # [R] Your github username
+github_author_email: REPLACEME
+github_token: REPLACEME
+#source for configuation files and product manifests
+config_github_repo: https://github.com/BrianRagazzi/PlatAuto-FoundationConfig
+config_github_branch: homelab #dev
+# source for custom tasks
+PlatformAutomation_github_repo: https://github.com/BrianRagazzi/PlatformAutomation
+PlatformAutomation_github_branch: master
+
+registry.endpoint: REPLACEME
+registry.repo: platauto/platautouaac
+registry.username: REPLACEME
+registry.password: REPLACEME
+registry.ca_cert: REPLACEME

@@ -1,0 +1,114 @@
+pivotal-container-service_pks_tls.cert_pem: ((pivotal-container-service_pks_tls_cert_pem))
+pivotal-container-service_pks_tls.private_key_pem: ((pivotal-container-service_pks_tls_private_key_pem))
+properties_cloud_provider_vsphere_vcenter_master_creds_password: ((properties_cloud_provider_vsphere_vcenter_master_creds_password))
+properties_nsx_api_ca_cert: ((nsx_ca_cert))
+properties_network_selector_nsx_nsx-t-superuser-certificate.cert_pem: ((properties_network_selector_nsx_nsx-t-superuser-certificate_cert_pem))
+properties_network_selector_nsx_nsx-t-superuser-certificate.private_key_pem: ((properties_network_selector_nsx_nsx-t-superuser-certificate_private_key_pem))
+
+properties_cloud_provider_vcenter_dc: attic
+properties_cloud_provider_vcenter_ds: vsanDatastore
+properties_cloud_provider_vcenter_ip: vcsa.caas.pez.pivotal.io
+properties_cloud_provider_vcenter_vms: WORK/PKS2/VMs/
+properties_network_selector: flannel
+#properties_network_selector_nsx-t-host: corensxmgr.caas.pez.pivotal.io
+#properties_network_selector_nsx_cloud-config-dns: 192.168.100.50,192.168.100.150
+#properties_network_selector_nsx_floating-ip-pool-name: PKS2-FLOATING-IP-POOL
+##properties_network_selector_nsx_floating-ip-pool-ids: bd508ebe-ef1c-4ad5-85da-e5072544c9de
+##properties_network_selector_nsx_ip-block-id: 09e71c31-0dcb-49ba-8751-5a5a7d4f5270
+#properties_network_selector_nsx_ip-block-name: PKS-Pods-Block
+#properties_network_selector_nsx_nodes-ip-block-name: PKS-Nodes-Block
+##properties_network_selector_nsx_nodes-ip-block-id: f140f760-9e6c-4356-af3a-df2ac5517a75
+#properties_network_selector_nsx_lb_size_large_supported: false
+#properties_network_selector_nsx_lb_size_medium_supported: true
+#properties_network_selector_nsx_nat_mode: true
+#properties_network_selector_nsx_network_automation: true
+#properties_network_selector_nsx_nsx-t-insecure: true
+#properties_network_selector_nsx_t0-router-name: t0-core
+##properties_network_selector_nsx_t0-router-id: 8bc98e0c-17ec-43b7-9819-a8f9a8c4233f
+#properties_network_selector_nsx_vcenter_cluster: attic
+
+properties_uaa: internal
+# properties_uaa_ldap_credentials_identity: CN=svcacct AD. Bind,OU=Service Accounts,DC=ragazzilab,DC=com
+# properties_uaa_ldap_credentials_password: ((properties_uaa_ldap_credentials_password))
+# properties_uaa_ldap_email_domains: caas.pez.pivotal.io
+# properties_uaa_ldap_group_search_base: OU=Security Groups,DC=ragazzilab,DC=com
+# properties_uaa_ldap_search_base: OU=User Accounts,DC=ragazzilab,DC=com
+# properties_uaa_ldap_server_ssl_cert: ((ldap_server_ssl_cert))
+# properties_uaa_ldap_url: ldaps://coreadc1.caas.pez.pivotal.io:3269
+properties_uaa_oidc: true # connect K8s clusters to LDAP
+pks_admin_ldap_group_dn: CN=PKS-admins,OU=Security Groups,DC=ragazzilab,DC=com
+
+properties_pks-vrli_enabled: enabled
+properties_pks-vrli_enabled_host: syslog.caas.pez.pivotal.io
+properties_pks-vrli_enabled_skip_cert_verify: true
+properties_pks-vrops: disabled
+properties_pks_api_hostname: api.pks2.caas.pez.pivotal.io
+az1_name: AZ1
+az2_name: AZ2
+az3_name: AZ3
+properties_worker_max_in_flight: 1
+network_name: PKS-MGMT
+service_network: PKS-MGMT
+singleton_availability_zone: MGMT
+properties_cloud_provider_vsphere_vcenter_master_creds_identity: administrator@vsphere.local
+
+properties_plan1_selector_active_name: tiny
+properties_plan1_selector_value: "Plan Active"
+properties_plan1_selector_active_allow_privileged_containers: true
+properties_plan1_selector_active_description: "1 medium master, 1 medium worker"
+properties_plan1_selector_active_master_az_placement: [MGMT]
+properties_plan1_selector_active_master_instances: 1
+properties_plan1_selector_active_master_persistent_disk_type: "10240"
+properties_plan1_selector_active_max_worker_instances: 3
+properties_plan1_selector_active_worker_instances: 1
+properties_plan1_selector_active_worker_az_placement: [MGMT]
+properties_plan1_selector_active_admission_plugins: [deny_escalating_exec]
+properties_plan1_selector_active_master_vm_type: medium.disk
+properties_plan1_selector_active_worker_vm_type: medium.disk
+properties_plan1_selector_active_errand_vm_type: micro
+
+properties_plan2_selector_active_name: small
+properties_plan2_selector_value: "Plan Active"
+properties_plan2_selector_active_allow_privileged_containers: true
+properties_plan2_selector_active_description: "1 medium master, 3 medium workers"
+properties_plan2_selector_active_master_az_placement: [MGMT]
+properties_plan2_selector_active_master_instances: 1
+properties_plan2_selector_active_master_persistent_disk_type: "10240"
+properties_plan2_selector_active_max_worker_instances: 3
+properties_plan2_selector_active_worker_instances: 1
+properties_plan2_selector_active_worker_az_placement: [AZ1,AZ2,AZ3]
+properties_plan2_selector_active_admission_plugins: [deny_escalating_exec]
+properties_plan2_selector_active_master_vm_type: medium.disk
+properties_plan2_selector_active_worker_vm_type: medium.disk
+properties_plan2_selector_active_errand_vm_type: micro
+
+properties_plan3_selector_active_name: medium
+properties_plan3_selector_value: "Plan Active"
+properties_plan3_selector_active_allow_privileged_containers: true
+properties_plan3_selector_active_description: "3 medium masters, 3 large workers"
+properties_plan3_selector_active_master_az_placement: [AZ1,AZ2,AZ3]
+properties_plan3_selector_active_master_instances: 3
+properties_plan3_selector_active_master_persistent_disk_type: "10240"
+properties_plan3_selector_active_max_worker_instances: 3
+properties_plan3_selector_active_worker_instances: 3
+properties_plan3_selector_active_worker_az_placement: [AZ1,AZ2,AZ3]
+properties_plan3_selector_active_admission_plugins: [deny_escalating_exec]
+properties_plan3_selector_active_master_vm_type: medium.disk
+properties_plan3_selector_active_worker_vm_type: large.disk
+properties_plan3_selector_active_errand_vm_type: micro
+
+
+properties_plan11_selector_active_name: WinSmall
+properties_plan11_selector_value: "Plan Active"
+properties_plan11_selector_active_allow_privileged_containers: true
+properties_plan11_selector_active_description: "1 medium linux master, 1 large windows worker"
+properties_plan11_selector_active_master_az_placement: [MGMT]
+properties_plan11_selector_active_master_instances: 1
+properties_plan11_selector_active_master_persistent_disk_type: "10240"
+properties_plan11_selector_active_max_worker_instances: 8
+properties_plan11_selector_active_worker_instances: 1
+properties_plan11_selector_active_worker_az_placement: [AZ1,AZ2,AZ3]
+properties_plan11_selector_active_admission_plugins: [deny_escalating_exec]
+properties_plan11_selector_active_master_vm_type: medium.disk
+properties_plan11_selector_active_worker_vm_type: large.disk
+properties_plan11_selector_active_errand_vm_type: micro

@@ -1,0 +1,392 @@
+---
+# code_snippet multiple-product-interpolate-creds start yaml
+# This task is used in multiple jobs
+# The yaml anchor "*interpolate-creds" is used in its place
+credhub-interpolate: &credhub-interpolate
+  image: platform-automation-image
+  file: platform-automation-tasks/tasks/credhub-interpolate.yml
+  params:
+    CREDHUB_CLIENT: ((credhub_client))
+    CREDHUB_SECRET: ((credhub_secret))
+    CREDHUB_SERVER: ((credhub_server))
+    CREDHUB_CA_CERT: ((credhub_ca_cert))
+    PREFIX: '/pipeline/vsphere/'
+    INTERPOLATION_PATHS: "download-product-configs"
+    SKIP_MISSING: true
+  input_mapping:
+    files: config
+  output_mapping:
+    interpolated-files: config
+
+s3_credentials_binaries: &s3_credentials_binaries
+  access_key_id: ((s3.access_key_id))
+  secret_access_key: ((s3.secret_access_key))
+  endpoint: ((s3.endpoint))
+  bucket: ((s3.buckets_pivnet_products))
+  region_name: ((s3.region_name))
+  skip_ssl_verification: true
+
+
+resource_types:
+- name: pivnet
+  type: docker-image
+  source:
+    repository: pivotalcf/pivnet-resource
+    tag: latest-final
+
+resources:
+- name: healthwatch-product
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: \[p-healthwatch,(.*)\]p-healthwatch-.*.pivotal
+
+- name: healthwatch-stemcell
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: healthwatch-stemcell/\[stemcells-ubuntu-xenial,(.*)\]bosh-stemcell-.*-vsphere.*\.tgz
+
+- name: mysql-product
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: \[pivotal-mysql,(.*)\]pivotal-mysql-.*.pivotal
+
+- name: mysql-stemcell
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: mysql-stemcell/\[stemcells-ubuntu-xenial,(.*)\]bosh-stemcell-.*-vsphere.*\.tgz
+
+
+- name: opsman-product
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: \[ops-manager,(.*)\].*.ova
+
+- name: nsx-product
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: \[vmware-nsx-t,(.*)\]VMware-NSX-T-.*.pivotal
+
+# - name: compliance-scanner-product
+#   type: s3
+#   source:
+#     <<: *s3_credentials_binaries
+#     regexp: \[p-compliance-scanner,(.*)\]p-compliance-scanner-.*.pivotal
+#
+# - name: compliance-scanner-stemcell
+#   type: s3
+#   source:
+#     <<: *s3_credentials_binaries
+#     regexp: compliance-scanner-stemcell/\[stemcells-ubuntu-xenial,(.*)\]bosh-stemcell-.*-vsphere.*\.tgz
+
+- name: pas-product
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: \[elastic-runtime,(.*)\].*.pivotal
+    #regexp: \[elastic-runtime,(.*)\]srt-.*.pivotal
+
+- name: pas-stemcell
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: pas-stemcell/\[stemcells-ubuntu-xenial,(.*)\]bosh-stemcell-.*-vsphere.*\.tgz
+
+
+# - name: pae-product
+#   type: s3
+#   source:
+#     <<: *s3_credentials_binaries
+#     regexp: \[platform-automation-engine,(.*)\]platform-automation-engine-.*.pivotal
+#
+# - name: pae-stemcell
+#   type: s3
+#   source:
+#     <<: *s3_credentials_binaries
+#     regexp: pks-stemcell/\[stemcells-ubuntu-xenial,(.*)\]bosh-stemcell-.*-vsphere.*\.tgz
+
+
+- name: bbr-linux-product
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: \[p-bosh-backup-and-restore,(.*)\]bbr-.*-linux-amd64
+
+
+- name: pas-windows-product
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: \[pas-windows,(.*)\]pas-windows-.*.pivotal
+
+- name: platform-automation-pivnet
+  type: pivnet
+  source:
+    api_token: ((pivnet_token))
+    product_slug: platform-automation
+    product_version: 4\.(.*)
+    sort_by: semver
+
+- name: platform-automation-tasks
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: platform-automation-tasks-(.*).zip
+
+- name: platform-automation-image
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: platform-automation-image-(.*).tgz
+
+- name: config
+  type: git
+  source:
+    uri: ((config_github_repo))
+    branch: ((config_github_branch))
+    username: ((github_username))
+    password: ((github_token))
+    paths: ["download-product-configs"]
+
+# - name: daily
+#   type: time
+#   source:
+#     interval: 24h
+
+
+
+jobs:
+- name: fetch-healthwatch
+  serial: true
+  build_log_retention:
+    builds: 1
+  plan:
+  - get: platform-automation-image
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+  - get: config
+  - task: credhub-interpolate
+    <<: *credhub-interpolate
+  - task: download-healthwatch-product-and-stemcell
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/healthwatch.yml
+    output_mapping: {downloaded-stemcell: healthwatch-stemcell}
+  - put: healthwatch-product
+    params:
+      file: downloaded-product/*.pivotal
+  - put: healthwatch-stemcell
+    params:
+      file: healthwatch-stemcell/*.tgz
+
+
+- name: fetch-opsman
+  serial: true
+
+  build_log_retention:
+    builds: 1
+  plan:
+  - get: platform-automation-image
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+  - get: config
+  - task: credhub-interpolate
+    <<: *credhub-interpolate
+  - task: download-opsman-image
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/opsman.yml
+  - put: opsman-product
+    params:
+      file: downloaded-product/*
+
+
+- name: fetch-pas
+  serial: true
+
+  build_log_retention:
+    builds: 1
+  plan:
+  - get: platform-automation-image
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+  - get: config
+  - task: credhub-interpolate
+    <<: *credhub-interpolate
+  - task: download-pas-product-and-stemcell
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/pas.yml
+    output_mapping: {downloaded-stemcell: pas-stemcell}
+  - put: pas-product
+    params:
+      file: downloaded-product/*.pivotal
+  - put: pas-stemcell
+    params:
+      file: pas-stemcell/*.tgz
+
+
+- name: fetch-pas-windows
+  serial: true
+
+  build_log_retention:
+    builds: 1
+  plan:
+  - get: platform-automation-image
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+  - get: config
+  - task: credhub-interpolate
+    <<: *credhub-interpolate
+  - task: download-pas-windows-product
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/pas-windows.yml
+  - put: pas-windows-product
+    params:
+      file: downloaded-product/*.pivotal
+
+
+
+- name: fetch-nsx
+  serial: true
+
+  build_log_retention:
+    builds: 1
+  plan:
+  - get: platform-automation-image
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+  - get: config
+  - task: credhub-interpolate
+    <<: *credhub-interpolate
+  - task: download-nsx-product
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/nsx-t.yml
+  - put: nsx-product
+    params:
+      file: downloaded-product/*.pivotal
+
+
+# - name: fetch-compliance-scanner
+#   serial: true
+#
+#   build_log_retention:
+#     builds: 1
+#   plan:
+#   - get: platform-automation-image
+#     params:
+#       unpack: true
+#   - get: platform-automation-tasks
+#     params:
+#       unpack: true
+#   - get: config
+#   - task: credhub-interpolate
+#     <<: *credhub-interpolate
+#   - task: download-compliance-scanner-product-and-stemcell
+#     image: platform-automation-image
+#     file: platform-automation-tasks/tasks/download-product.yml
+#     params:
+#       CONFIG_FILE: download-product-configs/compliance-scanner.yml
+#     output_mapping: {downloaded-stemcell: compliance-scanner-stemcell}
+#   - put: compliance-scanner-product
+#     params:
+#       file: downloaded-product/*.pivotal
+#
+#   - put: compliance-scanner-stemcell
+#     params:
+#       file: compliance-scanner-stemcell/*.tgz
+
+
+- name: fetch-bbr
+  build_log_retention:
+    builds: 1
+  plan:
+  - get: platform-automation-image
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+  - get: config
+  - task: credhub-interpolate
+    <<: *credhub-interpolate
+  - task: download-bbr-product
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/bbr.yml
+  - put: bbr-linux-product
+    params:
+      file: downloaded-product/*
+
+
+- name: fetch-mysql
+  serial: true
+
+  build_log_retention:
+    builds: 1
+  plan:
+  - get: platform-automation-image
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+  - get: config
+  - task: credhub-interpolate
+    <<: *credhub-interpolate
+  - task: download-mysql-product-and-stemcell
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/mysql.yml
+    output_mapping: {downloaded-stemcell: mysql-stemcell}
+  - put: mysql-product
+    params:
+      file: downloaded-product/*.pivotal
+  - put: mysql-stemcell
+    params:
+      file: mysql-stemcell/*.tgz
+
+
+- name: fetch-platform-automation
+  build_log_retention:
+    builds: 1
+  # We use the pivnet resource to bootstrap the pipeline,
+  # and because this product is part of the pipeline, not the foundation
+  plan:
+  - get: platform-automation-pivnet
+    # trigger: true
+  - put: platform-automation-tasks
+    params:
+      file: platform-automation-pivnet/*tasks*.zip
+  - put: platform-automation-image
+    params:
+      file: platform-automation-pivnet/*image*.tgz

@@ -1,0 +1,281 @@
+---
+# code_snippet multiple-product-interpolate-creds start yaml
+# This task is used in multiple jobs
+# The yaml anchor "*interpolate-creds" is used in its place
+credhub-interpolate: &credhub-interpolate
+  image: platform-automation-image
+  file: platform-automation-tasks/tasks/credhub-interpolate.yml
+  params:
+    CREDHUB_CLIENT: ((credhub_client))
+    CREDHUB_SECRET: ((credhub_secret))
+    CREDHUB_SERVER: ((credhub_server))
+    CREDHUB_CA_CERT: ((credhub_ca_cert))
+    PREFIX: '/pipeline/vsphere/'
+    INTERPOLATION_PATHS: "download-product-configs"
+    SKIP_MISSING: true
+  input_mapping:
+    files: config
+  output_mapping:
+    interpolated-files: config
+
+s3_credentials_binaries: &s3_credentials_binaries
+  access_key_id: ((s3.access_key_id))
+  secret_access_key: ((s3.secret_access_key))
+  endpoint: ((s3.endpoint))
+  bucket: ((s3.buckets_pivnet_products))
+  region_name: ((s3.region_name))
+  skip_ssl_verification: true
+
+
+resource_types:
+- name: pivnet
+  type: docker-image
+  source:
+    repository: pivotalcf/pivnet-resource
+    tag: latest-final
+
+resources:
+- name: harbor-product
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: \[harbor-container-registry,(.*)\]harbor-container-registry-.*.pivotal
+     # harbor-container-registry-1.7.5-build.11.pivotal
+
+- name: harbor-stemcell
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: harbor-stemcell/\[stemcells-ubuntu-xenial,(.*)\]bosh-stemcell-.*-vsphere.*\.tgz
+
+
+- name: opsman-product
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: \[ops-manager,(.*)\].*.ova
+
+
+- name: pks-product
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: \[pivotal-container-service,(.*)\]pivotal-container-service-.*.pivotal
+
+- name: pks-stemcell
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: pks-stemcell/\[stemcells-ubuntu-xenial,(.*)\]bosh-stemcell-.*-vsphere.*\.tgz
+
+- name: pks-windows-stemcell
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: pks-windows-stemcell/\[stemcells-windows-server-internal,(.*)\]bosh-stemcell-.*-vsphere-esxi-windows2019-go_agent\.tgz
+
+
+# - name: pae-product
+#   type: s3
+#   source:
+#     <<: *s3_credentials_binaries
+#     regexp: \[platform-automation-engine,(.*)\]platform-automation-engine-.*.pivotal
+#
+# - name: pae-stemcell
+#   type: s3
+#   source:
+#     <<: *s3_credentials_binaries
+#     regexp: pks-stemcell/\[stemcells-ubuntu-xenial,(.*)\]bosh-stemcell-.*-vsphere.*\.tgz
+
+
+- name: bbr-linux-product
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: \[p-bosh-backup-and-restore,(.*)\]bbr-.*-linux-amd64
+
+
+
+- name: platform-automation-pivnet
+  type: pivnet
+  source:
+    api_token: ((pivnet_token))
+    product_slug: platform-automation
+    product_version: 4\.(.*)
+    sort_by: semver
+
+- name: platform-automation-tasks
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: platform-automation-tasks-(.*).zip
+
+- name: platform-automation-image
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: platform-automation-image-(.*).tgz
+
+- name: config
+  type: git
+  source:
+    uri: ((config_github_repo))
+    branch: ((config_github_branch))
+    username: ((github_username))
+    password: ((github_token))
+    paths: ["download-product-configs"]
+
+# - name: daily
+#   type: time
+#   source:
+#     interval: 24h
+
+
+
+jobs:
+
+- name: fetch-opsman
+  serial: true
+
+  build_log_retention:
+    builds: 1
+  plan:
+  - get: platform-automation-image
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+  - get: config
+  - task: credhub-interpolate
+    <<: *credhub-interpolate
+  - task: download-opsman-image
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/opsman.yml
+  - put: opsman-product
+    params:
+      file: downloaded-product/*
+
+
+- name: fetch-pks
+  serial: true
+
+  build_log_retention:
+    builds: 1
+  plan:
+  - get: platform-automation-image
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+  - get: config
+  - task: credhub-interpolate
+    <<: *credhub-interpolate
+  - task: download-pks-product-and-stemcell
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/pks.yml
+    output_mapping: {downloaded-stemcell: pks-stemcell}
+  - put: pks-product
+    params:
+      file: downloaded-product/*.pivotal
+
+  - put: pks-stemcell
+    params:
+      file: pks-stemcell/*.tgz
+
+- name: fetch-windows-stemcell
+  serial: true
+
+  build_log_retention:
+    builds: 1
+  plan:
+  - get: platform-automation-image
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+  - get: config
+  - task: credhub-interpolate
+    <<: *credhub-interpolate
+  - task: download-windows-stemcell
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/windows-stemcell.yml
+  - put: pks-windows-stemcell
+    params:
+      file: downloaded-product/*.tgz
+
+
+- name: fetch-harbor
+  serial: true
+
+  build_log_retention:
+    builds: 1
+  plan:
+  - get: platform-automation-image
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+  - get: config
+  - task: credhub-interpolate
+    <<: *credhub-interpolate
+  - task: download-harbor-product-and-stemcell
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/harbor.yml
+    output_mapping: {downloaded-stemcell: harbor-stemcell}
+  - put: harbor-product
+    params:
+      file: downloaded-product/*.pivotal
+  - put: harbor-stemcell
+    params:
+      file: harbor-stemcell/*.tgz
+
+
+- name: fetch-bbr
+  build_log_retention:
+    builds: 1
+  plan:
+  - get: platform-automation-image
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+  - get: config
+  - task: credhub-interpolate
+    <<: *credhub-interpolate
+  - task: download-bbr-product
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/bbr.yml
+  - put: bbr-linux-product
+    params:
+      file: downloaded-product/*
+
+
+- name: fetch-platform-automation
+  build_log_retention:
+    builds: 1
+  # We use the pivnet resource to bootstrap the pipeline,
+  # and because this product is part of the pipeline, not the foundation
+  plan:
+  - get: platform-automation-pivnet
+    # trigger: true
+  - put: platform-automation-tasks
+    params:
+      file: platform-automation-pivnet/*tasks*.zip
+  - put: platform-automation-image
+    params:
+      file: platform-automation-pivnet/*image*.tgz
