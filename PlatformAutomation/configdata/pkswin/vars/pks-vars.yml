@@ -5,10 +5,10 @@ properties_nsx_api_ca_cert: ((nsx_ca_cert))
 properties_network_selector_nsx_nsx-t-superuser-certificate.cert_pem: ((properties_network_selector_nsx_nsx-t-superuser-certificate_cert_pem))
 properties_network_selector_nsx_nsx-t-superuser-certificate.private_key_pem: ((properties_network_selector_nsx_nsx-t-superuser-certificate_private_key_pem))
 
-properties_cloud_provider_vcenter_dc: attic
-properties_cloud_provider_vcenter_ds: vsanDatastore
-properties_cloud_provider_vcenter_ip: vcsa.caas.pez.pivotal.io
-properties_cloud_provider_vcenter_vms: WORK/PKS2/VMs/
+properties_cloud_provider_vcenter_dc: VxRail-Datacenter
+properties_cloud_provider_vcenter_ds: VxRail-Virtual-SAN-Datastore-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
+properties_cloud_provider_vcenter_ip: sc2-vc-01.caas.pez.pivotal.io
+properties_cloud_provider_vcenter_vms: FOUNDATIONS/PKSWIN/VMs/
 properties_network_selector: flannel
 #properties_network_selector_nsx-t-host: corensxmgr.caas.pez.pivotal.io
 #properties_network_selector_nsx_cloud-config-dns: 192.168.100.50,192.168.100.150
@@ -36,13 +36,13 @@ properties_uaa: internal
 # properties_uaa_ldap_server_ssl_cert: ((ldap_server_ssl_cert))
 # properties_uaa_ldap_url: ldaps://coreadc1.caas.pez.pivotal.io:3269
 properties_uaa_oidc: true # connect K8s clusters to LDAP
-pks_admin_ldap_group_dn: CN=PKS-admins,OU=Security Groups,DC=ragazzilab,DC=com
+#pks_admin_ldap_group_dn: CN=PKS-admins,OU=Security Groups,DC=ragazzilab,DC=com
 
 properties_pks-vrli_enabled: enabled
 properties_pks-vrli_enabled_host: syslog.caas.pez.pivotal.io
 properties_pks-vrli_enabled_skip_cert_verify: true
 properties_pks-vrops: disabled
-properties_pks_api_hostname: api.pks2.caas.pez.pivotal.io
+properties_pks_api_hostname: api.pkswin.caas.pez.pivotal.io
 az1_name: AZ1
 az2_name: AZ2
 az3_name: AZ3
