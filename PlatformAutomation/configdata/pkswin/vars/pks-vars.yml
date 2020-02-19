@@ -1,42 +1,21 @@
 pivotal-container-service_pks_tls.cert_pem: ((pivotal-container-service_pks_tls_cert_pem))
 pivotal-container-service_pks_tls.private_key_pem: ((pivotal-container-service_pks_tls_private_key_pem))
 properties_cloud_provider_vsphere_vcenter_master_creds_password: ((properties_cloud_provider_vsphere_vcenter_master_creds_password))
-properties_nsx_api_ca_cert: ((nsx_ca_cert))
-properties_network_selector_nsx_nsx-t-superuser-certificate.cert_pem: ((properties_network_selector_nsx_nsx-t-superuser-certificate_cert_pem))
-properties_network_selector_nsx_nsx-t-superuser-certificate.private_key_pem: ((properties_network_selector_nsx_nsx-t-superuser-certificate_private_key_pem))
+# properties_nsx_api_ca_cert: ((nsx_ca_cert))
+# properties_network_selector_nsx_nsx-t-superuser-certificate.cert_pem: ((properties_network_selector_nsx_nsx-t-superuser-certificate_cert_pem))
+# properties_network_selector_nsx_nsx-t-superuser-certificate.private_key_pem: ((properties_network_selector_nsx_nsx-t-superuser-certificate_private_key_pem))
 
 properties_cloud_provider_vcenter_dc: VxRail-Datacenter
 properties_cloud_provider_vcenter_ds: VxRail-Virtual-SAN-Datastore-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
 properties_cloud_provider_vcenter_ip: sc2-vc-01.caas.pez.pivotal.io
 properties_cloud_provider_vcenter_vms: FOUNDATIONS/PKSWIN/VMs/
 properties_network_selector: flannel
-#properties_network_selector_nsx-t-host: corensxmgr.caas.pez.pivotal.io
-#properties_network_selector_nsx_cloud-config-dns: 192.168.100.50,192.168.100.150
-#properties_network_selector_nsx_floating-ip-pool-name: PKS2-FLOATING-IP-POOL
-##properties_network_selector_nsx_floating-ip-pool-ids: bd508ebe-ef1c-4ad5-85da-e5072544c9de
-##properties_network_selector_nsx_ip-block-id: 09e71c31-0dcb-49ba-8751-5a5a7d4f5270
-#properties_network_selector_nsx_ip-block-name: PKS-Pods-Block
-#properties_network_selector_nsx_nodes-ip-block-name: PKS-Nodes-Block
-##properties_network_selector_nsx_nodes-ip-block-id: f140f760-9e6c-4356-af3a-df2ac5517a75
-#properties_network_selector_nsx_lb_size_large_supported: false
-#properties_network_selector_nsx_lb_size_medium_supported: true
-#properties_network_selector_nsx_nat_mode: true
-#properties_network_selector_nsx_network_automation: true
-#properties_network_selector_nsx_nsx-t-insecure: true
-#properties_network_selector_nsx_t0-router-name: t0-core
-##properties_network_selector_nsx_t0-router-id: 8bc98e0c-17ec-43b7-9819-a8f9a8c4233f
-#properties_network_selector_nsx_vcenter_cluster: attic
+
 
 properties_uaa: internal
-# properties_uaa_ldap_credentials_identity: CN=svcacct AD. Bind,OU=Service Accounts,DC=ragazzilab,DC=com
-# properties_uaa_ldap_credentials_password: ((properties_uaa_ldap_credentials_password))
-# properties_uaa_ldap_email_domains: caas.pez.pivotal.io
-# properties_uaa_ldap_group_search_base: OU=Security Groups,DC=ragazzilab,DC=com
-# properties_uaa_ldap_search_base: OU=User Accounts,DC=ragazzilab,DC=com
-# properties_uaa_ldap_server_ssl_cert: ((ldap_server_ssl_cert))
-# properties_uaa_ldap_url: ldaps://coreadc1.caas.pez.pivotal.io:3269
 properties_uaa_oidc: true # connect K8s clusters to LDAP
-#pks_admin_ldap_group_dn: CN=PKS-admins,OU=Security Groups,DC=ragazzilab,DC=com
+pks_admin_username: pksadmin
+pks_admin_password: ((pks_admin_password))
 
 properties_pks-vrli_enabled: enabled
 properties_pks-vrli_enabled_host: syslog.caas.pez.pivotal.io
