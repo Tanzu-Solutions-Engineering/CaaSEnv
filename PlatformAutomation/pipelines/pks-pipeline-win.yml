@@ -16,8 +16,8 @@ interpolate-creds: &interpolate-creds
     interpolated-files: interpolated-creds
 
 s3_credentials_binaries: &s3_credentials_binaries
-  access_key_id: ((access_key_id))
-  secret_access_key: ((secret_access_key))
+  access_key_id: ((s3.access_key_id))
+  secret_access_key: ((s3.secret_access_key))
   endpoint: ((s3.endpoint))
   bucket: ((s3.buckets_pivnet_products))
   region_name: ((s3.region_name))
@@ -99,7 +99,7 @@ resources:
 - name: installation
   type: s3
   source:
-    access_key_id: ((access_key_id))
+    access_key_id: ((s3.access_key_id))
     secret_access_key: ((secret_access_key))
     endpoint: ((s3.endpoint))
     bucket: ((s3.buckets_backup_bucket)) #Different Bucket
@@ -109,7 +109,7 @@ resources:
 - name: config-backup
   type: s3
   source:
-    access_key_id: ((access_key_id))
+    access_key_id: ((s3.access_key_id))
     secret_access_key: ((secret_access_key))
     endpoint: ((s3.endpoint))
     bucket: ((s3.buckets_backup_bucket)) #Different Bucket
@@ -123,7 +123,7 @@ resources:
     branch: ((config_github_branch))
     username: ((github_username))
     password: ((github_token))
-    paths: ["/PlatformAutomation/configdata/((foundation))"] #Adjusted for subfolder in Repo
+    paths: ["((foundation))"] #Adjusted for subfolder in Repo
 
 - name: state
   type: git
@@ -162,7 +162,7 @@ groups:
   - apply-changes
 - name: post-deploy
   jobs:
-  - add-pks-admin-group
+  - add-pks-admin
 - name: save-state
   jobs:
   - export-installation
@@ -575,7 +575,7 @@ jobs:
     params:
       file: generated-config/*.yml
 
-- name: add-pks-admin-group
+- name: add-pks-admin
   serial: true
   serial_groups: [ post-deploy ]
   build_log_retention:
@@ -597,9 +597,9 @@ jobs:
   - task: interpolate-creds
     <<: *interpolate-creds
 
-  - task: config-pks-admin-group
+  - task: config-pks-admin-user
     image: custom-task-image
-    file: custom-tasks/tasks/create_pks_admin_ldap_group_maps.yml
+    file: custom-tasks/tasks/create_pks_admin_user.yml
     input_mapping:
       config: interpolated-creds #Note this is different
       env: interpolated-creds
