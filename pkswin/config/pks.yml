@@ -32,15 +32,15 @@ product-properties:
     value: false
   .properties.oidc_selector:
     value: ((properties_oidc_selector))
-  .properties.oidc_selector.enabled.groups_claim:
-    value: ((properties_oidc_selector_enabled_groups_claim))
-  .properties.oidc_selector.enabled.groups_prefix:
-    value: ((properties_oidc_selector_enabled_groups_prefix))
-  .properties.oidc_selector.enabled.username_claim:
-    value: ((properties_oidc_selector_enabled_username_claim))
-  .properties.oidc_selector.enabled.username_prefix:
-    value: ((properties_oidc_selector_enabled_username_prefix))
-  # .properties.network_selector.nsx.cloud-config-dns:
+  # .properties.oidc_selector.enabled.groups_claim:
+  #   value: ((properties_oidc_selector_enabled_groups_claim))
+  # .properties.oidc_selector.enabled.groups_prefix:
+  #   value: ((properties_oidc_selector_enabled_groups_prefix))
+  # .properties.oidc_selector.enabled.username_claim:
+  #   value: ((properties_oidc_selector_enabled_username_claim))
+  # .properties.oidc_selector.enabled.username_prefix:
+  #   value: ((properties_oidc_selector_enabled_username_prefix))
+  # .properties.network_selector.nsx.cloud-config-dns:uaa_oid
   #   value: ((properties_network_selector_nsx_cloud-config-dns))
   # .properties.network_selector.nsx.floating-ip-pool-ids:
   #   value: ((properties_network_selector_nsx_floating-ip-pool-ids))

@@ -13,7 +13,7 @@ properties_network_selector: flannel
 
 
 properties_uaa: internal
-properties_uaa_oidc: false # true:connect K8s clusters to LDAP
+#properties_uaa_oidc: false 
 pks_admin_username: pks-admin
 pks_admin_password: ((pks_admin_password))
 

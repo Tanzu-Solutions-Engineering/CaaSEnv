@@ -12,7 +12,7 @@ properties_pks-vrli_enabled_skip_cert_verify: false
 properties_pks-vrli_enabled_use_ssl: true
 properties_pks-vrops: disabled
 properties_uaa: internal
-properties_uaa_oidc: false
+# properties_uaa_oidc: false
 # properties_uaa_ldap_external_groups_whitelist: '*'
 # properties_uaa_ldap_first_name_attribute: givenName
 # properties_uaa_ldap_group_search_filter: member={0}
@@ -38,8 +38,8 @@ properties_network_selector_flannel_service_cluster_cidr: 10.100.200.0/24
 properties_node_exporter_deploy: false
 #NEW to 1.5
 telemetry_installation_purpose_selector: not_provided # demo_or_poc, dev_or_pre_prod, prod, not_provided
-properties_oidc_selector: enabled # Configure Created clusters to use UAA as the OIDC provider
-properties_oidc_selector_enabled_groups_claim: roles
-properties_oidc_selector_enabled_groups_prefix: 'oidc:'
-properties_oidc_selector_enabled_username_claim: user_name
-properties_oidc_selector_enabled_username_prefix: 'oidc:'
+properties_oidc_selector: disabled # Enabled: Configure Created clusters to use UAA as the OIDC provider
+# properties_oidc_selector_enabled_groups_claim: roles
+# properties_oidc_selector_enabled_groups_prefix: 'oidc:'
+# properties_oidc_selector_enabled_username_claim: user_name
+# properties_oidc_selector_enabled_username_prefix: 'oidc:'
