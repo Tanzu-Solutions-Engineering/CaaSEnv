@@ -14,10 +14,10 @@ properties-configuration:
     bosh_disk_path: ((vsphere_disks_folder))
     nsx_networking_enabled: false # disable for Windows
     nsx_mode: nsx-t
-    nsx_address: ((nsx_hostname))
-    nsx_username: ((nsx_admin_user))
-    nsx_password: ((nsx_admin_password))
-    nsx_ca_certificate: ((nsx_ca_cert))
+    #nsx_address: ((nsx_hostname))
+    #nsx_username: ((nsx_admin_user))
+    #nsx_password: ((nsx_admin_password))
+    #nsx_ca_certificate: ((nsx_ca_cert))
   director_configuration:
     ntp_servers_string: ((ntp))
     resurrector_enabled: true
