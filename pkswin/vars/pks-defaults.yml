@@ -13,13 +13,13 @@ properties_pks-vrli_enabled_use_ssl: true
 properties_pks-vrops: disabled
 properties_uaa: internal
 properties_uaa_oidc: false
-properties_uaa_ldap_external_groups_whitelist: '*'
-properties_uaa_ldap_first_name_attribute: givenName
-properties_uaa_ldap_group_search_filter: member={0}
-properties_uaa_ldap_last_name_attribute: sn
-properties_uaa_ldap_ldap_referrals: follow
-properties_uaa_ldap_mail_attribute_name: mail
-properties_uaa_ldap_search_filter: userPrincipalName={0}
+# properties_uaa_ldap_external_groups_whitelist: '*'
+# properties_uaa_ldap_first_name_attribute: givenName
+# properties_uaa_ldap_group_search_filter: member={0}
+# properties_uaa_ldap_last_name_attribute: sn
+# properties_uaa_ldap_ldap_referrals: follow
+# properties_uaa_ldap_mail_attribute_name: mail
+# properties_uaa_ldap_search_filter: userPrincipalName={0}
 properties_uaa_pks_cli_access_token_lifetime: 864000
 properties_uaa_pks_cli_refresh_token_lifetime: 1728000
 properties_wavefront: disabled

@@ -240,34 +240,34 @@ product-properties:
     value: disabled
   .properties.uaa:
     value: ((properties_uaa))
-  .properties.uaa.ldap.credentials:
-    value:
-      identity: ((properties_uaa_ldap_credentials_identity))
-      password: ((properties_uaa_ldap_credentials_password))
-  .properties.uaa.ldap.email_domains:
-    value: ((properties_uaa_ldap_email_domains))
-  .properties.uaa.ldap.external_groups_whitelist:
-    value: ((properties_uaa_ldap_external_groups_whitelist))
-  .properties.uaa.ldap.first_name_attribute:
-    value: ((properties_uaa_ldap_first_name_attribute))
-  .properties.uaa.ldap.group_search_base:
-    value: ((properties_uaa_ldap_group_search_base))
-  .properties.uaa.ldap.group_search_filter:
-    value: ((properties_uaa_ldap_group_search_filter))
-  .properties.uaa.ldap.last_name_attribute:
-    value: ((properties_uaa_ldap_last_name_attribute))
-  .properties.uaa.ldap.ldap_referrals:
-    value: ((properties_uaa_ldap_ldap_referrals))
-  .properties.uaa.ldap.mail_attribute_name:
-    value: ((properties_uaa_ldap_mail_attribute_name))
-  .properties.uaa.ldap.search_base:
-    value: ((properties_uaa_ldap_search_base))
-  .properties.uaa.ldap.search_filter:
-    value: ((properties_uaa_ldap_search_filter))
-  .properties.uaa.ldap.server_ssl_cert:
-    value: ((properties_uaa_ldap_server_ssl_cert))
-  .properties.uaa.ldap.url:
-    value: ((properties_uaa_ldap_url))
+  # .properties.uaa.ldap.credentials:
+  #   value:
+  #     identity: ((properties_uaa_ldap_credentials_identity))
+  #     password: ((properties_uaa_ldap_credentials_password))
+  # .properties.uaa.ldap.email_domains:
+  #   value: ((properties_uaa_ldap_email_domains))
+  # .properties.uaa.ldap.external_groups_whitelist:
+  #   value: ((properties_uaa_ldap_external_groups_whitelist))
+  # .properties.uaa.ldap.first_name_attribute:
+  #   value: ((properties_uaa_ldap_first_name_attribute))
+  # .properties.uaa.ldap.group_search_base:
+  #   value: ((properties_uaa_ldap_group_search_base))
+  # .properties.uaa.ldap.group_search_filter:
+  #   value: ((properties_uaa_ldap_group_search_filter))
+  # .properties.uaa.ldap.last_name_attribute:
+  #   value: ((properties_uaa_ldap_last_name_attribute))
+  # .properties.uaa.ldap.ldap_referrals:
+  #   value: ((properties_uaa_ldap_ldap_referrals))
+  # .properties.uaa.ldap.mail_attribute_name:
+  #   value: ((properties_uaa_ldap_mail_attribute_name))
+  # .properties.uaa.ldap.search_base:
+  #   value: ((properties_uaa_ldap_search_base))
+  # .properties.uaa.ldap.search_filter:
+  #   value: ((properties_uaa_ldap_search_filter))
+  # .properties.uaa.ldap.server_ssl_cert:
+  #   value: ((properties_uaa_ldap_server_ssl_cert))
+  # .properties.uaa.ldap.url:
+  #   value: ((properties_uaa_ldap_url))
   # .properties.uaa_oidc:
   #   value: ((properties_uaa_oidc))
   .properties.uaa_pks_cli_access_token_lifetime:
