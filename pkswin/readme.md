@@ -7,4 +7,4 @@ This foundation will include PKS with Windows support
 
 * credhub generate --type certificate -n /foundation/pkswin/harbor_server_cert --self-sign --common-name harbor.pkswin.caas.pez.pivotal.io
 * credhub generate --type certificate -n /foundation/pkswin/pivotal-container-service_pks_tls --self-sign --common-name api.pks.pkswin.caas.pez.pivotal.io
-* #credhub generate --type=ssh -n /foundation/pks/opsman_ssh -m opsman_ssh
+* credhub generate --type=ssh -n /foundation/pkswin/opsman_ssh -m opsman_ssh
