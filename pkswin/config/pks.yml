@@ -2,8 +2,8 @@ product-name: pivotal-container-service
 product-properties:
   .pivotal-container-service.pks_tls:
     value:
-      cert_pem: ((pivotal-container-service_pks_tls_cert_pemcertificate))
-      private_key_pem: ((pivotal-container-service_pks_tls_private_key_pemprivate_key))
+      cert_pem: ((pivotal-container-service_pks_tls_cert_pem))
+      private_key_pem: ((pivotal-container-service_pks_tls_private_key_pem))
   .properties.cloud_provider:
     value: ((properties_cloud_provider))
   .properties.cloud_provider.vsphere.vcenter_dc:
