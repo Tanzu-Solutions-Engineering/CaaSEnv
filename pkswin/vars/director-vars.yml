@@ -3,13 +3,13 @@ vsphere_disks_folder: PKSWIN-disks
 vsphere_mgmtaz_cluster: VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
 vsphere_mgmtaz_resource_pool: PKSWIN
 vsphere_mgmtaz_host_group: ""
-vsphere_az1_cluster: WORK
+vsphere_az1_cluster: VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
 vsphere_az1_resource_pool: PKSWIN
 vsphere_az1_host_group: GROUP1
-vsphere_az2_cluster: WORK
+vsphere_az2_cluster: VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
 vsphere_az2_resource_pool: PKSWIN
 vsphere_az2_host_group: GROUP2
-vsphere_az3_cluster: WORK
+vsphere_az3_cluster: VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
 vsphere_az3_resource_pool: PKSWIN
 vsphere_az3_host_group: GROUP3
 pks_mgmt_network: "vCenter Server Network-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4"  # network name in vsphere
