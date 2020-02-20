@@ -16,11 +16,11 @@ product-properties:
   .properties.registry_storage:
     value: ((properties.registry_storage))
   .properties.server_cert_ca:
-    value: ((harbor_server_cert_ca_pemca))
+    value: ((harbor_server_cert_ca_pem))
   .properties.server_cert_key:
     value:
-      cert_pem: ((harbor_server_cert_key_cert_pemcertificate))
-      private_key_pem: ((harbor_server_cert_key_private_key_pemprivate_key))
+      cert_pem: ((harbor_server_cert_key_cert_pem))
+      private_key_pem: ((harbor_server_cert_key_private_key_pem))
   .properties.with_clair:
     value: ((properties.with_clair))
   .properties.with_notary:
