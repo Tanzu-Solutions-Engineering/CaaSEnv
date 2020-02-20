@@ -14,7 +14,7 @@ s3.region_name: us-east1
 s3.access_key_id: ((s3_access_key_id))
 s3.secret_access_key: ((s3_secret_access_key))
 
-github_username: BrianRagazzi # [R] Your github username
+github_username: BrianRagazzi
 github_author_email: brianpragazzi@gmail.com
 config_github_repo: https://github.com/Pivotal-Field-Engineering/CaaSEnv
 config_github_branch: master
