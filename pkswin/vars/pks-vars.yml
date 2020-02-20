@@ -1,5 +1,5 @@
-pivotal-container-service_pks_tls.cert_pem: ((pivotal-container-service_pks_tls_cert_pem))
-pivotal-container-service_pks_tls.private_key_pem: ((pivotal-container-service_pks_tls_private_key_pem))
+#pivotal-container-service_pks_tls.cert_pem: ((pivotal-container-service_pks_tls_cert_pem))
+#pivotal-container-service_pks_tls.private_key_pem: ((pivotal-container-service_pks_tls_private_key_pem))
 properties_cloud_provider_vsphere_vcenter_master_creds_password: ((properties_cloud_provider_vsphere_vcenter_master_creds_password))
 # properties_nsx_api_ca_cert: ((nsx_ca_cert))
 # properties_network_selector_nsx_nsx-t-superuser-certificate.cert_pem: ((properties_network_selector_nsx_nsx-t-superuser-certificate_cert_pem))
