@@ -60,7 +60,7 @@ network-assignment:
   network:
     name: PKS-MGMT
 networks-configuration:
-  icmp_checks_enabled: true
+  icmp_checks_enabled: false
   networks:
   - name: PKS-MGMT
     subnets:
