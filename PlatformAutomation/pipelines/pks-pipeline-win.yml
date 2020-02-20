@@ -285,8 +285,8 @@ jobs:
     - get: pks-product
     - get: pks-stemcell
     - get: pks-windows-stemcell
-    - get: custom-tasks
-    - get: custom-task-image
+    # - get: custom-tasks
+    # - get: custom-task-image
     - get: platform-automation-image
       params:
         unpack: true
@@ -336,19 +336,19 @@ jobs:
     params:
       ENV_FILE: ((foundation))/env/env.yml
 
-  - task: get_nsx_vars
-    image: custom-task-image
-    file: custom-tasks/tasks/create-pks-nsx-vars.yml
-    input_mapping:
-      config: configuration
-      vars: interpolated-creds
-      custom-tasks: custom-tasks
-    params:
-      NSXT_INFRA_CONFIG_FILE: vars/((foundation))/vars/nsx-infra.yml
-      PKS_VARS_FILE: vars/((foundation))/vars/pks-vars.yml
-      NSX_VARS_FILE:  vars/((foundation))/vars/pks-nsx-vars.yml
-    output_mapping:
-      vars: interpolated-creds
+  # - task: get_nsx_vars
+  #   image: custom-task-image
+  #   file: custom-tasks/tasks/create-pks-nsx-vars.yml
+  #   input_mapping:
+  #     config: configuration
+  #     vars: interpolated-creds
+  #     custom-tasks: custom-tasks
+  #   params:
+  #     NSXT_INFRA_CONFIG_FILE: vars/((foundation))/vars/nsx-infra.yml
+  #     PKS_VARS_FILE: vars/((foundation))/vars/pks-vars.yml
+  #     NSX_VARS_FILE:  vars/((foundation))/vars/pks-nsx-vars.yml
+  #   output_mapping:
+  #     vars: interpolated-creds
 
   - task: configure-pks
     image: platform-automation-image
