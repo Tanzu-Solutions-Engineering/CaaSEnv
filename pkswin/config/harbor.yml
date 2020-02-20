@@ -15,12 +15,12 @@ product-properties:
     value: ((properties.no_proxy))
   .properties.registry_storage:
     value: ((properties.registry_storage))
-  # .properties.server_cert_ca:
-  #   value: ((harbor_server_cert_ca_pem))
-  # .properties.server_cert_key:
-  #   value:
-  #     cert_pem: ((harbor_server_cert_key_cert_pem))
-  #     private_key_pem: ((harbor_server_cert_key_private_key_pem))
+  .properties.server_cert_ca:
+    value: ((harbor_server_cert.ca))
+  .properties.server_cert_key:
+    value:
+      cert_pem: ((harbor_server_cert.certificate))
+      private_key_pem: ((harbor_server_cert.private_key))
   .properties.with_clair:
     value: ((properties.with_clair))
   .properties.with_notary:
