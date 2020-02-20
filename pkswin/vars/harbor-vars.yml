@@ -4,8 +4,8 @@ network_name: PKS-MGMT
 singleton_availability_zone: MGMT
 other_availability_zones: MGMT
 harbor_admin_password: ((harbor_admin_password))
-#harbor_server_cert_key_cert_pem: ((harbor_server_cert_key_cert_pem))
-#harbor_server_cert_key_private_key_pem: ((harbor_server_cert_key_private_key_pem))
-#harbor_server_cert_ca_pem: ((harbor_server_cert_ca_pem))
+harbor_server_cert_key_cert_pem: ((harbor_server_cert.certificate))
+harbor_server_cert_key_private_key_pem: ((harbor_server_cert.private_key.)
+harbor_server_cert_ca_pem: ((harbor_server_cert.ca))
 errand-config.smoke-testing: false
 errand-config.uaa-deregistration: false
