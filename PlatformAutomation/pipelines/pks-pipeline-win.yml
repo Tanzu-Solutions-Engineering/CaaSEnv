@@ -362,7 +362,6 @@ jobs:
       VARS_FILES: |
         vars/((foundation))/vars/pks-defaults.yml
         vars/((foundation))/vars/pks-vars.yml
-        vars/((foundation))/vars/pks-nsx-vars.yml
       ENV_FILE: ((foundation))/env/env.yml
 
   - task: assign-pks-stemcells
