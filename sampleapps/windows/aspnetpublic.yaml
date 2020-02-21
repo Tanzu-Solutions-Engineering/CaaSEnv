@@ -1,0 +1,38 @@
+---
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    app: aspnetapp
+  name: aspnetapp
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: aspnetapp
+      name: aspnetapp
+    spec:
+      containers:
+      - name: aspnetapp
+        imagePullPolicy: IfNotPresent
+        image: mcr.microsoft.com/dotnet/framework/samples:aspnetapp
+      tolerations:
+      - key: "windows"
+        operator: "Exists"
+        effect: "NoSchedule"
+      nodeSelector:
+        beta.kubernetes.io/os: windows
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: aspnetapp
+  labels:
+    app: aspnetapp
+spec:
+  ports:
+  - port: 80
+  selector:
+    app: aspnetapp
+  type: NodePort
