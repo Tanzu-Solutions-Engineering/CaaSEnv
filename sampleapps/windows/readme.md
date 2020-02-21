@@ -14,4 +14,4 @@ This uses the Microsoft .NET Framework Sample ASP.Net image.
 To access the application after deployment:
 1. Identify the IP address of the Windows Worker nodes `kubectl get nodes -o wide`
 2. Identify the TCP port used by the NodePort `kubectl get svc -n test aspnetapp -o jsonpath='{.spec.ports[0].nodePort}'`
-3. Point browser to http://*WORKER-NODE-IP*:*node-port-id
+3. Point browser to http://*WORKER-NODE-IP*:*node-port-id*
