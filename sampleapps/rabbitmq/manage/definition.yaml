@@ -1,0 +1,18 @@
+# apiVersion: rabbitmq.pivotal.io/v1beta1
+# kind: RabbitmqCluster
+# metadata:
+#   name: definition
+
+apiVersion: rabbitmq.pivotal.io/v1beta1
+kind: RabbitmqCluster
+metadata:
+  name: rabbitmqcluster-sample
+spec:
+  replicas: 3
+  image: harbor.caas.pez.pivotal.io/rabbitmq/rabbitmq:0.6.22
+  imagePullSecret: regsecret
+  persistence:
+   storageClassName: vsan
+   storage: 10Gi
+  service:
+    type: LoadBalancer
