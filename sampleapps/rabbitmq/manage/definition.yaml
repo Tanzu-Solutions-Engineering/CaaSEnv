@@ -2,7 +2,7 @@
 # kind: RabbitmqCluster
 # metadata:
 #   name: definition
-
+---
 apiVersion: rabbitmq.pivotal.io/v1beta1
 kind: RabbitmqCluster
 metadata:
@@ -16,3 +16,13 @@ spec:
    storage: 10Gi
   service:
     type: LoadBalancer
+---
+apiVersion: policy/v1beta1
+kind: PodDisruptionBudget
+metadata:
+  name: rabbitmqcluster-sample-pdb-1
+spec:
+  maxUnavailable: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: rabbitmqcluster-sample
