@@ -15,4 +15,4 @@ kubectl create secret docker-registry harbor \
 --docker-password=PASSWORD \
 --docker-email=kube@caas.pez.pivotal.io
 
-**Note - Windows K8s clusters do not inherit 'trusted certificates' from OpsManager**
+**Note - Windows K8s clusters may not inherit 'trusted certificates' from OpsManager**
