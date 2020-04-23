@@ -1,96 +1,96 @@
 ---
 nsxt_admin_username: admin
 nsxt_admin_password: ((nsx_admin_password))
-nsxt_manager: https://nsxmgr.ragazzilab.com
+nsxt_manager: https://sc2-nsxmgr-01.caas.pez.pivotal.io
 
 logical_switches:
-- name: PKS-MGMT
+- name: TKGI-MGMT
   transport_zone_name: tz-overlay
 
 
 t1_logical_routers:
-- name: "t1-pks-mgmt"
-  t0_name: "tier0"
+- name: "t1-tkgi-mgmt"
+  t0_name: "T0-Router"
   edgecluster_name: ""
   downlinks:
-    - logical_switch_name: "PKS-MGMT"
-      router_port_cidr: "10.16.11.1/24"
+    - logical_switch_name: "TKGI-MGMT"
+      router_port_cidr: "172.16.3.1/24"
 
 
 t0_nat_rules:
 # must have a name
 - name: opsman-dnat # DNAT to reach Ops Mgr
-  t0_name: tier0
+  t0_name: T0-Router
   action: DNAT
   source: Any
-  dest: 192.168.105.10
-  trans: 10.16.11.10
+  dest: 10.193.39.17
+  trans: 172.16.3.10
   priority: 1000
 - name: director-dnat # DNAT to reach BOSH Direector
-  t0_name: tier0
+  t0_name: T0-Router
   action: DNAT
   source: Any
-  dest: 192.168.105.12
-  trans: 10.16.11.12
+  dest: 10.193.39.18
+  trans: 172.16.3.11
   priority: 1000
 - name: pks-controller-dnat # DNAT to reach BOSH Direector
-  t0_name: tier0
+  t0_name: T0-Router
   action: DNAT
   source: Any
-  dest: 192.168.105.13
-  trans: 10.16.11.13
+  dest: 10.193.39.19
+  trans: 172.16.3.12
   priority: 1000
-- name: harbor-dnat # DNAT to reach BOSH Direector
-  t0_name: tier0
-  action: DNAT
-  source: Any
-  dest: 192.168.105.14
-  trans: 10.16.11.14
-  priority: 1000
+# - name: harbor-dnat # DNAT to reach BOSH Direector
+#   t0_name: T0-Router
+#   action: DNAT
+#   source: Any
+#   dest: 192.168.105.14
+#   trans: 10.16.11.14
+#   priority: 1000
 - name: infra-snat-mgmt # SNAT for infra network to reach DNS, vCenter, etc
-  t0_name: tier0
+  t0_name: T0-Router
   action: SNAT
-  source: 10.16.11.0/24
-  dest: 192.168.100.0/24
-  trans: 192.168.105.4
+  source: 172.16.3.0/24
+  dest: 10.193.38.0/24
+  trans: 10.193.39.243
   priority: 1000
-- name: infra-snat-esxi # SNAT for infra to reach ESXi hosts
-  t0_name: tier0
-  action: SNAT
-  source: 10.16.11.0/24
-  dest: 192.168.97.0/24
-  trans: 192.168.105.4
-  priority: 1000
-- name: nodes-snat-mgmt # SNAT for Nodes blockto reach DNS, NTP, etc
-  t0_name: tier0
-  action: SNAT
-  source: 10.17.0.0/16
-  dest: 192.168.100.0/24
-  trans: 192.168.105.5
-  priority: 1000
-- name: pods-snat-mgmt # SNAT for Nodes blockto reach DNS, NTP, etc
-  t0_name: tier0
-  action: SNAT
-  source: 10.18.0.0/16
-  dest: 192.168.100.0/24
-  trans: 192.168.105.6
-  priority: 1000
+# - name: infra-snat-esxi # SNAT for infra to reach ESXi hosts
+#   t0_name: T0-Router
+#   action: SNAT
+#   source: 10.16.11.0/24
+#   dest: 192.168.97.0/24
+#   trans: 192.168.105.4
+#   priority: 1000
+# - name: nodes-snat-mgmt # SNAT for Nodes blockto reach DNS, NTP, etc
+#   t0_name: T0-Router
+#   action: SNAT
+#   source: 10.17.0.0/16
+#   dest: 192.168.100.0/24
+#   trans: 192.168.105.5
+#   priority: 1000
+# - name: pods-snat-mgmt # SNAT for Nodes blockto reach DNS, NTP, etc
+#   t0_name: T0-Router
+#   action: SNAT
+#   source: 10.18.0.0/16
+#   dest: 192.168.100.0/24
+#   trans: 192.168.105.6
+#   priority: 1000
 
 ip_blocks:
-- name: PKS-Nodes-Block
-  cidr: 10.17.0.0/16
-  description: "A /24 subnet from the Nodes IP Block will be extracted and allocated for the Kubernetes master and worker nodes."
-- name: PKS-Pods-Block
-  cidr: 10.18.0.0/16
-  description: "A /24 subnet from the Pods IP Block will be extracted and allocated for each Kubernetes namespace"
-
-
+# - name: PKS-Nodes-Block
+#   cidr: 10.17.0.0/16
+#   description: "A /24 subnet from the Nodes IP Block will be extracted and allocated for the Kubernetes master and worker nodes."
+# - name: PKS-Pods-Block
+#   cidr: 10.18.0.0/16
+#   description: "A /24 subnet from the Pods IP Block will be extracted and allocated for each Kubernetes namespace"
+#
+#
 ip_pools:
-- name: PKS-FLOATING-IP-POOL
-  cidr: 192.168.105.0/24
-  description: "This network provides your load balancing address space for each Kubernetes cluster created by Enterprise PKS. The network also provides IP addresses for Kubernetes API access and Kubernetes exposed services"
-  gateway: 192.168.105.1
-  range: 192.168.105.64-192.168.105.96
-  dns_servers: 192.168.100.50,192.168.100.150
+# - name: PKS-FLOATING-IP-POOL
+#   cidr: 192.168.105.0/24
+#   description: "This network provides your load balancing address space for each Kubernetes cluster created by Enterprise PKS. The network also provides IP addresses for Kubernetes API access and Kubernetes exposed services"
+#   gateway: 192.168.105.1
+#   range: 192.168.105.64-192.168.105.96
+#   dns_servers: 192.168.100.50,192.168.100.150
 
 load-balancers:

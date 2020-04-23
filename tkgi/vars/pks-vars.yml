@@ -29,15 +29,15 @@ properties_network_selector_nsx_t0-router-name: T0-Router
 properties_network_selector_nsx_vcenter_cluster: FIXME
 
 properties_uaa: ldap
-properties_uaa_ldap_credentials_identity: CN=svcacct AD. Bind,OU=Service Accounts,DC=ragazzilab,DC=com
+properties_uaa_ldap_credentials_identity: CN=ad bind,OU=Service Accounts,DC=caas,DC=pez,DC=pivotal,DC=io
 properties_uaa_ldap_credentials_password: ((properties_uaa_ldap_credentials_password))
-properties_uaa_ldap_email_domains: ragazzilab.com
-properties_uaa_ldap_group_search_base: OU=Security Groups,DC=ragazzilab,DC=com
-properties_uaa_ldap_search_base: OU=User Accounts,DC=ragazzilab,DC=com
+properties_uaa_ldap_email_domains: caas.pez.pivotal.io
+properties_uaa_ldap_group_search_base: OU=Security Groups,DC=caas,DC=pez,DC=pivotal,DC=io
+properties_uaa_ldap_search_base: OU=User Accounts,DC=caas,DC=pez,DC=pivotal,DC=io
 properties_uaa_ldap_server_ssl_cert: ((ldap_server_ssl_cert))
-properties_uaa_ldap_url: ldaps://coreadc1.ragazzilab.com:3269
+properties_uaa_ldap_url: ldaps://caasadc1.caas.pez.pivotal.io:3269
 properties_uaa_oidc: true # connect K8s clusters to LDAP
-pks_admin_ldap_group_dn: CN=PKS-admins,OU=Security Groups,DC=ragazzilab,DC=com
+pks_admin_ldap_group_dn: CN=TKGI - Admin,OU=Security Groups,DC=caas,DC=pez,DC=pivotal,DC=io
 
 properties_pks-vrli_enabled: enabled
 properties_pks-vrli_enabled_host: syslog.caas.pez.pivotal.io
@@ -59,12 +59,12 @@ properties_plan1_selector_active_name: tiny
 properties_plan1_selector_value: "Plan Active"
 properties_plan1_selector_active_allow_privileged_containers: true
 properties_plan1_selector_active_description: "1 medium master, 1 medium worker"
-properties_plan1_selector_active_master_az_placement: [MGMT]
+properties_plan1_selector_active_master_az_placement: [AZ1,AZ2,AZ3]
 properties_plan1_selector_active_master_instances: 1
 properties_plan1_selector_active_master_persistent_disk_type: "10240"
 properties_plan1_selector_active_max_worker_instances: 3
 properties_plan1_selector_active_worker_instances: 1
-properties_plan1_selector_active_worker_az_placement: [MGMT]
+properties_plan1_selector_active_worker_az_placement: [AZ1,AZ2,AZ3]
 properties_plan1_selector_active_admission_plugins: [deny_escalating_exec]
 properties_plan1_selector_active_master_vm_type: medium.disk
 properties_plan1_selector_active_worker_vm_type: medium.disk
@@ -74,7 +74,7 @@ properties_plan2_selector_active_name: small
 properties_plan2_selector_value: "Plan Active"
 properties_plan2_selector_active_allow_privileged_containers: true
 properties_plan2_selector_active_description: "1 medium.disk master, 3 medium.disk worker"
-properties_plan2_selector_active_master_az_placement: [MGMT]
+properties_plan2_selector_active_master_az_placement: [AZ1,AZ2,AZ3]
 properties_plan2_selector_active_master_instances: 1
 properties_plan2_selector_active_master_persistent_disk_type: "10240"
 properties_plan2_selector_active_max_worker_instances: 6

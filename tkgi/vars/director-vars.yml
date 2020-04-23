@@ -1,21 +1,21 @@
 vsphere_templates_folder: FOUNDATIONS/TKGI/Templates
 vsphere_disks_folder: TKGI-disks
 vsphere_mgmtaz_cluster: VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
-vsphere_mgmtaz_resource_pool: TKGI
+vsphere_mgmtaz_resource_pool: TKGI-MGMT
 vsphere_mgmtaz_host_group: ""
 vsphere_az1_cluster: VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
-vsphere_az1_resource_pool: TKGI
+vsphere_az1_resource_pool: TKGI-WORKLOAD
 vsphere_az1_host_group: GROUP1
 vsphere_az2_cluster: VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
-vsphere_az2_resource_pool: TKGI
+vsphere_az2_resource_pool: TKGI-WORKLOAD
 vsphere_az2_host_group: GROUP2
 vsphere_az3_cluster: VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
-vsphere_az3_resource_pool: TKGI
+vsphere_az3_resource_pool: TKGI-WORKLOAD
 vsphere_az3_host_group: GROUP3
 pks_mgmt_network: "vCenter Server Network-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4"  # network name in vsphere
-pks_mgmt_gateway: 10.193.38.1 #10.16.12.1
-pks_mgmt_network_cidr: 10.193.38.0/24
-pks_mgmt_network_reserved: 10.193.38.1-10.193.38.70,10.193.38.91-10.193.38.255
+pks_mgmt_gateway: 172.16.3.1
+pks_mgmt_network_cidr: 172.16.3.0/24
+pks_mgmt_network_reserved: 172.16.3.1-172.16.3.10
 
 max_threads: 32
 vsphere_datastore: VxRail-Virtual-SAN-Datastore-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
@@ -25,7 +25,7 @@ ntp: 10.192.2.5,10.192.2.6
 vsphere_vms_folder: FOUNDATIONS/TKGI/VMs/
 vcenter_hostname: sc2-vc-01.caas.pez.pivotal.io
 vcenter_userid: administrator@vsphere.local
-#nsx_hostname: sc2-nsxmgr-01.caas.pez.pivotal.io
+nsx_hostname: sc2-nsxmgr-01.caas.pez.pivotal.io
 diego_cell/insecure_docker_registry_list: ""
 syslog_address: sc2-syslog-infra.caas.pez.pivotal.io
 syslog_port: 514
