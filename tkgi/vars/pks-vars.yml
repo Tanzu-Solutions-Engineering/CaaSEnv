@@ -5,10 +5,11 @@ properties_nsx_api_ca_cert: ((nsx_ca_cert))
 properties_network_selector_nsx_nsx-t-superuser-certificate.cert_pem: ((properties_network_selector_nsx_nsx-t-superuser-certificate_cert_pem))
 properties_network_selector_nsx_nsx-t-superuser-certificate.private_key_pem: ((properties_network_selector_nsx_nsx-t-superuser-certificate_private_key_pem))
 
-properties_cloud_provider_vcenter_dc: attic
-properties_cloud_provider_vcenter_ds: vsanDatastore
-properties_cloud_provider_vcenter_ip: vcsa.ragazzilab.com
-properties_cloud_provider_vcenter_vms: WORK/PKS/VMs/
+properties_cloud_provider_vcenter_dc: VxRail-Datacenter
+properties_cloud_provider_vcenter_ds: VxRail-Virtual-SAN-Datastore-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
+properties_cloud_provider_vcenter_ip: sc2-vc-01.caas.pez.pivotal.io
+properties_cloud_provider_vcenter_vms: FOUNDATIONS/TKGI/VMs/
+
 properties_network_selector: nsx
 properties_network_selector_nsx-t-host: nsxmgr.ragazzilab.com
 properties_network_selector_nsx_cloud-config-dns: 192.168.100.50,192.168.100.150
@@ -39,41 +40,41 @@ properties_uaa_oidc: true # connect K8s clusters to LDAP
 pks_admin_ldap_group_dn: CN=PKS-admins,OU=Security Groups,DC=ragazzilab,DC=com
 
 properties_pks-vrli_enabled: enabled
-properties_pks-vrli_enabled_host: syslog.ragazzilab.com
+properties_pks-vrli_enabled_host: syslog.caas.pez.pivotal.io
 properties_pks-vrli_enabled_skip_cert_verify: true
 properties_pks-vrops: disabled
-properties_pks_api_hostname: api.pks.ragazzilab.com
+properties_pks_api_hostname: api.tkgi.caas.pez.pivotal.io
 az1_name: AZ1
 az2_name: AZ2
 az3_name: AZ3
 properties_worker_max_in_flight: 6
-network_name: PKS-MGMT
-service_network: PKS-MGMT
+network_name: TKGI-MGMT
+service_network: TKGI-MGMT
 singleton_availability_zone: MGMT
 properties_cloud_provider_vsphere_vcenter_master_creds_identity: administrator@vsphere.local
 
-new_vm_type: '{"name": "4cpu.8ram.32disk","ram": 8192,"cpu": 4,"ephemeral_disk": 32768}'
+#new_vm_type: '{"name": "4cpu.8ram.32disk","ram": 8192,"cpu": 4,"ephemeral_disk": 32768}'
 
-properties_plan1_selector_active_name: small
+properties_plan1_selector_active_name: tiny
 properties_plan1_selector_value: "Plan Active"
 properties_plan1_selector_active_allow_privileged_containers: true
 properties_plan1_selector_active_description: "1 medium master, 1 medium worker"
-properties_plan1_selector_active_master_az_placement: [AZ1,AZ2,AZ3]
+properties_plan1_selector_active_master_az_placement: [MGMT]
 properties_plan1_selector_active_master_instances: 1
 properties_plan1_selector_active_master_persistent_disk_type: "10240"
 properties_plan1_selector_active_max_worker_instances: 3
 properties_plan1_selector_active_worker_instances: 1
-properties_plan1_selector_active_worker_az_placement: [AZ1,AZ2,AZ3]
+properties_plan1_selector_active_worker_az_placement: [MGMT]
 properties_plan1_selector_active_admission_plugins: [deny_escalating_exec]
 properties_plan1_selector_active_master_vm_type: medium.disk
 properties_plan1_selector_active_worker_vm_type: medium.disk
 properties_plan1_selector_active_errand_vm_type: micro
 
-properties_plan2_selector_active_name: medium
+properties_plan2_selector_active_name: small
 properties_plan2_selector_value: "Plan Active"
 properties_plan2_selector_active_allow_privileged_containers: true
-properties_plan2_selector_active_description: "1 medium master, 3 large.disk workers"
-properties_plan2_selector_active_master_az_placement: [AZ1,AZ2,AZ3]
+properties_plan2_selector_active_description: "1 medium.disk master, 3 medium.disk worker"
+properties_plan2_selector_active_master_az_placement: [MGMT]
 properties_plan2_selector_active_master_instances: 1
 properties_plan2_selector_active_master_persistent_disk_type: "10240"
 properties_plan2_selector_active_max_worker_instances: 6
@@ -81,17 +82,17 @@ properties_plan2_selector_active_worker_instances: 3
 properties_plan2_selector_active_worker_az_placement: [AZ1,AZ2,AZ3]
 properties_plan2_selector_active_admission_plugins: [deny_escalating_exec]
 properties_plan2_selector_active_master_vm_type: medium.disk
-properties_plan2_selector_active_worker_vm_type: large.disk
+properties_plan2_selector_active_worker_vm_type: medium.disk
 properties_plan2_selector_active_errand_vm_type: micro
 
-properties_plan3_selector_active_name: large
+properties_plan3_selector_active_name: medium
 properties_plan3_selector_value: "Plan Active"
 properties_plan3_selector_active_allow_privileged_containers: true
-properties_plan3_selector_active_description: "3 medium masters 3 large workers"
+properties_plan3_selector_active_description: "3 medium.disk master, 3 large.disk workers"
 properties_plan3_selector_active_master_az_placement: [AZ1,AZ2,AZ3]
 properties_plan3_selector_active_master_instances: 3
 properties_plan3_selector_active_master_persistent_disk_type: "10240"
-properties_plan3_selector_active_max_worker_instances: 12
+properties_plan3_selector_active_max_worker_instances: 6
 properties_plan3_selector_active_worker_instances: 3
 properties_plan3_selector_active_worker_az_placement: [AZ1,AZ2,AZ3]
 properties_plan3_selector_active_admission_plugins: [deny_escalating_exec]
@@ -99,15 +100,15 @@ properties_plan3_selector_active_master_vm_type: medium.disk
 properties_plan3_selector_active_worker_vm_type: large.disk
 properties_plan3_selector_active_errand_vm_type: micro
 
-properties_plan4_selector_active_name: med-large
+properties_plan4_selector_active_name: large
 properties_plan4_selector_value: "Plan Active"
 properties_plan4_selector_active_allow_privileged_containers: true
-properties_plan4_selector_active_description: "1 medium master, 3 large workers"
+properties_plan4_selector_active_description: "3 medium.disk masters 6 large.disk workers"
 properties_plan4_selector_active_master_az_placement: [AZ1,AZ2,AZ3]
-properties_plan4_selector_active_master_instances: 1
-properties_plan4_selector_active_master_persistent_disk_type: "10240"
+properties_plan4_selector_active_master_instances: 3
+properties_plan4_selector_active_master_persistent_disk_type: "20480"
 properties_plan4_selector_active_max_worker_instances: 12
-properties_plan4_selector_active_worker_instances: 3
+properties_plan4_selector_active_worker_instances: 6
 properties_plan4_selector_active_worker_az_placement: [AZ1,AZ2,AZ3]
 properties_plan4_selector_active_admission_plugins: [deny_escalating_exec]
 properties_plan4_selector_active_master_vm_type: medium.disk

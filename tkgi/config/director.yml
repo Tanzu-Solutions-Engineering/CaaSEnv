@@ -58,11 +58,11 @@ network-assignment:
   singleton_availability_zone:
     name: MGMT
   network:
-    name: PKS-MGMT
+    name: TKGI-MGMT
 networks-configuration:
   icmp_checks_enabled: true
   networks:
-  - name: PKS-MGMT
+  - name: TKGI-MGMT
     subnets:
     - iaas_identifier: ((pks_mgmt_network))
       cidr: ((pks_mgmt_network_cidr))
