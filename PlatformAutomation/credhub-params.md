@@ -1,0 +1,32 @@
+## Add these params to credhub for this foundation:
+
+
+opsman_host
+opsman_userid
+opsman_password
+opsman_decryption_passphrase
+opsman_ssh.public_key - credhub generate /type:ssh /name:/foundation/tkgi/opsman_ssh /m opsman_ssh
+
+
+pivnet_token
+
+nsx_admin_user
+nsx_admin_password
+vcenter_password
+director-trusted_certificates
+
+harbor_admin_password
+harbor_server_cert.certificate
+harbor_server_cert.private_key
+harbor_server_cert.ca
+
+pivotal-container-service_pks_tls_cert_pem
+pivotal-container-service_pks_tls_private_key_pem
+properties_cloud_provider_vsphere_vcenter_master_creds_password
+properties_network_selector_nsx_nsx-t-superuser-certificate_cert_pem
+properties_network_selector_nsx_nsx-t-superuser-certificate_private_key_pem
+
+nsx_ca_cert
+
+ldap_server_ssl_cert
+properties_uaa_ldap_credentials_password
