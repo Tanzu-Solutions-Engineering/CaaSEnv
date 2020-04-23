@@ -1,5 +1,0 @@
-# {"product":"pivotal-container-service","stemcell":["ubuntu-xenial:latest", "windows2019:latest"]}
-product: pivotal-container-service
-#stemcell: ["ubuntu-xenial:latest", "windows2019:2019.7"]
-stemcell: ["ubuntu-xenial:latest", "windows2019:latest"]
-# PKS 1.5 is pinned to Windows Stemcell 2019.7

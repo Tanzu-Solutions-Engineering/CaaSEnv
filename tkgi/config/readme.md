@@ -1,0 +1,1 @@
+Template manifests for products

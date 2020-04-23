@@ -1,18 +1,18 @@
-vsphere_resource_pool: /VxRail-Datacenter/host/VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4/Resources/TKGI # /<Data Center Name>/host/<Cluster Name>
-opsman_vm_name: om-tkgi
-opsman_private_ip: 10.193.38.100
+vsphere_resource_pool: /attic/host/WORK/Resources/PKS-MGMT #/LAB/host/attic/Resources/PKS-MGMT # /<Data Center Name>/host/<Cluster Name>/Resources/<RP Name>
+opsman_vm_name: om-pks
+opsman_private_ip: 10.16.11.10
 opsman_netmask: 255.255.255.0
-vsphere_datastore: VxRail-Virtual-SAN-Datastore-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
-vsphere_datacenter: VxRail-Datacenter
-infrastructure_network: "vCenter Server Network-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4"
-infrastructure_gateway: 10.193.38.1
-dns: 10.192.2.10,10.192.2.11
-ntp: 10.192.2.5,10.192.2.6
-vsphere_vms_folder: /VxRail-Datacenter/vm/FOUNDATIONS/TKGI/VMs/
-vcenter_hostname: sc2-vc-01.caas.pez.pivotal.io
+vsphere_datastore: vsanDatastore
+vsphere_datacenter: attic
+infrastructure_network: PKS-MGMT
+infrastructure_gateway: 10.16.11.1
+dns: 192.168.100.50,192.168.100.150
+ntp: 192.168.100.1
+vsphere_vms_folder: /attic/vm/WORK/PKS/VMs/ #/LAB/vm/BOSH/PKS/VMs/
+vcenter_hostname: vcsa.ragazzilab.com
 vcenter_userid: administrator@vsphere.local
-opsman_host: om.tkgi.ragazzilab.com
+opsman_host: om.pks.ragazzilab.com
 opsman_ssh.public_key: ((opsman_ssh.public_key))
 vcenter_password: ((vcenter_password))
-#opsman_ssh_password: ((opsman_ssh_password)) #Remove in OpsMgr 2.6+
+opsman_ssh_password: ((opsman_ssh_password))
 pivnet-api-token: ((pivnet_token))

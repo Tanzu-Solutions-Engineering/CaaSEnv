@@ -13,7 +13,7 @@ opsman-configuration:
     private_ip: ((opsman_private_ip))
     dns: ((dns))
     ntp: ((ntp))                    # example: ntp.ubuntu.com
-    #ssh_password: ((opsman_ssh_password))  #Remove in OpsMgr 2.6+
+    # ssh_password: ((opsman_ssh_password))
     ssh_public_key: ((opsman_ssh.public_key))
     hostname: ((opsman_host))
     network: ((infrastructure_network))               # vcenter network to deploy to

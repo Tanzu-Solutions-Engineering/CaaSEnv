@@ -1,2 +1,2 @@
 iaas: vsphere
-vm_id: /VxRail-Datacenter/vm/FOUNDATIONS/TKGI/VMs//om-tkgi
+vm_id: /attic/vm/WORK/PKS/VMs//om-pks
