@@ -1,0 +1,12 @@
+---
+username: ((opsman_userid))
+password: ((opsman_password))
+decryption-passphrase: ((opsman_decryption_passphrase))
+
+# Optional
+# http-proxy-url:           # proxy for outbound HTTP network traffic
+# https-proxy-url:          # proxy for outbound HTTPS network traffic
+# no-proxy:                 # comma-separated list of hosts that do not go
+                            # through the proxy
+# precreated-client-secret: # create a UAA client on the Ops Manager vm.
+                            # this will be client-secret in env.yml
