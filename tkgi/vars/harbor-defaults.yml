@@ -1,0 +1,13 @@
+properties.clair_updater_interval: 0
+properties.customize_container_network: default
+properties.no_proxy: 127.0.0.1,localhost,ui,registry
+properties.registry_storage: filesystem
+properties.with_clair: true
+properties.with_notary: true
+resource-config.harbor-app_instances: automatic
+resource-config.harbor-app_persistent_disk: automatic
+resource-config.harbor-app_instance_type: automatic
+resource-config.smoke-testing_instances: automatic
+resource-config.smoke-testing_instance_type: automatic
+errand-config.smoke-testing: true
+errand-config.uaa-deregistration: false

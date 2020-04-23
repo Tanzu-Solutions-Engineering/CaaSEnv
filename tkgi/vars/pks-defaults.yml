@@ -1,0 +1,45 @@
+properties_cloud_provider: vSphere
+properties_log_sink_resources_deploy: true
+properties_metric_sink_resources_deploy: true
+properties_network_selector: flannel
+properties_network_selector_nsx_lb_size_large_supported: true
+properties_network_selector_nsx_lb_size_medium_supported: true
+properties_network_selector_nsx_nat_mode: true
+properties_network_selector_nsx_network_automation: true
+properties_network_selector_nsx_nsx-t-insecure: false
+properties_pks-vrli_enabled: disabled
+properties_pks-vrli_enabled_skip_cert_verify: false
+properties_pks-vrli_enabled_use_ssl: true
+properties_pks-vrops: disabled
+properties_uaa: internal
+# properties_uaa_oidc: false
+# properties_uaa_ldap_external_groups_whitelist: '*'
+# properties_uaa_ldap_first_name_attribute: givenName
+# properties_uaa_ldap_group_search_filter: member={0}
+# properties_uaa_ldap_last_name_attribute: sn
+# properties_uaa_ldap_ldap_referrals: follow
+# properties_uaa_ldap_mail_attribute_name: mail
+# properties_uaa_ldap_search_filter: userPrincipalName={0}
+properties_uaa_pks_cli_access_token_lifetime: 864000
+properties_uaa_pks_cli_refresh_token_lifetime: 1728000
+properties_wavefront: disabled
+properties_worker_max_in_flight: 4
+resource-config_persistent_disk: automatic
+resource-config_instance_type: automatic
+errand-config_delete-all-clusters: true
+errand-config_pks-nsx-t-precheck: false
+errand-config_smoke-tests: false
+errand-config_update-all-service-instances: false
+errand-config_wavefront-alert-creation: false
+errand-config_wavefront-alert-deletion: false
+#Flannel-specific
+properties_network_selector_flannel_pod_network_cidr: 10.200.0.0/16
+properties_network_selector_flannel_service_cluster_cidr: 10.100.200.0/24
+properties_node_exporter_deploy: false
+#NEW to 1.5
+telemetry_installation_purpose_selector: not_provided # demo_or_poc, dev_or_pre_prod, prod, not_provided
+properties_oidc_selector: disabled # Enabled: Configure Created clusters to use UAA as the OIDC provider
+# properties_oidc_selector_enabled_groups_claim: roles
+# properties_oidc_selector_enabled_groups_prefix: 'oidc:'
+# properties_oidc_selector_enabled_username_claim: user_name
+# properties_oidc_selector_enabled_username_prefix: 'oidc:'

@@ -1,0 +1,314 @@
+product-name: pivotal-container-service
+product-properties:
+  .pivotal-container-service.pks_tls:
+    value:
+      cert_pem: ((pivotal-container-service_pks_tls_cert_pem))
+      private_key_pem: ((pivotal-container-service_pks_tls_private_key_pem))
+  .properties.cloud_provider:
+    value: ((properties_cloud_provider))
+  .properties.cloud_provider.vsphere.vcenter_dc:
+    value: ((properties_cloud_provider_vcenter_dc))
+  .properties.cloud_provider.vsphere.vcenter_ds:
+    value: ((properties_cloud_provider_vcenter_ds))
+  .properties.cloud_provider.vsphere.vcenter_ip:
+    value: ((properties_cloud_provider_vcenter_ip))
+  .properties.cloud_provider.vsphere.vcenter_master_creds:
+    value:
+      identity: ((properties_cloud_provider_vsphere_vcenter_master_creds_identity))
+      password: ((properties_cloud_provider_vsphere_vcenter_master_creds_password))
+  .properties.cloud_provider.vsphere.vcenter_vms:
+    value: ((properties_cloud_provider_vcenter_vms))
+  .properties.log_sink_resources_deploy:
+    value: ((properties_log_sink_resources_deploy))
+  .properties.metric_sink_resources_deploy:
+    value: ((properties_log_sink_resources_deploy))
+  .properties.network_selector:
+    value: ((properties_network_selector))
+  .properties.network_selector.flannel.pod_network_cidr:
+    value: ((properties_network_selector_flannel_pod_network_cidr))
+  .properties.network_selector.flannel.service_cluster_cidr:
+    value: ((properties_network_selector_flannel_service_cluster_cidr))
+  .properties.node_exporter_deploy: #Cluster Metric Sink
+    value: false
+  .properties.oidc_selector:
+    value: ((properties_oidc_selector))
+  # .properties.oidc_selector.enabled.groups_claim:
+  #   value: ((properties_oidc_selector_enabled_groups_claim))
+  # .properties.oidc_selector.enabled.groups_prefix:
+  #   value: ((properties_oidc_selector_enabled_groups_prefix))
+  # .properties.oidc_selector.enabled.username_claim:
+  #   value: ((properties_oidc_selector_enabled_username_claim))
+  # .properties.oidc_selector.enabled.username_prefix:
+  #   value: ((properties_oidc_selector_enabled_username_prefix))
+  # .properties.network_selector.nsx.cloud-config-dns:uaa_oid
+  #   value: ((properties_network_selector_nsx_cloud-config-dns))
+  # .properties.network_selector.nsx.floating-ip-pool-ids:
+  #   value: ((properties_network_selector_nsx_floating-ip-pool-ids))
+  # .properties.network_selector.nsx.ip-block-id:
+  #   value: ((properties_network_selector_nsx_ip-block-id))
+  # .properties.network_selector.nsx.lb_size_large_supported:
+  #   value: ((properties_network_selector_nsx_lb_size_large_supported))
+  # .properties.network_selector.nsx.lb_size_medium_supported:
+  #   value: ((properties_network_selector_nsx_lb_size_medium_supported))
+  # .properties.network_selector.nsx.nat_mode:
+  #   value: ((properties_network_selector_nsx_nat_mode))
+  # .properties.network_selector.nsx.network_automation:
+  #   value: ((properties_network_selector_nsx_network_automation))
+  # .properties.network_selector.nsx.nodes-ip-block-id:
+  #   value: ((properties_network_selector_nsx_nodes-ip-block-id))
+  # .properties.network_selector.nsx.nsx-t-ca-cert:
+  #   value: ((properties_nsx_api_ca_cert))
+  # .properties.network_selector.nsx.nsx-t-host:
+  #   value: ((properties_network_selector_nsx-t-host))
+  # .properties.network_selector.nsx.nsx-t-insecure:
+  #   value: ((properties_network_selector_nsx_nsx-t-insecure))
+  # .properties.network_selector.nsx.nsx-t-superuser-certificate:
+  #   value:
+  #     cert_pem: ((properties_network_selector_nsx_nsx-t-superuser-certificate.cert_pem))
+  #     private_key_pem: ((properties_network_selector_nsx_nsx-t-superuser-certificate.private_key_pem))
+  # .properties.network_selector.nsx.t0-router-id:
+  #   value: ((properties_network_selector_nsx_t0-router-id))
+  # .properties.network_selector.nsx.vcenter_cluster:
+  #   value: ((properties_network_selector_nsx_vcenter_cluster))
+  .properties.pks-vrli:
+    value: ((properties_pks-vrli_enabled))
+  .properties.pks-vrli.enabled.host:
+    value: ((properties_pks-vrli_enabled_host))
+  .properties.pks-vrli.enabled.skip_cert_verify:
+    value: ((properties_pks-vrli_enabled_skip_cert_verify))
+  .properties.pks-vrli.enabled.use_ssl:
+    value: ((properties_pks-vrli_enabled_use_ssl))
+  .properties.pks-vrops:
+    value: ((properties_pks-vrops))
+  .properties.pks_api_hostname:
+    value: ((properties_pks_api_hostname))
+
+  .properties.plan1_selector:
+    value: ((properties_plan1_selector_value))
+  .properties.plan1_selector.active.allow_privileged_containers:
+    value: ((properties_plan1_selector_active_allow_privileged_containers))
+  .properties.plan1_selector.active.description:
+    value: ((properties_plan1_selector_active_description))
+  .properties.plan1_selector.active.master_az_placement:
+    value: ((properties_plan1_selector_active_master_az_placement))
+  .properties.plan1_selector.active.master_instances:
+    value: ((properties_plan1_selector_active_master_instances))
+  .properties.plan1_selector.active.master_persistent_disk_type:
+    value: ((properties_plan1_selector_active_master_persistent_disk_type))
+  .properties.plan1_selector.active.max_worker_instances:
+    value: ((properties_plan1_selector_active_max_worker_instances))
+  .properties.plan1_selector.active.name:
+    value: ((properties_plan1_selector_active_name))
+  .properties.plan1_selector.active.worker_az_placement:
+    value: ((properties_plan1_selector_active_worker_az_placement))
+  .properties.plan1_selector.active.worker_instances:
+    value: ((properties_plan1_selector_active_worker_instances))
+  .properties.plan1_selector.active.allow_privileged_containers:
+    value: ((properties_plan1_selector_active_allow_privileged_containers))
+  .properties.plan1_selector.active.errand_vm_type:
+    value: ((properties_plan1_selector_active_errand_vm_type))
+  .properties.plan1_selector.active.master_vm_type:
+    value: ((properties_plan1_selector_active_master_vm_type))
+  .properties.plan1_selector.active.worker_vm_type:
+    value: ((properties_plan1_selector_active_worker_vm_type))
+
+  .properties.plan2_selector:
+    value: ((properties_plan2_selector_value))
+  .properties.plan2_selector.active.allow_privileged_containers:
+    value: ((properties_plan2_selector_active_allow_privileged_containers))
+  .properties.plan2_selector.active.description:
+    value: ((properties_plan2_selector_active_description))
+  .properties.plan2_selector.active.master_az_placement:
+    value: ((properties_plan2_selector_active_master_az_placement))
+  .properties.plan2_selector.active.master_instances:
+    value: ((properties_plan2_selector_active_master_instances))
+  .properties.plan2_selector.active.master_persistent_disk_type:
+    value: ((properties_plan2_selector_active_master_persistent_disk_type))
+  .properties.plan2_selector.active.max_worker_instances:
+    value: ((properties_plan2_selector_active_max_worker_instances))
+  .properties.plan2_selector.active.name:
+    value: ((properties_plan2_selector_active_name))
+  .properties.plan2_selector.active.worker_az_placement:
+    value: ((properties_plan2_selector_active_worker_az_placement))
+  .properties.plan2_selector.active.worker_instances:
+    value: ((properties_plan2_selector_active_worker_instances))
+  .properties.plan2_selector.active.allow_privileged_containers:
+    value: ((properties_plan2_selector_active_allow_privileged_containers))
+  .properties.plan2_selector.active.errand_vm_type:
+    value: ((properties_plan2_selector_active_errand_vm_type))
+  .properties.plan2_selector.active.master_vm_type:
+    value: ((properties_plan2_selector_active_master_vm_type))
+  .properties.plan2_selector.active.worker_vm_type:
+    value: ((properties_plan2_selector_active_worker_vm_type))
+
+  .properties.plan3_selector:
+    value: ((properties_plan3_selector_value))
+  .properties.plan3_selector.active.allow_privileged_containers:
+    value: ((properties_plan3_selector_active_allow_privileged_containers))
+  .properties.plan3_selector.active.description:
+    value: ((properties_plan3_selector_active_description))
+  .properties.plan3_selector.active.master_az_placement:
+    value: ((properties_plan3_selector_active_master_az_placement))
+  .properties.plan3_selector.active.master_instances:
+    value: ((properties_plan3_selector_active_master_instances))
+  .properties.plan3_selector.active.master_persistent_disk_type:
+    value: ((properties_plan3_selector_active_master_persistent_disk_type))
+  .properties.plan3_selector.active.max_worker_instances:
+    value: ((properties_plan3_selector_active_max_worker_instances))
+  .properties.plan3_selector.active.name:
+    value: ((properties_plan3_selector_active_name))
+  .properties.plan3_selector.active.worker_az_placement:
+    value: ((properties_plan3_selector_active_worker_az_placement))
+  .properties.plan3_selector.active.worker_instances:
+    value: ((properties_plan3_selector_active_worker_instances))
+  .properties.plan3_selector.active.allow_privileged_containers:
+    value: ((properties_plan3_selector_active_allow_privileged_containers))
+  .properties.plan3_selector.active.errand_vm_type:
+    value: ((properties_plan3_selector_active_errand_vm_type))
+  .properties.plan3_selector.active.master_vm_type:
+    value: ((properties_plan3_selector_active_master_vm_type))
+  .properties.plan3_selector.active.worker_vm_type:
+    value: ((properties_plan3_selector_active_worker_vm_type))
+
+
+
+  .properties.plan4_selector:
+    value: Plan Inactive
+  .properties.plan5_selector:
+    value: Plan Inactive
+  .properties.plan6_selector:
+    selected_option: inactive
+    value: Plan Inactive
+  .properties.plan7_selector:
+    selected_option: inactive
+    value: Plan Inactive
+  .properties.plan8_selector:
+    selected_option: inactive
+    value: Plan Inactive
+  .properties.plan9_selector:
+    selected_option: inactive
+    value: Plan Inactive
+  .properties.plan10_selector:
+    selected_option: inactive
+    value: Plan Inactive
+
+  .properties.plan11_selector:
+    value: ((properties_plan11_selector_value))
+  .properties.plan11_selector.active.allow_privileged_containers:
+    value: ((properties_plan11_selector_active_allow_privileged_containers))
+  .properties.plan11_selector.active.description:
+    value: ((properties_plan11_selector_active_description))
+  .properties.plan11_selector.active.master_az_placement:
+    value: ((properties_plan11_selector_active_master_az_placement))
+  .properties.plan11_selector.active.master_instances:
+    value: ((properties_plan11_selector_active_master_instances))
+  .properties.plan11_selector.active.master_persistent_disk_type:
+    value: ((properties_plan11_selector_active_master_persistent_disk_type))
+  .properties.plan11_selector.active.max_worker_instances:
+    value: ((properties_plan11_selector_active_max_worker_instances))
+  .properties.plan11_selector.active.name:
+    value: ((properties_plan11_selector_active_name))
+  .properties.plan11_selector.active.worker_az_placement:
+    value: ((properties_plan11_selector_active_worker_az_placement))
+  .properties.plan11_selector.active.worker_instances:
+    value: ((properties_plan11_selector_active_worker_instances))
+  .properties.plan11_selector.active.allow_privileged_containers:
+    value: ((properties_plan11_selector_active_allow_privileged_containers))
+  .properties.plan11_selector.active.errand_vm_type:
+    value: ((properties_plan11_selector_active_errand_vm_type))
+  .properties.plan11_selector.active.master_vm_type:
+    value: ((properties_plan11_selector_active_master_vm_type))
+  .properties.plan11_selector.active.worker_vm_type:
+    value: ((properties_plan11_selector_active_worker_vm_type))
+
+  .properties.plan12_selector:
+    selected_option: inactive
+    value: Plan Inactive
+  .properties.plan13_selector:
+    selected_option: inactive
+    value: Plan Inactive
+  .properties.proxy_selector:
+    selected_option: disabled
+    value: Disabled
+  .properties.syslog_selector:
+    selected_option: disabled
+    value: disabled
+  .properties.telemetry_installation_purpose_selector:
+    value: ((telemetry_installation_purpose_selector))
+  .properties.telemetry_selector:
+    selected_option: disabled
+    value: disabled
+  .properties.uaa:
+    value: ((properties_uaa))
+  # .properties.uaa.ldap.credentials:
+  #   value:
+  #     identity: ((properties_uaa_ldap_credentials_identity))
+  #     password: ((properties_uaa_ldap_credentials_password))
+  # .properties.uaa.ldap.email_domains:
+  #   value: ((properties_uaa_ldap_email_domains))
+  # .properties.uaa.ldap.external_groups_whitelist:
+  #   value: ((properties_uaa_ldap_external_groups_whitelist))
+  # .properties.uaa.ldap.first_name_attribute:
+  #   value: ((properties_uaa_ldap_first_name_attribute))
+  # .properties.uaa.ldap.group_search_base:
+  #   value: ((properties_uaa_ldap_group_search_base))
+  # .properties.uaa.ldap.group_search_filter:
+  #   value: ((properties_uaa_ldap_group_search_filter))
+  # .properties.uaa.ldap.last_name_attribute:
+  #   value: ((properties_uaa_ldap_last_name_attribute))
+  # .properties.uaa.ldap.ldap_referrals:
+  #   value: ((properties_uaa_ldap_ldap_referrals))
+  # .properties.uaa.ldap.mail_attribute_name:
+  #   value: ((properties_uaa_ldap_mail_attribute_name))
+  # .properties.uaa.ldap.search_base:
+  #   value: ((properties_uaa_ldap_search_base))
+  # .properties.uaa.ldap.search_filter:
+  #   value: ((properties_uaa_ldap_search_filter))
+  # .properties.uaa.ldap.server_ssl_cert:
+  #   value: ((properties_uaa_ldap_server_ssl_cert))
+  # .properties.uaa.ldap.url:
+  #   value: ((properties_uaa_ldap_url))
+  # .properties.uaa_oidc:
+  #   value: ((properties_uaa_oidc))
+  .properties.uaa_pks_cli_access_token_lifetime:
+    value: ((properties_uaa_pks_cli_access_token_lifetime))
+  .properties.uaa_pks_cli_refresh_token_lifetime:
+    value: ((properties_uaa_pks_cli_refresh_token_lifetime))
+  .properties.vm_extensions:
+    value:
+    - public_ip
+  .properties.wavefront:
+    value: ((properties_wavefront))
+  .properties.worker_max_in_flight:
+    value: ((properties_worker_max_in_flight))
+network-properties:
+  network:
+    name: ((network_name))
+  other_availability_zones:
+  - name: ((az1_name))
+  - name: ((az2_name))
+  - name: ((az3_name))
+  service_network:
+    name: ((service_network))
+  singleton_availability_zone:
+    name: ((singleton_availability_zone))
+resource-config:
+  pivotal-container-service:
+    instances: automatic
+    persistent_disk:
+      size_mb: ((resource-config_persistent_disk))
+    instance_type:
+      id: ((resource-config_instance_type))
+errand-config:
+  delete-all-clusters:
+    pre-delete-state: ((errand-config_delete-all-clusters))
+  pks-nsx-t-precheck:
+    post-deploy-state: ((errand-config_pks-nsx-t-precheck))
+  smoke-tests:
+    post-deploy-state: ((errand-config_smoke-tests))
+  upgrade-all-service-instances:
+    post-deploy-state: ((errand-config_update-all-service-instances))
+  wavefront-alert-creation:
+    post-deploy-state: ((errand-config_wavefront-alert-creation))
+  wavefront-alert-deletion:
+    pre-delete-state: ((errand-config_wavefront-alert-deletion))

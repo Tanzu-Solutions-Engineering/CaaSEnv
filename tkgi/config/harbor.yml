@@ -1,0 +1,50 @@
+product-name: harbor-container-registry
+product-properties:
+  .properties.admin_password:
+    value:
+      secret: ((harbor_admin_password))
+  .properties.auth_mode:
+    value: ((properties.auth_mode))
+  .properties.clair_updater_interval:
+    value: ((properties.clair_updater_interval))
+  .properties.customize_container_network:
+    value: ((properties.customize_container_network))
+  .properties.hostname:
+    value: ((properties.hostname))
+  .properties.no_proxy:
+    value: ((properties.no_proxy))
+  .properties.registry_storage:
+    value: ((properties.registry_storage))
+  .properties.server_cert_ca:
+    value: ((harbor_server_cert_ca_pem))
+  .properties.server_cert_key:
+    value:
+      cert_pem: ((harbor_server_cert_key_cert_pem))
+      private_key_pem: ((harbor_server_cert_key_private_key_pem))
+  .properties.with_clair:
+    value: ((properties.with_clair))
+  .properties.with_notary:
+    value: ((properties.with_notary))
+network-properties:
+  network:
+    name: ((network_name))
+  other_availability_zones:
+  - name: ((other_availability_zones))
+  singleton_availability_zone:
+    name: ((singleton_availability_zone))
+resource-config:
+  harbor-app:
+    instances: ((resource-config.harbor-app_instances))
+    persistent_disk:
+      size_mb: ((resource-config.harbor-app_persistent_disk))
+    instance_type:
+      id: ((resource-config.harbor-app_instance_type))
+  smoke-testing:
+    instances: ((resource-config.smoke-testing_instances))
+    instance_type:
+      id: ((resource-config.smoke-testing_instance_type))
+errand-config:
+  smoke-testing:
+    post-deploy-state: ((errand-config.smoke-testing))
+  uaa-deregistration:
+    pre-delete-state: ((errand-config.uaa-deregistration))
