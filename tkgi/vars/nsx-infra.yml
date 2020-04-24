@@ -38,7 +38,7 @@ t0_nat_rules:
   action: DNAT
   source: Any
   dest: 10.193.39.19
-  trans: 172.16.3.12
+  trans: 172.16.3.13
   priority: 1000
 # - name: harbor-dnat # DNAT to reach BOSH Direector
 #   t0_name: T0-Router
