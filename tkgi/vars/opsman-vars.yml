@@ -1,14 +1,14 @@
-vsphere_resource_pool: /VxRail-Datacenter/host/VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4/Resources/TKGI # /<Data Center Name>/host/<Cluster Name>
+vsphere_resource_pool: /VxRail-Datacenter/host/VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4/Resources/TKGI-MGMT # /<Data Center Name>/host/<Cluster Name>
 opsman_vm_name: om-tkgi
 opsman_private_ip: 172.16.3.10 #10.193.38.70
 opsman_netmask: 255.255.255.0
 vsphere_datastore: VxRail-Virtual-SAN-Datastore-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
 vsphere_datacenter: VxRail-Datacenter
-infrastructure_network: "vCenter Server Network-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4"
+infrastructure_network: "TKGI-MGMT"
 infrastructure_gateway: 172.16.3.1 ##10.193.38.1
 dns: 10.192.2.10,10.192.2.11
 ntp: 10.192.2.5,10.192.2.6
-vsphere_vms_folder: /VxRail-Datacenter/vm/FOUNDATIONS/PKSWIN/VMs/
+vsphere_vms_folder: /VxRail-Datacenter/vm/FOUNDATIONS/TKGI/VMs/
 vcenter_hostname: sc2-vc-01.caas.pez.pivotal.io
 vcenter_userid: administrator@vsphere.local
 opsman_host: om.tkgi.ragazzilab.com

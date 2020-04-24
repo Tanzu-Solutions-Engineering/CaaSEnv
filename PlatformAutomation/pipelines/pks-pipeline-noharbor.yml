@@ -18,8 +18,8 @@ interpolate-creds: &interpolate-creds
     interpolated-files: interpolated-creds
 
 s3_credentials_binaries: &s3_credentials_binaries
-  access_key_id: ((access_key_id))
-  secret_access_key: ((secret_access_key))
+  access_key_id: ((s3.access_key_id))
+  secret_access_key: ((s3.secret_access_key))
   endpoint: ((s3.endpoint))
   bucket: ((s3.buckets_pivnet_products))
   region_name: ((s3.region_name))
@@ -104,8 +104,8 @@ resources:
 - name: installation
   type: s3
   source:
-    access_key_id: ((access_key_id))
-    secret_access_key: ((secret_access_key))
+    access_key_id: ((s3.access_key_id))
+    secret_access_key: ((s3.secret_access_key))
     endpoint: ((s3.endpoint))
     bucket: ((s3.buckets_backup_bucket)) #Different Bucket
     skip_ssl_verification: true
@@ -114,8 +114,8 @@ resources:
 - name: config-backup
   type: s3
   source:
-    access_key_id: ((access_key_id))
-    secret_access_key: ((secret_access_key))
+    access_key_id: ((s3.access_key_id))
+    secret_access_key: ((s3.secret_access_key))
     endpoint: ((s3.endpoint))
     bucket: ((s3.buckets_backup_bucket)) #Different Bucket
     skip_ssl_verification: true
@@ -163,18 +163,16 @@ groups:
   jobs:
   - create-nsx-objects
   - install-opsman
-  - pks
-  #- harbor
+  - tkgi
   - apply-changes
 - name: post-deploy
   jobs:
-  - add-pks-admin-group
+  - add-tkgi-admin-group
 - name: save-state
   jobs:
   - export-installation
   - staged-director-config-backup
   - staged-config-pks-backup
-  #- staged-config-harbor-backup
 - name: teardown
   jobs:
   - destroy-installation
@@ -226,7 +224,7 @@ jobs:
         unpack: true
     - get: platform-automation-tasks
       passed: [create-nsx-objects]
-      trigger: true
+      trigger: false
       params:
         unpack: true
 
@@ -298,14 +296,14 @@ jobs:
     params:
       ENV_FILE: ((foundation))/env/env.yml
 
-- name: pks
+- name: tkgi
   serial: true
   build_log_retention:
     builds: 2
   plan:
   - aggregate:
     - get: configuration
-      trigger: true
+      trigger: false
     - get: pks-product
     - get: pks-stemcell
     # - get: pks-windows-stemcell
@@ -399,73 +397,6 @@ jobs:
       CONFIG_FILE: ((foundation))/config/pks-stemcells.yml
       ENV_FILE: ((foundation))/env/env.yml
 
-# - name: harbor
-#   serial: true
-#   build_log_retention:
-#     builds: 2
-#   plan:
-#   - aggregate:
-#     - get: harbor-product
-#     - get: harbor-stemcell
-#     - get: configuration
-#       trigger: true
-#     - get: platform-automation-image
-#       params:
-#         unpack: true
-#     - get: platform-automation-tasks
-#       passed: [install-opsman]
-#       params:
-#         unpack: true
-#
-#   - task: interpolate-creds
-#     <<: *interpolate-creds
-#
-#   - task: upload-product-harbor
-#     image: platform-automation-image
-#     file: platform-automation-tasks/tasks/upload-product.yml
-#     input_mapping:
-#       product: harbor-product
-#       config: configuration
-#       download-config: configuration
-#       env: interpolated-creds
-#     params:
-#       ENV_FILE: ((foundation))/env/env.yml
-#
-#   - task: stage-product-harbor
-#     image: platform-automation-image
-#     file: platform-automation-tasks/tasks/stage-product.yml
-#     input_mapping:
-#       product: harbor-product
-#       config: configuration
-#       download-config: configuration
-#       env: interpolated-creds
-#       secrets: interpolated-creds
-#     params:
-#       ENV_FILE: ((foundation))/env/env.yml
-#
-#   - task: upload-harbor-stemcell
-#     image: platform-automation-image
-#     file: platform-automation-tasks/tasks/upload-stemcell.yml
-#     input_mapping:
-#       env: interpolated-creds
-#       stemcell: harbor-stemcell
-#     params:
-#       ENV_FILE: ((foundation))/env/env.yml
-#
-#   - task: configure-harbor
-#     image: platform-automation-image
-#     file: platform-automation-tasks/tasks/configure-product.yml
-#     input_mapping:
-#       config: configuration
-#       env: interpolated-creds
-#       vars: interpolated-creds
-#     params:
-#       CONFIG_FILE: ((foundation))/config/harbor.yml
-#       VARS_FILES: |
-#         vars/((foundation))/vars/harbor-defaults.yml
-#         vars/((foundation))/vars/harbor-vars.yml
-#       ENV_FILE: ((foundation))/env/env.yml
-
 - name: apply-changes
   serial: true
   build_log_retention:
@@ -473,8 +404,8 @@ jobs:
   plan:
   - aggregate:
     - get: configuration
-      trigger: true
-      passed: [ pks ] #, harbor ]
+      trigger: false
+      passed: [ tkgi ]
     - get: platform-automation-image
       params:
         unpack: true
@@ -502,7 +433,7 @@ jobs:
     - aggregate:
         - get: one-time-trigger
         - get: daily-trigger
-          trigger: true
+          trigger: false
         - get: platform-automation-image
           params:
             unpack: true
@@ -530,7 +461,7 @@ jobs:
   plan:
   - get: platform-automation-tasks
     params: {unpack: true}
-    trigger: true
+    trigger: false
     passed:
       - export-installation
   - get: platform-automation-image
@@ -555,7 +486,7 @@ jobs:
   plan:
   - get: platform-automation-tasks
     params: {unpack: true}
-    trigger: true
+    trigger: false
     passed:
       - export-installation
   - get: platform-automation-image
@@ -575,33 +506,7 @@ jobs:
     params:
       file: generated-config/*.yml
 
-# - name: staged-config-harbor-backup
-#   build_log_retention:
-#     builds: 2
-#   plan:
-#   - get: platform-automation-tasks
-#     params: {unpack: true}
-#     trigger: true
-#     passed:
-#       - export-installation
-#   - get: platform-automation-image
-#     params: {unpack: true}
-#   - get: configuration
-#   - task: interpolate-creds
-#     <<: *interpolate-creds
-#   - task: staged-pas-config
-#     image: platform-automation-image
-#     file: platform-automation-tasks/tasks/staged-config.yml
-#     input_mapping:
-#       env: interpolated-creds
-#     params:
-#       PRODUCT_NAME: harbor-container-registry
-#       ENV_FILE: ((foundation))/env/env.yml
-#   - put: config-backup
-#     params:
-#       file: generated-config/*.yml
-
-- name: add-pks-admin-group
+- name: add-tkgi-admin-group
   serial: true
   serial_groups: [ post-deploy ]
   build_log_retention:
@@ -613,7 +518,7 @@ jobs:
     - get: custom-task-image
     - get: platform-automation-image
       passed: [apply-changes]
-      trigger: true
+      trigger: false
       params:
         unpack: true
     - get: platform-automation-tasks
@@ -688,7 +593,7 @@ jobs:
     - get: custom-task-image
     - get: platform-automation-image
       passed: [destroy-installation]
-      trigger: true
+      trigger: false
       params:
         unpack: true
     - get: platform-automation-tasks

@@ -26,7 +26,7 @@ properties_network_selector_nsx_network_automation: true
 properties_network_selector_nsx_nsx-t-insecure: true
 properties_network_selector_nsx_t0-router-name: T0-Router
 #properties_network_selector_nsx_t0-router-id: 8bc98e0c-17ec-43b7-9819-a8f9a8c4233f
-properties_network_selector_nsx_vcenter_cluster: FIXME
+properties_network_selector_nsx_vcenter_cluster: VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
 
 properties_uaa: ldap
 properties_uaa_ldap_credentials_identity: CN=ad bind,OU=Service Accounts,DC=caas,DC=pez,DC=pivotal,DC=io
