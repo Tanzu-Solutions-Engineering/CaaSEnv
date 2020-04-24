@@ -224,7 +224,7 @@ jobs:
         unpack: true
     - get: platform-automation-tasks
       passed: [create-nsx-objects]
-      trigger: false
+      trigger: true
       params:
         unpack: true
 
@@ -303,7 +303,7 @@ jobs:
   plan:
   - aggregate:
     - get: configuration
-      trigger: false
+      trigger: true
     - get: pks-product
     - get: pks-stemcell
     # - get: pks-windows-stemcell
@@ -404,7 +404,7 @@ jobs:
   plan:
   - aggregate:
     - get: configuration
-      trigger: false
+      trigger: true
       passed: [ tkgi ]
     - get: platform-automation-image
       params:
@@ -433,7 +433,7 @@ jobs:
     - aggregate:
         - get: one-time-trigger
         - get: daily-trigger
-          trigger: false
+          trigger: true
         - get: platform-automation-image
           params:
             unpack: true
@@ -461,7 +461,7 @@ jobs:
   plan:
   - get: platform-automation-tasks
     params: {unpack: true}
-    trigger: false
+    trigger: true
     passed:
       - export-installation
   - get: platform-automation-image
@@ -486,7 +486,7 @@ jobs:
   plan:
   - get: platform-automation-tasks
     params: {unpack: true}
-    trigger: false
+    trigger: true
     passed:
       - export-installation
   - get: platform-automation-image
@@ -518,7 +518,7 @@ jobs:
     - get: custom-task-image
     - get: platform-automation-image
       passed: [apply-changes]
-      trigger: false
+      trigger: true
       params:
         unpack: true
     - get: platform-automation-tasks
@@ -593,7 +593,7 @@ jobs:
     - get: custom-task-image
     - get: platform-automation-image
       passed: [destroy-installation]
-      trigger: false
+      trigger: true
       params:
         unpack: true
     - get: platform-automation-tasks
