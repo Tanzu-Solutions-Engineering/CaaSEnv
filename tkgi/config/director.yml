@@ -44,23 +44,26 @@ az-configuration:
   - cluster: ((vsphere_az1_cluster))
     resource_pool: ((vsphere_az1_resource_pool))
     host_group: ((vsphere_az1_host_group))
+    drs_rule: ((vsphere_az1_drs_rule))
 - name: AZ2
   clusters:
   - cluster: ((vsphere_az2_cluster))
     resource_pool: ((vsphere_az2_resource_pool))
     host_group: ((vsphere_az2_host_group))
+    drs_rule: ((vsphere_az1_drs_rule))
 - name: AZ3
   clusters:
   - cluster: ((vsphere_az3_cluster))
     resource_pool: ((vsphere_az3_resource_pool))
     host_group: ((vsphere_az3_host_group))
+    drs_rule: ((vsphere_az1_drs_rule))
 network-assignment:
   singleton_availability_zone:
     name: MGMT
   network:
     name: TKGI-MGMT
 networks-configuration:
-  icmp_checks_enabled: true
+  icmp_checks_enabled: false
   networks:
   - name: TKGI-MGMT
     subnets:

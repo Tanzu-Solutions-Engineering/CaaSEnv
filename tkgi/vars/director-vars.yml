@@ -6,12 +6,15 @@ vsphere_mgmtaz_host_group: ""
 vsphere_az1_cluster: VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
 vsphere_az1_resource_pool: TKGI-WORKLOAD
 vsphere_az1_host_group: GROUP1
+vsphere_az1_drs_rule:  SHOULD
 vsphere_az2_cluster: VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
 vsphere_az2_resource_pool: TKGI-WORKLOAD
 vsphere_az2_host_group: GROUP2
+vsphere_az2_drs_rule:  SHOULD
 vsphere_az3_cluster: VxRail-Virtual-SAN-Cluster-9c7ab8af-b690-4d34-bfa0-add02b9bbcf4
 vsphere_az3_resource_pool: TKGI-WORKLOAD
 vsphere_az3_host_group: GROUP3
+vsphere_az3_drs_rule:  SHOULD
 pks_mgmt_network: "TKGI-MGMT"  # network name in vsphere
 pks_mgmt_gateway: 172.16.3.1
 pks_mgmt_network_cidr: 172.16.3.0/24

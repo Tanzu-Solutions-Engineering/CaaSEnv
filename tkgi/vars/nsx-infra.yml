@@ -51,7 +51,7 @@ t0_nat_rules:
   t0_name: T0-Router
   action: SNAT
   source: 172.16.3.0/24
-  dest: 10.193.38.0/24
+  dest: Any
   trans: 10.193.39.243
   priority: 1000
 # - name: infra-snat-esxi # SNAT for infra to reach ESXi hosts
