@@ -2,7 +2,7 @@
 local_users:
 - name: pks-admin
   emails: pks-admin # do not use domain registered with LDAP
-  password: ((uaa-pksadmin-password))
+  password: ((uaa_pksadmin_password))
 
 groups:
 - name: pks.clusters.admin
