@@ -1,0 +1,22 @@
+---
+local_users:
+- name: pks-admin
+  emails: pks-admin # do not use domain registered with LDAP
+  password: ((uaa-pksadmin-password))
+
+groups:
+- name: pks.clusters.admin
+  group_maps:
+  - dn: "CN=TKGI - Admin,OU=Security Groups,DC=caas,DC=pez,DC=pivotal,DC=io"
+  members:
+  - name: admin
+  - name: pks-admin
+- name: pks.clusters.manage
+  group_maps:
+  - dn: "CN=TKGI - Manage,OU=Security Groups,DC=caas,DC=pez,DC=pivotal,DC=io"
+  members:
+  - name: admin
+  - name: pks-admin
+- name: pks.clusters.admin.read
+  group_maps:
+  - dn: "CN=TKGI - Read,OU=Security Groups,DC=caas,DC=pez,DC=pivotal,DC=io"

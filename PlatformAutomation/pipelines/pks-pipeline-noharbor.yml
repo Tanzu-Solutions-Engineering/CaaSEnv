@@ -528,15 +528,18 @@ jobs:
   - task: interpolate-creds
     <<: *interpolate-creds
 
-  - task: config-pks-admin-group
+  - task: config-pks-admin-groups
     image: custom-task-image
-    file: custom-tasks/tasks/create_pks_admin_ldap_group_maps.yml
+    file: custom-tasks/tasks/create_pksuaa_members.yml
     input_mapping:
       config: interpolated-creds #Note this is different
       env: interpolated-creds
+      vars: interpolated-creds
+      custom-tasks: custom-tasks
     params:
       CONFIG_FILE: ((foundation))/vars/pks-vars.yml  #Note this is different
       ENV_FILE: ((foundation))/env/env.yml
+      PKSUAA_CONFIG_FILE: vars/((foundation))/vars/pksuaa.yml
 
 - name: destroy-installation
   serial: true
