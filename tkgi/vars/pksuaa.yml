@@ -4,6 +4,12 @@ local_users:
   emails: pks-admin # do not use domain registered with LDAP
   password: ((uaa_pksadmin_password))
 
+local_clients:
+- client_name: concourse-to-pks
+  client_secret: ((uaa_concoursepks_secret))
+  authorities: "pks.clusters.admin,pks.clusters.manage"
+
+
 groups:
 - name: pks.clusters.admin
   group_maps:
