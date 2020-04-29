@@ -69,6 +69,20 @@ properties_plan1_selector_active_admission_plugins: [deny_escalating_exec]
 properties_plan1_selector_active_master_vm_type: medium.disk
 properties_plan1_selector_active_worker_vm_type: medium.disk
 properties_plan1_selector_active_errand_vm_type: micro
+properties_plan1_selector_active_addons_spec: |
+  ---
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    name: oidc-cluster-admin-binding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: oidc:ClusterAdmin
 
 properties_plan2_selector_active_name: small
 properties_plan2_selector_value: "Plan Active"
@@ -84,6 +98,20 @@ properties_plan2_selector_active_admission_plugins: [deny_escalating_exec]
 properties_plan2_selector_active_master_vm_type: medium.disk
 properties_plan2_selector_active_worker_vm_type: medium.disk
 properties_plan2_selector_active_errand_vm_type: micro
+properties_plan2_selector_active_addons_spec: |
+  ---
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    name: oidc-cluster-admin-binding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: oidc:ClusterAdmin
 
 properties_plan3_selector_active_name: medium
 properties_plan3_selector_value: "Plan Active"
@@ -99,6 +127,20 @@ properties_plan3_selector_active_admission_plugins: [deny_escalating_exec]
 properties_plan3_selector_active_master_vm_type: medium.disk
 properties_plan3_selector_active_worker_vm_type: large.disk
 properties_plan3_selector_active_errand_vm_type: micro
+properties_plan3_selector_active_addons_spec: |
+  ---
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    name: oidc-cluster-admin-binding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: oidc:ClusterAdmin
 
 properties_plan4_selector_active_name: large
 properties_plan4_selector_value: "Plan Active"
@@ -114,3 +156,17 @@ properties_plan4_selector_active_admission_plugins: [deny_escalating_exec]
 properties_plan4_selector_active_master_vm_type: medium.disk
 properties_plan4_selector_active_worker_vm_type: large.disk
 properties_plan4_selector_active_errand_vm_type: micro
+properties_plan4_selector_active_addons_spec: |
+  ---
+  apiVersion: rbac.authorization.k8s.io/v1
+  kind: ClusterRoleBinding
+  metadata:
+    name: oidc-cluster-admin-binding
+  roleRef:
+    apiGroup: rbac.authorization.k8s.io
+    kind: ClusterRole
+    name: cluster-admin
+  subjects:
+  - apiGroup: rbac.authorization.k8s.io
+    kind: Group
+    name: oidc:ClusterAdmin
