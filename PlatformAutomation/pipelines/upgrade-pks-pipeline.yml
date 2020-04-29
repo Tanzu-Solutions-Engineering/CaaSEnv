@@ -153,6 +153,7 @@ jobs:
        passed: [export-installation]
      - get: weekly-trigger
        passed: [export-installation]
+       trigger: true
      - get: platform-automation-image
        params:
          unpack: true
