@@ -28,18 +28,21 @@ s3_credentials_binaries: &s3_credentials_binaries
 
 resources:
 - name: platform-automation-tasks
+  icon: package-variant-closed
   type: s3
   source:
     <<: *s3_credentials_binaries
     regexp: platform-automation-tasks-(.*).zip
 
 - name: platform-automation-image
+  icon: package-variant-closed
   type: s3
   source:
     <<: *s3_credentials_binaries
     regexp: platform-automation-image-(.*).tgz
 
 - name: pks-cli
+  icon: package-variant-closed
   type: s3
   source:
     <<: *s3_credentials_binaries
@@ -52,6 +55,7 @@ resources:
 #     regexp: \[pivotal-container-service,(.*)\]kubectl-linux-amd64.*
 
 - name: custom-task-image
+  icon: docker
   type: docker-image
   source:
     repository: ((registry.endpoint))/((registry.repo))
@@ -65,6 +69,7 @@ resources:
 
 
 - name: configuration
+  icon: github-circle
   type: git
   source:
     uri: ((config_github_repo))
@@ -75,6 +80,7 @@ resources:
 
 
 - name: custom-tasks
+  icon: github-circle
   type: git
   source:
     uri: ((PlatformAutomation_github_repo))
@@ -83,6 +89,14 @@ resources:
     password: ((github_token))
     paths: ["tasks"]
 
+- name: weekly-trigger
+  icon: alarm
+  type: time
+  source:
+    days: [Friday, Saturday]
+    start: 11AM
+    stop: 11PM
+
 
 jobs:
 - name: crud-clusters
@@ -90,6 +104,8 @@ jobs:
   build_log_retention:
     builds: 2
   plan:
+  - get: weekly-trigger
+    trigger: true
   - get: configuration
   - get: custom-tasks
   - get: pks-cli
