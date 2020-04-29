@@ -1,3 +1,5 @@
+# This is used by a custom pipeline/task to create/resize and delete PKS clusters by this spec
+
 client_name: concourse-to-pks
 client_secret: ((uaa_concoursepks_secret))
 
