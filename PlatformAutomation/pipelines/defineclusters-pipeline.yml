@@ -1,0 +1,116 @@
+# code_snippet multiple-product-interpolate-creds start yaml
+# This task is used in multiple jobs
+# The yaml anchor "*interpolate-creds" is used in its place
+interpolate-creds: &interpolate-creds
+  image: platform-automation-image
+  file: platform-automation-tasks/tasks/credhub-interpolate.yml
+  params:
+    CREDHUB_CLIENT: ((credhub_client))
+    CREDHUB_SECRET: ((credhub_secret))
+    CREDHUB_SERVER: ((credhub_server))
+    CREDHUB_CA_CERT: ((credhub_ca_cert))
+    PREFIX: '/foundation/((foundation))'
+    INTERPOLATION_PATHS: "((foundation))/env ((foundation))/vars"
+    SKIP_MISSING: true
+  input_mapping:
+    files: configuration
+  output_mapping:
+    interpolated-files: interpolated-creds
+
+s3_credentials_binaries: &s3_credentials_binaries
+  access_key_id: ((s3.access_key_id))
+  secret_access_key: ((s3.secret_access_key))
+  endpoint: ((s3.endpoint))
+  bucket: ((s3.buckets_pivnet_products))
+  region_name: ((s3.region_name))
+  skip_ssl_verification: true
+
+
+resources:
+- name: platform-automation-tasks
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: platform-automation-tasks-(.*).zip
+
+- name: platform-automation-image
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: platform-automation-image-(.*).tgz
+
+- name: pks-cli
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: \[pivotal-container-service,(.*)\]pks-linux-amd64.*
+
+# - name: kubectl
+#   type: s3
+#   source:
+#     <<: *s3_credentials_binaries
+#     regexp: \[pivotal-container-service,(.*)\]kubectl-linux-amd64.*
+
+- name: custom-task-image
+  type: docker-image
+  source:
+    repository: ((registry.endpoint))/((registry.repo))
+    tag: latest
+    username: ((registry.username))
+    password: ((registry.password))
+    insecure-registries: [((registry.endpoint))]
+    ca_certs:
+      - domain: ((registry.endpoint))
+        cert: ((registry.ca_cert))
+
+
+- name: configuration
+  type: git
+  source:
+    uri: ((config_github_repo))
+    branch: ((config_github_branch))
+    username: ((github_username))
+    password: ((github_token))
+    paths: ["((foundation))"]
+
+
+- name: custom-tasks
+  type: git
+  source:
+    uri: ((PlatformAutomation_github_repo))
+    branch: ((PlatformAutomation_github_branch))
+    username: ((github_username))
+    password: ((github_token))
+    paths: ["tasks"]
+
+
+jobs:
+- name: crud-clusters
+  serial: true
+  build_log_retention:
+    builds: 2
+  plan:
+  - get: configuration
+  - get: custom-tasks
+  - get: pks-cli
+  - get: custom-task-image
+  - get: platform-automation-image
+    trigger: false
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+
+  - task: interpolate-creds
+    <<: *interpolate-creds
+
+  - task: create_pks_clusters
+    image: custom-task-image
+    file: custom-tasks/tasks/create_pks_clusters.yml
+    input_mapping:
+      vars: interpolated-creds
+      custom-tasks: custom-tasks
+    params:
+      PKSCLUSTER_CONFIG_FILE: ((foundation))/vars/pks-clusters.yml
+      PKS_VARS_FILE: ((foundation))/vars/pks-vars.yml

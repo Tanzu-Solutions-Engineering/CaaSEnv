@@ -1,0 +1,12 @@
+client_name: concourse-to-pks
+client_secret: ((uaa_concoursepks_secret))
+
+clusters:
+- name: tkgi-ws1
+  num_nodes: 1
+  plan: medium
+  exthostname: ws1.tkgi.caas.pez.pivotal.io
+- name: tkgi-ws2
+  num_nodes: 1
+  plan: medium
+  exthostname: ws2.tkgi.caas.pez.pivotal.io
