@@ -89,19 +89,19 @@ resources:
     password: ((github_token))
     paths: ["tasks"]
 
-- icon: alarm
-  name: weekly-trigger
-  type: time
-  source:
-    days: [Friday, Saturday]
-    start: 11AM
-    stop: 11PM
-
-- icon: alarm
-  name: one-time-trigger
-  type: time
-  source:
-    interval: 999999h
+# - icon: alarm
+#   name: weekly-trigger
+#   type: time
+#   source:
+#     days: [Friday, Saturday]
+#     start: 11AM
+#     stop: 11PM
+#
+# - icon: alarm
+#   name: one-time-trigger
+#   type: time
+#   source:
+#     interval: 999999h
 
 jobs:
 - name: crud-clusters
@@ -109,9 +109,9 @@ jobs:
   build_log_retention:
     builds: 2
   plan:
-  - get: one-time-trigger
-  - get: weekly-trigger
-    trigger: true
+  # - get: one-time-trigger
+  # - get: weekly-trigger
+  #   trigger: true
   - get: configuration
   - get: custom-tasks
   - get: pks-cli
