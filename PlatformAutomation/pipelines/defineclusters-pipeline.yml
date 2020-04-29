@@ -27,22 +27,22 @@ s3_credentials_binaries: &s3_credentials_binaries
 
 
 resources:
-- name: platform-automation-tasks
-  icon: package-variant-closed
+- icon: package-variant-closed
+  name: platform-automation-tasks
   type: s3
   source:
     <<: *s3_credentials_binaries
     regexp: platform-automation-tasks-(.*).zip
 
-- name: platform-automation-image
-  icon: package-variant-closed
+- icon: package-variant-closed
+  name: platform-automation-image
   type: s3
   source:
     <<: *s3_credentials_binaries
     regexp: platform-automation-image-(.*).tgz
 
-- name: pks-cli
-  icon: package-variant-closed
+- icon: package-variant-closed
+  name: pks-cli
   type: s3
   source:
     <<: *s3_credentials_binaries
@@ -89,29 +89,25 @@ resources:
     password: ((github_token))
     paths: ["tasks"]
 
-# - icon: alarm
-#   name: weekly-trigger
-#   type: time
-#   source:
-#     days: [Friday, Saturday]
-#     start: 11AM
-#     stop: 11PM
-#
-# - icon: alarm
-#   name: one-time-trigger
-#   type: time
-#   source:
-#     interval: 999999h
+- icon: alarm
+  name: weekly-trigger
+  type: time
+  source:
+    days: [Wednesday, Friday, Saturday]
+    start: 11AM
+    stop: 11PM
+
+
 
 jobs:
+
 - name: crud-clusters
   serial: true
   build_log_retention:
     builds: 2
   plan:
-  # - get: one-time-trigger
-  # - get: weekly-trigger
-  #   trigger: true
+  - get: weekly-trigger
+    trigger: true
   - get: configuration
   - get: custom-tasks
   - get: pks-cli
