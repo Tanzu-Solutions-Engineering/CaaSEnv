@@ -19,13 +19,13 @@ data:
       level: "debug"
       format: "json"
 
-   staticClients:
-   - id: adint1
-     redirectURIs:
-     - 'https://10.193.38.231:30166/callback'
-     name: 'adint1'
-     # echo -n '<clientSecret>'
-     secret: ycSVXbs2MifBEzGTrzJvRYwZXUNS8SVkv8/r7xXChcU=
+    staticClients:
+    - id: adint1
+      redirectURIs:
+      - 'https://10.193.38.231:30166/callback'
+      name: 'adint1'
+      # echo -n '<clientSecret>'
+      secret: ycSVXbs2MifBEzGTrzJvRYwZXUNS8SVkv8/r7xXChcU=
 
     connectors:
     - type: ldap
