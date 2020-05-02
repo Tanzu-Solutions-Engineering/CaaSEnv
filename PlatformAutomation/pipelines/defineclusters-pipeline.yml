@@ -93,7 +93,7 @@ resources:
   name: weekly-trigger
   type: time
   source:
-    days: [Wednesday, Friday, Saturday]
+    days: [Wednesday, Saturday]
     start: 11AM
     stop: 11PM
 
@@ -113,7 +113,6 @@ jobs:
   - get: pks-cli
   - get: custom-task-image
   - get: platform-automation-image
-    trigger: false
     params:
       unpack: true
   - get: platform-automation-tasks
