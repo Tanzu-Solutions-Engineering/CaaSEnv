@@ -1,0 +1,16 @@
+# Explicit:
+#kubectl create clusterrolebinding oidc-cluster-admin-binding --clusterrole=cluster-admin --group=oidc:ClusterAdmin
+
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: oidc-cluster-admin-binding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: cluster-admin
+subjects:
+- apiGroup: rbac.authorization.k8s.io
+  kind: Group
+  name: oidc:ClusterAdmin
