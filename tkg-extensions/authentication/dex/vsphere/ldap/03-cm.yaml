@@ -5,7 +5,7 @@ metadata:
   namespace: tanzu-system-auth
 data:
   config.yaml: |
-    issuer: https://192.168.104.19:30167
+    issuer: https://10.193.38.215:30167
     frontend:
       theme: tkg
     web:
@@ -19,13 +19,6 @@ data:
       level: "debug"
       format: "json"
 
-    staticClients:
-    - id: auth1
-      redirectURIs:
-      - 'https://192.168.104.24:30166/callback'
-      name: 'auth1'
-      # echo -n '<clientSecret>'
-      secret: emhPV1hMMmdsTG02Qm1HanlTUHpsSkxZblNjMmk2NHZGMlNoTXlqdUNUTT0=
 
     connectors:
     - type: ldap
@@ -38,7 +31,7 @@ data:
         # If the port is not supplied, it will be guessed based on "insecureNoSSL",
         # and "startTLS" flags. 389 for insecure or StartTLS connections, 636
         # otherwise.
-        host: coreadc1.ragazzilab.com:3269
+        host: caasadc1.caas.pez.pivotal.io:3269
 
         # Following field is required if the LDAP host is not using TLS (port 389).
         # Because this option inherently leaks passwords to anyone on the same network
@@ -61,7 +54,7 @@ data:
         #rootCA: /etc/dex/ldap.ca
 
         # A raw certificate file can also be provided inline.
-        rootCAData: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tDQpNSUlEZnpDQ0FtZWdBd0lCQWdJUUxqWUdIY1c4SWExSnZBd3FuN3Z1RkRBTkJna3Foa2lHOXcwQkFRVUZBREJTDQpNUk13RVFZS0NaSW1pWlB5TEdRQkdSWURZMjl0TVJvd0dBWUtDWkltaVpQeUxHUUJHUllLY21GbllYcDZhV3hoDQpZakVmTUIwR0ExVUVBeE1XY21GbllYcDZhV3hoWWkxRFQxSkZRVVJETVMxRFFUQWVGdzB4TkRFeU1UZ3hPVE16DQpNemxhRncweU5ERXlNVGd4T1RRek16bGFNRkl4RXpBUkJnb0praWFKay9Jc1pBRVpGZ05qYjIweEdqQVlCZ29KDQpraWFKay9Jc1pBRVpGZ3B5WVdkaGVucHBiR0ZpTVI4d0hRWURWUVFERXhaeVlXZGhlbnBwYkdGaUxVTlBVa1ZCDQpSRU14TFVOQk1JSUJJakFOQmdrcWhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBK05HR2l4bC9hNURCDQpudjFSS01KejMyYVh2Z1liY2cwM29Fd2RBUWxNM0VOdm9HYUM2RVNGbmtpNml6Qmw1dFE5RW5VQnZpcnEyTFBaDQpSTC8xYThBaDJSZ0REMXBkTDRoM1d2MkVZLzh6cWxLMjZPeFlPYXBkeXNxV0xvalBVa2ROZnl5Qnc5VzFkQ2s3DQpZRHdvQzU1YVFWa21MODNLSU9TUVAvR0VjMEUyNUNYS2tBOHNja3RYUkJxVVNMOFZOcWI0d0g0VUVYdklnSyt4DQpOVlNSMGJOak5kY2FYQml3TFFvdjdEazcrOXpaNHBYdWRvZ05oNG1tR1BmcmdZbnNrYzdUc2NGbDF5bU5PUTgrDQpsNDEyUnFyTzcvODNtR2JwZjdMVCtyR1hYWldoWTBDdHFSZXczUGdsamhCbnVBMksvQytUOHAwNVhBL0dTRVRiDQpDcHNrZFphekZRSURBUUFCbzFFd1R6QUxCZ05WSFE4RUJBTUNBWVl3RHdZRFZSMFRBUUgvQkFVd0F3RUIvekFkDQpCZ05WSFE0RUZnUVVZaVd1dlV0Z3Q2cnV3RllzR0cyMmRvZVRPa0l3RUFZSkt3WUJCQUdDTnhVQkJBTUNBUUF3DQpEUVlKS29aSWh2Y05BUUVGQlFBRGdnRUJBSkRqVGpWUVhKSjUxVytsZWZwdXVucHpUMEVQRE0zSTErL0E5NHlsDQpGektYNEZsT05rWUNqLzd3TnRaK0I2NWEzQ2loT2YwL3EwaHFtY0hLaXU2TGR0NXRUWUwzaHZXczdsOW0xN0pnDQoxTTlJcHVPVXVFUG8wdjlxVW40NUorNDJPZjFMMS9jU3E1UTFtTTU5b04xVW1OeTlpazlEeVMveUtEVmRMR0xvDQpnTDVubjRVZWJ2WjJvZmlBRVFRZ0tDVm94M0hYc2VRNVpRSFU1MFMvN1VZb095U0l3ZEV3Y2RaaHJROGlOdk5FDQpZK1pPNWlTdjR6VkExQnV6RlNhMXBxNlJoT200WFJ0MnMwOUZaT0lwV3RNcWJpeFVpbDVkZFltV3BJR2twR0d5DQpTeUlxN2FEM3R0NnJrTkZoRmlQS2dPQzRsUm1qTmxMTkt6Sjh6Sk5BZDZ3RWNNaz0NCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0NCg==
+        rootCAData: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUR3VENDQXFtZ0F3SUJBZ0lRR3FkMGs3NFZScU5LU3NtUmYvQ1hCakFOQmdrcWhraUc5dzBCQVFzRkFEQnoKTVJJd0VBWUtDWkltaVpQeUxHUUJHUllDYVc4eEZ6QVZCZ29Ka2lhSmsvSXNaQUVaRmdkd2FYWnZkR0ZzTVJNdwpFUVlLQ1pJbWlaUHlMR1FCR1JZRGNHVjZNUlF3RWdZS0NaSW1pWlB5TEdRQkdSWUVZMkZoY3pFWk1CY0dBMVVFCkF4TVFZMkZoY3kxRFFVRlRRVVJETVMxRFFUQWVGdzB5TURBME1qTXhPVEl4TkROYUZ3MHpNREEwTWpNeE9UTXgKTkRKYU1ITXhFakFRQmdvSmtpYUprL0lzWkFFWkZnSnBiekVYTUJVR0NnbVNKb21UOGl4a0FSa1dCM0JwZG05MApZV3d4RXpBUkJnb0praWFKay9Jc1pBRVpGZ053WlhveEZEQVNCZ29Ka2lhSmsvSXNaQUVaRmdSallXRnpNUmt3CkZ3WURWUVFERXhCallXRnpMVU5CUVZOQlJFTXhMVU5CTUlJQklqQU5CZ2txaGtpRzl3MEJBUUVGQUFPQ0FROEEKTUlJQkNnS0NBUUVBdmRUb3NoRW9USjJrVjI3dEY0bnlBbllvUk53QW5uZGRWQ0dHbDJ4eVozN1diM1BJVFZtUwowd3FlcVdxYlhzRDBKRnBFL0gxVnFBOXlDemFUa2tSbzRmNUlOL1NZbGF0ZFpFeGtJYW1YaXRrY2xoMVRqZkprCkVCRzB2S3h4dmwyRkFCQ2ZuSy81QS9Fdi9NWm45NGRPZytqWHFZSVNwMHpNUG5KRmN6Y2EzSVVJRnVXY2dKRmcKdlZQUHZoMVA4YUFGamZPRkpZQTc0M0wyNEFkcXpGcWtDdlJMaWtwR3NPSnVmanlMN0p1dUFBSzRrS2VWWDFkUQpFalJ1QnRTYTgzekF0MGErMHozcHp1K2hBRXN1eUJkUVhmVDd3bTFVRVBJNWlSa1ZtRERFTGRER3pNMWwxTzNjClFtUis2Z3A2ZWY0cWt5THN6dVVub2U2RDRnUzVPRFd6UndJREFRQUJvMUV3VHpBTEJnTlZIUThFQkFNQ0FZWXcKRHdZRFZSMFRBUUgvQkFVd0F3RUIvekFkQmdOVkhRNEVGZ1FVeWRPcjBaZTRuQ1BxNDB1ZTkrSU01WDA0UDg0dwpFQVlKS3dZQkJBR0NOeFVCQkFNQ0FRQXdEUVlKS29aSWh2Y05BUUVMQlFBRGdnRUJBRFNtZmVDOTNaemphNkl6CmRCRVdvYTRVZ1hFTUR3WVc3UVhVOXQ5ajBHZzc3cTQrQzFNZUdEbW4xbFpyeXliRzVFQzl4LzBQR0pqUlMxTW8KR3o2T0M3S2hIQVFOdVlnNnVaRS90d1NSNWw0b3pHekd0bUVqSG9HMCtxbmdCUXRyeGpZTi8xai9ZTjJOcSsyWQplaTY0WWRkdHNFdUhnQWxNM2RVb0tMSjdCdW9CL2RkbDIyM3ZtNGY0aFpscjB6TmpTMXcwUzV6OHc5bTVROTBDCnBTTyttOE9CMy92V3JTamg2eS84eDhWZ1hJOWZ4TGswaGRseWt5eXB0Rk5JOGZXaC95WldKMmxhanB6RXpRb1QKd3psMVR3MzJLd1Z1clN0RUhrekgvN0lxMXMyRDcxOGxIaTRscWJYSjFqNlRFK00xZGF5RGxrZEp1SE13WEgzZgoyOHFxNVRnPQotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
 
 
 
@@ -70,18 +63,18 @@ data:
         # server provides access for anonymous auth.
         # Please note that if the bind password contains a `$`, it has to be saved in an
         # environment variable which should be given as the value to `bindPW`.
-        bindDN: CN=svcacct AD. Bind,OU=Service Accounts,DC=ragazzilab,DC=com
-        bindPW: VMware1!
+        bindDN: CN=ad bind,OU=Service Accounts,DC=caas,DC=pez,DC=pivotal,DC=io
+        bindPW: Pivotal123
 
         # The attribute to display in the provided password prompt. If unset, will
         # display "Username"
-        usernamePrompt: LDAP Username
+        usernamePrompt: LDAP Username (user@ad-domain.tld)
 
         # User search maps a username and password entered by a user to a LDAP entry.
         userSearch:
           # BaseDN to start the search from. It will translate to the query
           # "(&(objectClass=person)(uid=<username>))".
-          baseDN: ou=User Accounts,DC=ragazzilab,DC=com
+          baseDN: OU=User Accounts,DC=caas,DC=pez,DC=pivotal,DC=io
           # Optional filter to apply when searching the directory.
           # filter: "(objectClass=posixAccount)"
 
@@ -100,7 +93,7 @@ data:
         groupSearch:
           # BaseDN to start the search from. It will translate to the query
           # "(&(objectClass=group)(member=<user uid>))".
-          baseDN: DC=ragazzilab,DC=com
+          baseDN: OU=Security Groups,DC=caas,DC=pez,DC=pivotal,DC=io
           # Optional filter to apply when searching the directory.
           filter: "(objectCategory=group)"
 

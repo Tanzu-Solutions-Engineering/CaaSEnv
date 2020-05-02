@@ -27,9 +27,7 @@ spec:
   dnsNames:
   - tkg-dex
   ipAddresses:
-    - 192.168.104.19
-    - 192.168.104.21
-    - 192.168.104.22
+    - 10.193.38.215
   # Issuer references are always required.
   issuerRef:
     name: dex-ca-issuer
