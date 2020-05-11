@@ -72,37 +72,20 @@ data:
 
         # User search maps a username and password entered by a user to a LDAP entry.
         userSearch:
-          # BaseDN to start the search from. It will translate to the query
-          # "(&(objectClass=person)(uid=<username>))".
           baseDN: OU=User Accounts,DC=caas,DC=pez,DC=pivotal,DC=io
-          # Optional filter to apply when searching the directory.
-          # filter: "(objectClass=posixAccount)"
-
-          # username attribute used for comparing user entries. This will be translated
-          # and combined with the other filter as "(<attr>=<username>)".
+          filter: "(objectClass=person)"
           username: userPrincipalName
-          # The following three fields are direct mappings of attributes on the user entry.
-          # String representation of the user.
-          idAttr: userPrincipalName
-          # Required. Attribute to map to Email.
-          emailAttr: userPrincipalName #mail
-          # Maps to display name of users. No default value.
-          nameAttr: cn #displayName
+          idAttr: DN
+          emailAttr: userPrincipalName
+          nameAttr: cn
 
         # Group search queries for groups given a user entry.
         groupSearch:
-          # BaseDN to start the search from. It will translate to the query
-          # "(&(objectClass=group)(member=<user uid>))".
           baseDN: OU=Security Groups,DC=caas,DC=pez,DC=pivotal,DC=io
-          # Optional filter to apply when searching the directory.
-          filter: "(objectCategory=group)"
-
-          # Following two fields are used to match a user to a group. It adds an additional
-          # requirement to the filter that an attribute in the group must match the user's
-          # attribute value.
-          userAttr: dn #sAMAccountName
-          groupAttr: "member:1.2.840.113556.1.4.1941:"
-          # nameAttr: cn
+          filter: "(objectClass=group)"
+          userAttr: DN
+          groupAttr: member
+          nameAttr: cn
 
     oauth2:
       skipApprovalScreen: true
