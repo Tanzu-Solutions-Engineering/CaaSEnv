@@ -27,7 +27,7 @@ spec:
   dnsNames:
     - tkg-gangway
   ipAddresses:
-    - 192.168.104.129
+    - 10.193.38.231
   # Issuer references are always required.
   issuerRef:
     name: gangway-ca-issuer
