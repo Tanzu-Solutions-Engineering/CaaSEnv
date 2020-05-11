@@ -79,9 +79,8 @@ data:
 
         # User search maps a username and password entered by a user to a LDAP entry.
         userSearch:
-          # BaseDN to start the search from. It will translate to the query
-          # "(&(objectClass=person)(uid=<username>))".
           baseDN: OU=User Accounts,DC=caas,DC=pez,DC=pivotal,DC=io
+<<<<<<< HEAD
           # Optional filter to apply when searching the directory.
           filter: "(objectClass=person)"
 
@@ -95,12 +94,18 @@ data:
           emailAttr: userPrincipalName #mail
           # Maps to display name of users. No default value.
           nameAttr: cn #displayName
+=======
+          filter: "(objectClass=person)"
+          username: userPrincipalName
+          idAttr: DN
+          emailAttr: userPrincipalName
+          nameAttr: cn
+>>>>>>> 0d7f34f4eb78c4b977feba24c151d27bbf5644b1
 
         # Group search queries for groups given a user entry.
         groupSearch:
-          # BaseDN to start the search from. It will translate to the query
-          # "(&(objectClass=group)(member=<user uid>))".
           baseDN: OU=Security Groups,DC=caas,DC=pez,DC=pivotal,DC=io
+<<<<<<< HEAD
           # Optional filter to apply when searching the directory.
           filter: "(objectCategory=group)"
 
@@ -110,6 +115,12 @@ data:
           userAttr: DN
           groupAttr: "member:1.2.840.113556.1.4.1941:"
           # nameAttr: cn
+=======
+          filter: "(objectClass=group)"
+          userAttr: DN
+          groupAttr: member
+          nameAttr: cn
+>>>>>>> 0d7f34f4eb78c4b977feba24c151d27bbf5644b1
 
     oauth2:
       skipApprovalScreen: true
