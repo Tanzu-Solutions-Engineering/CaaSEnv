@@ -83,14 +83,14 @@ data:
           # "(&(objectClass=person)(uid=<username>))".
           baseDN: OU=User Accounts,DC=caas,DC=pez,DC=pivotal,DC=io
           # Optional filter to apply when searching the directory.
-          # filter: "(objectClass=posixAccount)"
+          filter: "(objectClass=person)"
 
           # username attribute used for comparing user entries. This will be translated
           # and combined with the other filter as "(<attr>=<username>)".
           username: userPrincipalName
           # The following three fields are direct mappings of attributes on the user entry.
           # String representation of the user.
-          idAttr: userPrincipalName
+          idAttr: DN
           # Required. Attribute to map to Email.
           emailAttr: userPrincipalName #mail
           # Maps to display name of users. No default value.
@@ -107,7 +107,7 @@ data:
           # Following two fields are used to match a user to a group. It adds an additional
           # requirement to the filter that an attribute in the group must match the user's
           # attribute value.
-          userAttr: dn #sAMAccountName
+          userAttr: DN
           groupAttr: "member:1.2.840.113556.1.4.1941:"
           # nameAttr: cn
 
