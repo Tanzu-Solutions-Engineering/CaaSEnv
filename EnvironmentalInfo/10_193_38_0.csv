@@ -23,7 +23,7 @@
 22,ESXi host 2,sc2-esx-02
 23,ESXi host 3,sc2-esx-03
 24,ESXi host 4,sc2-esx-04
-25,,
+25,Pacific Jumpbox 1,pacwjump1.caas.pez.pivotal.io
 26,,
 27,,
 28,,
