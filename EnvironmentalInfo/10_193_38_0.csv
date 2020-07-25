@@ -35,7 +35,7 @@
 34,Pacific VCSA,vcsa.pacific.caas.pez.pivotal.io
 35,Pacific NSXMgr1,nsxmgr1.pacific.caas.pez.pivotal.io
 36,Pacific NSX Edge1,nsxedge1.pacific.caas.pez.pivotal.io
-37,,
+37,Pacific T0 Uplink,
 38,,
 39,,
 40,vRealize Automation,sc2-vra
