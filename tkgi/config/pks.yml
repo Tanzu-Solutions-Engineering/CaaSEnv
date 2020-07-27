@@ -247,6 +247,10 @@ product-properties:
     value: ((properties_uaa_pks_cli_access_token_lifetime))
   .properties.uaa_pks_cli_refresh_token_lifetime:
     value: ((properties_uaa_pks_cli_refresh_token_lifetime))
+  .properties.uaa_pks_cluster_client_access_token_lifetime:
+    value: ((properties_uaa_pks_cluster_client_access_token_lifetime))
+  .properties.uaa_pks_cluster_client_refrresh_token_lifetime:
+    value: ((properties_uaa_pks_cluster_client_access_token_lifetime))
   .properties.vm_extensions:
     value:
     - public_ip
