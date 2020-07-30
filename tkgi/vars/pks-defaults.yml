@@ -22,6 +22,8 @@ properties_uaa_ldap_mail_attribute_name: mail
 properties_uaa_ldap_search_filter: userPrincipalName={0}
 properties_uaa_pks_cli_access_token_lifetime: 864000
 properties_uaa_pks_cli_refresh_token_lifetime: 1728000
+properties_uaa_pks_cluster_client_access_token_lifetime: 864000
+properties_uaa_pks_cluster_client_refresh_token_lifetime: 864000
 properties_wavefront: disabled
 properties_worker_max_in_flight: 4
 resource-config_persistent_disk: automatic

@@ -1,6 +1,6 @@
 ### TKGI
 
-This foundation will include PKS with NSX-T integration
+This foundation will include TKGI 1.7+ with NSX-T integration
 
 
 #### Generate Certificates in CredHub:

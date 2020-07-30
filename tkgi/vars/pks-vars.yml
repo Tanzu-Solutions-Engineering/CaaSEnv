@@ -37,6 +37,10 @@ properties_uaa_ldap_search_base: OU=User Accounts,DC=caas,DC=pez,DC=pivotal,DC=i
 properties_uaa_ldap_server_ssl_cert: ((ldap_server_ssl_cert))
 properties_uaa_ldap_url: ldaps://caasadc1.caas.pez.pivotal.io:3269
 properties_uaa_oidc: true # connect K8s clusters to LDAP
+properties_uaa_pks_cli_access_token_lifetime: 1728000
+properties_uaa_pks_cli_refresh_token_lifetime: 1728000
+properties_uaa_pks_cluster_client_access_token_lifetime: 1728000
+properties_uaa_pks_cluster_client_refresh_token_lifetime: 1728000
 pks_admin_ldap_group_dn: CN=TKGI - Admin,OU=Security Groups,DC=caas,DC=pez,DC=pivotal,DC=io
 
 properties_pks-vrli_enabled: enabled
