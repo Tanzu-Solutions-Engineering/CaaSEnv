@@ -86,7 +86,7 @@ spec:
       containers:
       - name: yelb-ui
         imagePullPolicy: IfNotPresent
-        image:  harbor-ctrl.caas.pez.pivotal.io/library/yelb-ui:0.5
+        image:  harbor-ctrl.caas.pez.pivotal.io/yelb/yelb-ui:0.5
         ports:
         - containerPort: 80
 ---
@@ -114,7 +114,7 @@ spec:
       containers:
       - name: redis-server
         imagePullPolicy: IfNotPresent
-        image: harbor-ctrl.caas.pez.pivotal.io/library/redis:4.0.2
+        image: harbor-ctrl.caas.pez.pivotal.io/yelb/redis:4.0.2
         ports:
         - containerPort: 6379
 ---
@@ -142,7 +142,7 @@ spec:
       containers:
       - name: yelb-db
         imagePullPolicy: IfNotPresent
-        image:  harbor-ctrl.caas.pez.pivotal.io/library/yelb-db:0.5
+        image:  harbor-ctrl.caas.pez.pivotal.io/yelb/yelb-db:0.5
         ports:
         - containerPort: 5432
 ---
@@ -170,6 +170,6 @@ spec:
       containers:
       - name: yelb-appserver
         imagePullPolicy: IfNotPresent
-        image:  harbor-ctrl.caas.pez.pivotal.io/library/yelb-appserver:0.5
+        image:  harbor-ctrl.caas.pez.pivotal.io/yelb/yelb-appserver:0.5
         ports:
         - containerPort: 4567
