@@ -1,0 +1,101 @@
+---
+name: ((minio_deployment_name))
+
+releases:
+- name: minio
+  version: latest
+
+stemcells:
+- alias: default
+  os: ubuntu-xenial
+  version: latest
+
+variables:
+- name: minio_accesskey
+  type: password
+- name: minio_secretkey
+  type: password
+- name: minio-ca
+  type: certificate
+  options:
+    is_ca: true
+    common_name: Minio_CA
+- name: minio-tls
+  type: certificate
+  options:
+    ca: minio-ca
+    common_name: ((minio-tls-hostname))
+
+instance_groups:
+- name: minio
+  azs: [MGMT]
+  instances: 1
+  jobs:
+  - name: minio-server
+    release: minio
+    templates:
+    - name: minio-server
+    provides:
+      minio-server: {as: minio-link}
+    properties:
+      credential:
+        accesskey: ((minio_accesskey))
+        secretkey: ((minio_secretkey))
+      port: 443
+      server_cert: ((minio_cert.certificate))
+      server_key: ((minio_cert.private_key))
+      ca_cert:  ((minio_cert.ca))
+  networks:
+  - name: MGMT
+  vm_type: medium.disk
+  persistent_disk_type: 512000
+  stemcell: default
+
+- name: tests
+  azs: [MGMT]
+  instances: 1
+  lifecycle: errand
+  post_deploy: true
+  jobs:
+  - name: smoke-tests
+    release: minio
+    templates:
+    - name: smoke-tests
+    consumes:
+      minio: {from: minio-link}
+  networks:
+  - name: MGMT
+  vm_type: small
+  persistent_disk_type: 2048
+  stemcell: default
+
+- name: bucket-seeding # To create default buckets after manifest-deploy
+  azs: [MGMT]
+  instances: 1
+  lifecycle: errand
+  post_deploy: true
+  jobs:
+  - name: mc
+    release: minio
+    templates:
+    - name: mc
+    consumes:
+      minio: {from: minio-link}
+    properties:
+      script: |
+        #!/bin/sh
+        mc mb myminio/bucket1
+        mc mb myminio/bucket2
+        mc mb myminio/bucket3
+        mc mb myminio/bucket3
+  networks:
+  - name: MGMT
+  vm_type: small
+  persistent_disk_type: 2048
+  stemcell: default
+
+update:
+  canaries: 1
+  canary_watch_time: 1000-30000
+  update_watch_time: 1000-30000
+  max_in_flight: 1
