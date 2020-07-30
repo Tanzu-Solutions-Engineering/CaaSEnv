@@ -1,0 +1,13 @@
+bosh -e caas deploy -d minio minio-caas-tls.yml \
+    -v minio_deployment_name=minio \
+    -v minio_accesskey=MINIOACCESSKEY \
+    -v minio_secretkey=MINIOSECRETKEY \
+    -v minio-tls-hostname="minio.caas.pez.pivotal.io"
+
+credhub interpolate -s -f minio-caas-tls.yml > interpolated.yml
+
+bosh -e caas deploy -d minio interpolated.yml \
+    -v minio_deployment_name=minio \
+    -v minio_accesskey=MINIOACCESSKEY \
+    -v minio_secretkey=MINIOSECRETKEY \
+    -v minio-tls-hostname="minio.caas.pez.pivotal.io"

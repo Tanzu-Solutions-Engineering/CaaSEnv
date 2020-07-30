@@ -1,0 +1,5 @@
+bosh -e caas deploy -d minio minio-caas-tls.yml \
+    -l minio-tls.yml \
+    -v minio_deployment_name=minio \
+    -v minio_accesskey=MINIOACCESSKEY \
+    -v minio_secretkey=MINIOSECRETKEY
