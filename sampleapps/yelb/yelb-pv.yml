@@ -179,7 +179,7 @@ kind: PersistentVolumeClaim
 metadata:
   name: yelb-db-data
 spec:
-  storageClassName: k8s-vsan-storage-policy
+  storageClassName: vsan #k8s-vsan-storage-policy
   volumeMode: Filesystem
   accessModes:
   - ReadWriteOnce
