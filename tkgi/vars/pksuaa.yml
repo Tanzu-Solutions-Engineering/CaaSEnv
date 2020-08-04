@@ -3,6 +3,9 @@ local_users:
 - name: pks-admin
   emails: pks-admin # do not use domain registered with LDAP
   password: ((uaa_pksadmin_password))
+- name: hr-ops
+  emails: hr-ops # do not use domain registered with LDAP
+  password: ((uaa_pksadmin_password))
 
 local_clients:
 - client_name: concourse-to-pks
@@ -23,6 +26,7 @@ groups:
   members:
   - name: admin
   - name: pks-admin
+  - name: hr-ops
 - name: pks.clusters.admin.read
   group_maps:
   - dn: "CN=TKGI - Read,OU=Security Groups,DC=caas,DC=pez,DC=pivotal,DC=io"
