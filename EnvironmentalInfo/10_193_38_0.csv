@@ -48,22 +48,22 @@
 47,,
 48,,
 49,,
-50,Control Plane OpsMan ,
-51,Control-Plane BOSH Range,Control Plane BOSH Dir
-52,Control-Plane BOSH Range,minio - Control Plane
-53,Control-Plane BOSH Range,concourse - Control Plane
-54,Control-Plane BOSH Range,
-55,Control-Plane BOSH Range,
-56,Control-Plane BOSH Range,
-57,Control-Plane BOSH Range,
-58,Control-Plane BOSH Range,
-59,Control-Plane BOSH Range,harbor-ctrl plane
-60,Control-Plane BOSH Range,
-61,Control-Plane BOSH Range,
-62,Control-Plane BOSH Range,
-63,Control-Plane BOSH Range,
-64,Control-Plane BOSH Range,
-65,Control-Plane BOSH Range,
+50,,
+51,WCP,Supervisor Control Pane Node Range
+52,WCP,Supervisor Control Pane Node Range
+53,WCP,Supervisor Control Pane Node Range
+54,WCP,Supervisor Control Pane Node Range
+55,WCP,Supervisor Control Pane Node Range
+56,,
+57,,
+58,,
+59,,
+60,,
+61,,
+62,,
+63,,
+64,,
+65,,
 66,,
 67,,
 68,,
