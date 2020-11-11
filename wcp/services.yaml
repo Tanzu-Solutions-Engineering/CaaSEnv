@@ -1,0 +1,26 @@
+---
+apiVersion: run.tanzu.vmware.com/v1alpha1
+kind: TanzuKubernetesCluster
+metadata:
+ name: services
+spec:
+ distribution:
+   version: v1.18.5
+   #version: v1.16.8---vmware.1-tkg.3.60d2ffd
+ topology:
+   controlPlane:
+     count: 3 #3 control plane nodes
+     class: best-effort-xsmall #2CPU, 2GB
+     storageClass: tanzu #Specific storage class for control plane
+   workers:
+     count: 2 #5 worker nodes
+     class: best-effort-small #2CPU, 4GB
+     storageClass: tanzu #Specific storage class for workers
+ settings:
+   network:
+     cni:
+       name: antrea
+     services:
+       cidrBlocks: ["198.51.100.0/12"] #Cannot overlap with Supervisor Cluster
+     pods:
+       cidrBlocks: ["192.0.2.0/16"] #Cannot overlap with Supervisor Cluster
