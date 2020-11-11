@@ -14,7 +14,7 @@
 13,Log Insight,sc2-syslog.infra.caas.pez.pivotal.io
 14,Windows Jumpbox,sc2-jumpbox-01.caas.pez.pivotal.io
 15,NSX Manager 01,sc2-nsxmgr-01.caas.pez.pivotal.io
-16,NSX Controller1,sc2-nsx-controller-01
+16,
 17,NSX Manager 02,sc2-nsxmgr-02
 18,NSX Manager 03,sc2-nsxmgr-03
 19,NSX Edge 01,sc2-nsx-edge-01
