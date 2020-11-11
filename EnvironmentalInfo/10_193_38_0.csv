@@ -14,7 +14,7 @@
 13,Log Insight,sc2-syslog.infra.caas.pez.pivotal.io
 14,Windows Jumpbox,sc2-jumpbox-01.caas.pez.pivotal.io
 15,NSX Manager 01,sc2-nsxmgr-01.caas.pez.pivotal.io
-16,
+16,,
 17,NSX Manager 02,sc2-nsxmgr-02
 18,NSX Manager 03,sc2-nsxmgr-03
 19,NSX Edge 01,sc2-nsx-edge-01
@@ -29,12 +29,12 @@
 28,,
 29,,
 30,vROPs,sc2-vrops
-31,Pacific ESXi1,esxi1.pacific.caas.pez.pivotal.io
-32,Pacific ESXi2,esxi2.pacific.caas.pez.pivotal.io
-33,Pacific ESXi3,esxi3.pacific.caas.pez.pivotal.io
-34,Pacific VCSA,vcsa.pacific.caas.pez.pivotal.io
-35,Pacific NSXMgr1,nsxmgr1.pacific.caas.pez.pivotal.io
-36,Pacific NSX Edge1,nsxedge1.pacific.caas.pez.pivotal.io
+31,VSAN-FS,vsanfs1.caas.pez.pivotal.io
+32,VSAN-FS,vsanfs2.caas.pez.pivotal.io
+33,VSAN-FS,vsanfs3.caas.pez.pivotal.io
+34,VSAN-FS,vsanfs4.caas.pez.pivotal.io
+35,,
+36,,
 37,Pacific T0 Uplink,
 38,,
 39,,
