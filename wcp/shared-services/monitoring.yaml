@@ -2,7 +2,7 @@
 apiVersion: run.tanzu.vmware.com/v1alpha1
 kind: TanzuKubernetesCluster
 metadata:
- name: services
+ name: monitoring
 spec:
  distribution:
    version: v1.18.5
