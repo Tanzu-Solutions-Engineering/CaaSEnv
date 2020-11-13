@@ -1,0 +1,14 @@
+---
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: postgres-operator-serving-cert
+  namespace: default
+spec:
+  dnsNames:
+    - postgres-operator-webhook-service.default.svc
+    - postgres-operator-webhook-service.default.svc.cluster.local
+  issuerRef:
+    kind: Issuer
+    name: postgres-operator-selfsigned-issuer
+  secretName: postgres-operator-webhook-server-cert
