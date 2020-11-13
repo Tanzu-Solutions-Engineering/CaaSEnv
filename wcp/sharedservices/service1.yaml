@@ -3,6 +3,7 @@ apiVersion: run.tanzu.vmware.com/v1alpha1
 kind: TanzuKubernetesCluster
 metadata:
  name: service1
+ namespace: sharedservices
 spec:
  distribution:
    version: v1.18.5
