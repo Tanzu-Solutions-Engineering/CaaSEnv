@@ -1,0 +1,12 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: vol-vsan-influxdb-storage-claim
+spec:
+  storageClassName: vsan
+  accessModes:
+  - ReadWriteOnce
+  resources:
+     requests:
+       storage: 5Gi

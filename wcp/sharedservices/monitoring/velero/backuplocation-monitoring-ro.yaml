@@ -1,0 +1,16 @@
+apiVersion: velero.io/v1
+kind: BackupStorageLocation
+metadata:
+  labels:
+    component: velero
+  name: recovery-monitoring
+  namespace: velero
+spec:
+  accessMode: ReadOnly #ReadWrite
+  config:
+    region: minio
+    s3ForcePathStyle: "true"
+    s3Url: http://minio:9000
+  objectStorage:
+    bucket: backup-monitoring-ro
+  provider: aws

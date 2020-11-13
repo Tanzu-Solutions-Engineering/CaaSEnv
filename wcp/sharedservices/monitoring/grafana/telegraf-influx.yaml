@@ -1,0 +1,81 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: influxdb
+  name: influxdb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: influxdb
+  template:
+    metadata:
+      labels:
+        run: influxdb
+    spec:
+      volumes:
+      - name: vol-vsan-influxdb-storage
+        persistentVolumeClaim:
+          claimName: vol-vsan-influxdb-storage-claim
+      containers:
+      - image: influxdb:1.7
+        name: influxdb
+        ports:
+        - containerPort: 8086
+        volumeMounts:
+          - mountPath: /var/lib/influxdb
+            name: vol-vsan-influxdb-storage
+        env:
+        - name: INFLUXDB_DB
+          value: "db0"
+        - name: INFLUXDB_ADMIN_USER
+          value: "admin"
+        - name: INFLUXDB_ADMIN_PASSWORD
+          value: "adminpass"
+        - name: INFLUXDB_REPORTING_DISABLED
+          value: "true"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: telegraf
+  name: telegraf
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      run: telegraf
+  template:
+    metadata:
+      labels:
+        run: telegraf
+    spec:
+      volumes:
+      - name: telegrafconf
+        configMap:
+          name: telegraf
+      containers:
+      - image: vsananalytics/telegraf-vsan:0.0.7
+        name: telegraf
+        volumeMounts:
+          - mountPath: /etc/telegraf
+            name: telegrafconf
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    run: influxdb
+  name: influxdb
+spec:
+  ports:
+  - port: 8086
+    protocol: TCP
+    targetPort: 8086
+  selector:
+    run: influxdb
+  type: ClusterIP

@@ -1,0 +1,94 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: grafana
+  namespace: monitoring
+  labels:
+    app: grafana
+    component: core
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: grafana
+  template:
+    metadata:
+      annotations:
+        backup.velero.io/backup-volumes: grafana-storage #, grafana-prov-dashboards
+      labels:
+        app: grafana
+        component: core
+    spec:
+      volumes:
+        - name: grafana-storage
+          persistentVolumeClaim:
+            claimName: grafana-storage
+        - name: grafana-prov-dashboards
+          persistentVolumeClaim:
+            claimName: grafana-dashboards
+        - name: grafana-datasources
+          configMap:
+              name: grafana-datasources
+      securityContext:
+        fsGroup: 1000
+        runAsUser: 1000
+      containers:
+      - image: grafana/grafana:latest
+        name: grafana
+        imagePullPolicy: IfNotPresent
+        # ports:
+        # - containerPort: 3000
+        volumeMounts:
+          - mountPath: /var/lib/grafana
+            name: grafana-storage
+            readOnly: false
+          - mountPath: /etc/grafana/provisioning/datasources
+            name: grafana-datasources
+            readOnly: false
+          - mountPath: /etc/grafana/provisioning/dashboards
+            name: grafana-prov-dashboards
+            readOnly: false
+        readinessProbe:
+          httpGet:
+            path: /login
+            port: 3000
+        env:
+        - name: GF_AUTH_ANONYMOUS_ENABLED
+          value: "true"
+        - name: GF_AUTH_ANONYMOUS_ORG_NAME
+          value: "Main Org."
+        - name: GF_AUTH_ANONYMOUS_ORG_ROLE
+          value: "Editor"
+        - name: GF_AUTH_BASIC_ENABLED
+          value: "true"
+        - name: GF_SECURITY_ADMIN_USER
+          valueFrom:
+            secretKeyRef:
+              name: grafana
+              key: admin-username
+        - name: GF_SECURITY_ADMIN_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: grafana
+              key: admin-password
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: grafana
+    component: core
+  name: grafana
+  annotations:
+      prometheus.io/scrape: 'true'
+      prometheus.io/port:   '3000'
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: grafana
+    component: core
+  type: LoadBalancer

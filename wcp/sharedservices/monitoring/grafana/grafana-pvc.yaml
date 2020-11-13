@@ -1,0 +1,26 @@
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-storage
+  namespace: monitoring
+spec:
+  storageClassName: vsan
+  accessModes:
+  - ReadWriteOnce
+  resources:
+     requests:
+       storage: 2Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: grafana-dashboards
+  namespace: monitoring
+spec:
+  storageClassName: vsan
+  accessModes:
+  - ReadWriteOnce
+  resources:
+     requests:
+       storage: 2Gi
