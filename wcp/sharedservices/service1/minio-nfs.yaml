@@ -20,8 +20,8 @@ spec:
       volumes:
       - name: storage
         nfs:
-          server: 10.193.38.31
-          path: /minio
+          server: vsanfs1.caas.pez.pivotal.io #10.193.38.32
+          path: /vsanfs/minio
       containers:
       - name: minio
         image: minio/minio:latest
