@@ -13,10 +13,10 @@
 12,VxRail Manager,sc2-vxrail-01.caas.pez.pivotal.io
 13,Log Insight,sc2-syslog.infra.caas.pez.pivotal.io
 14,Windows Jumpbox,sc2-jumpbox-01.caas.pez.pivotal.io
-15,NSX Manager 01,sc2-nsxmgr-01.caas.pez.pivotal.io
-16,,
-17,NSX Manager 02,sc2-nsxmgr-02
-18,NSX Manager 03,sc2-nsxmgr-03
+15,NSX Manager VIP,sc2-nsxmgr-01.caas.pez.pivotal.io
+16,NSX Manager 01,sc2-nsxmgr-01a
+17,NSX Manager 02,sc2-nsxmgr-01b
+18,NSX Manager 03,sc2-nsxmgr-01c
 19,NSX Edge 01,sc2-nsx-edge-01
 20,NSX Edge 02,sc2-nsx-edge-02
 21,ESXi host 1,sc2-esx-01
