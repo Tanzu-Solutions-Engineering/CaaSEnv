@@ -1,5 +1,7 @@
 # Deploy Tanzu SQL
 
+## Clone this repo
+* so you have the operator folder and yaml files
 
 ## Update helm, install cert-manager
     kubectl create namespace cert-manager
