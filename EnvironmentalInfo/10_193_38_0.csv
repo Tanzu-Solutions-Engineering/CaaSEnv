@@ -124,71 +124,71 @@
 123,,
 124,,
 125,,
-126,,
-127,,
-128,,
-129,,
-130,,
-131,,
-132,,
-133,,
-134,,
-135,,
-136,,
-137,,
-138,,
-139,,
-140,,
-141,,
-142,,
-143,,
-144,,
-145,,
-146,,
-147,,
-148,,
-149,,
-150,,
-151,,
-152,,
-153,,
-154,,
-155,,
-156,,
-157,,
-158,,
-159,,
-160,,
-161,,
-162,,
-163,,
-164,,
-165,,
-166,,
-167,,
-168,,
-169,,
-170,,
-171,,
-172,,
-173,,
-174,,
-175,,
-176,,
-177,,
-178,,
-179,,
-180,,
-181,,
-182,,
-183,,
-184,,
-185,,
-186,,
-187,,
-188,,
-189,,
-190,,
+126,HAProxy,"Workload" interface for HA Proxy
+127,RESERVED,
+128,TKGS-NoNSX,HAPROXY LB Range
+129,TKGS-NoNSX,HAPROXY LB Range
+130,TKGS-NoNSX,HAPROXY LB Range
+131,TKGS-NoNSX,HAPROXY LB Range
+132,TKGS-NoNSX,HAPROXY LB Range
+133,TKGS-NoNSX,HAPROXY LB Range
+134,TKGS-NoNSX,HAPROXY LB Range
+135,TKGS-NoNSX,HAPROXY LB Range
+136,TKGS-NoNSX,HAPROXY LB Range
+137,TKGS-NoNSX,HAPROXY LB Range
+138,TKGS-NoNSX,HAPROXY LB Range
+139,TKGS-NoNSX,HAPROXY LB Range
+140,TKGS-NoNSX,HAPROXY LB Range
+141,TKGS-NoNSX,HAPROXY LB Range
+142,TKGS-NoNSX,HAPROXY LB Range
+143,TKGS-NoNSX,HAPROXY LB Range
+144,TKGS-NoNSX,HAPROXY LB Range
+145,TKGS-NoNSX,HAPROXY LB Range
+146,TKGS-NoNSX,HAPROXY LB Range
+147,TKGS-NoNSX,HAPROXY LB Range
+148,TKGS-NoNSX,HAPROXY LB Range
+149,TKGS-NoNSX,HAPROXY LB Range
+150,TKGS-NoNSX,HAPROXY LB Range
+151,TKGS-NoNSX,HAPROXY LB Range
+152,TKGS-NoNSX,HAPROXY LB Range
+153,TKGS-NoNSX,HAPROXY LB Range
+154,TKGS-NoNSX,HAPROXY LB Range
+155,TKGS-NoNSX,HAPROXY LB Range
+156,TKGS-NoNSX,HAPROXY LB Range
+157,TKGS-NoNSX,HAPROXY LB Range
+158,TKGS-NoNSX,HAPROXY LB Range
+159,RESERVED,
+160,TKGS-NoNSX,Workload Network
+161,TKGS-NoNSX,Workload Network
+162,TKGS-NoNSX,Workload Network
+163,TKGS-NoNSX,Workload Network
+164,TKGS-NoNSX,Workload Network
+165,TKGS-NoNSX,Workload Network
+166,TKGS-NoNSX,Workload Network
+167,TKGS-NoNSX,Workload Network
+168,TKGS-NoNSX,Workload Network
+169,TKGS-NoNSX,Workload Network
+170,TKGS-NoNSX,Workload Network
+171,TKGS-NoNSX,Workload Network
+172,TKGS-NoNSX,Workload Network
+173,TKGS-NoNSX,Workload Network
+174,TKGS-NoNSX,Workload Network
+175,TKGS-NoNSX,Workload Network
+176,TKGS-NoNSX,Workload Network
+177,TKGS-NoNSX,Workload Network
+178,TKGS-NoNSX,Workload Network
+179,TKGS-NoNSX,Workload Network
+180,TKGS-NoNSX,Workload Network
+181,TKGS-NoNSX,Workload Network
+182,TKGS-NoNSX,Workload Network
+183,TKGS-NoNSX,Workload Network
+184,TKGS-NoNSX,Workload Network
+185,TKGS-NoNSX,Workload Network
+186,TKGS-NoNSX,Workload Network
+187,TKGS-NoNSX,Workload Network
+188,TKGS-NoNSX,Workload Network
+189,,TKGS-NoNSX,Workload Network
+190,TKGS-NoNSX,Workload Network
 191,,
 192,,
 193,,
