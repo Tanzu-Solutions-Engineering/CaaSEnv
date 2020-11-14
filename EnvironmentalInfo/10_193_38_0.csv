@@ -59,9 +59,9 @@
 58,,
 59,,
 60,,
-61,ESXi-VM,nest-esx-01
-62,ESXi-VM,nest-esx-02
-63,ESXi-VM,nest-esx-03
+61,,
+62,caasadc1,ADC Controller
+63,,
 64,,
 65,,
 66,,
@@ -69,9 +69,9 @@
 68,,
 69,,
 70,,
-71,,
-72,,
-73,,
+71,ESXi-VM,nest-esx-01
+72,ESXi-VM,nest-esx-02
+73,ESXi-VM,nest-esx-03
 74,,
 75,,
 76,,
