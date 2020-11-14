@@ -1,29 +1,14 @@
 # Harbor
 
 ## Add helm repo
-helm repo add harbor https://helm.goharbor.io
+    helm repo add harbor https://helm.goharbor.io
 
 ## Create tls secret:
-kubectl create secret generic harbor-tls --from-file=tls.crt --from-file=tls.key -n harbor
+    kubectl create secret generic harbor-tls --from-file=cert/tls.crt --from-file=cert/private.key -n harbor
 
 
 ## Deploy
-helm install harbor harbor/harbor --namespace harbor \
---set expose.type=loadBalancer,expose.tls.enabled=true,expose.tls.auto.commonName=harbor.caas.pez.pivotal.io,\
-externalURL=harbor.caas.pez.pivotal.io,harborAdminPassword=Pivotal123,\
-persistence.persistentVolumeClaim.registry.size=20Gi,\
-persistence.persistentVolumeClaim.registry.storageClass=vsan,\
-persistence.persistentVolumeClaim.chartmuseum.storageClass=vsan,\
-persistence.persistentVolumeClaim.jobservice.storageClass=vsan,\
-persistence.persistentVolumeClaim.database.storageClass=vsan,\
-persistence.persistentVolumeClaim.redis.storageClass=vsan,\
-persistence.persistentVolumeClaim.trivy.storageClass=vsan,\
-redis.podAnnotations."backup\.velero\.io/backup-volumes"=data,\
-registry.podAnnotations."backup\.velero\.io/backup-volumes"=registry-data,\
-trivy.podAnnotations."backup\.velero\.io/backup-volumes"=data,\
-database.podAnnotations."backup\.velero\.io/backup-volumes"=database-data,\
-chartmuseum.podAnnotations."backup\.velero\.io/backup-volumes"=chartmuseum-data,\
-jobservice.podAnnotations."backup\.velero\.io/backup-volumes"=job-logs
+    helm install harbor harbor/harbor --namespace harbor --set expose.type=loadBalancer,expose.tls.enabled=true,expose.tls.auto.commonName=harbor.caas.pez.pivotal.io,expose.tls.secret.secretName=harbor-tls,expose.tls.certSource=secret,externalURL=harbor.caas.pez.pivotal.io,harborAdminPassword=Pivotal123,persistence.persistentVolumeClaim.registry.size=20Gi,persistence.persistentVolumeClaim.registry.storageClass=tanzu,persistence.persistentVolumeClaim.chartmuseum.storageClass=tanzu,persistence.persistentVolumeClaim.jobservice.storageClass=tanzu,persistence.persistentVolumeClaim.database.storageClass=tanzu,persistence.persistentVolumeClaim.redis.storageClass=tanzu,persistence.persistentVolumeClaim.trivy.storageClass=tanzu,redis.podAnnotations."backup\.velero\.io/backup-volumes"=data,registry.podAnnotations."backup\.velero\.io/backup-volumes"=registry-data,trivy.podAnnotations."backup\.velero\.io/backup-volumes"=data,database.podAnnotations."backup\.velero\.io/backup-volumes"=database-data,chartmuseum.podAnnotations."backup\.velero\.io/backup-volumes"=chartmuseum-data,jobservice.podAnnotations."backup\.velero\.io/backup-volumes"=job-logs
 
 
 
