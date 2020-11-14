@@ -7,9 +7,11 @@
     kubectl create secret generic harbor-tls --from-file=tls.crt --from-file=private.key -n harbor
 
 
-## Deploy
+## Deploy - with certificate
     helm install harbor harbor/harbor --namespace harbor --set expose.type=loadBalancer,expose.tls.enabled=true,expose.tls.auto.commonName=harbor.caas.pez.pivotal.io,expose.tls.secret.secretName=harbor-tls,expose.tls.certSource=secret,externalURL=harbor.caas.pez.pivotal.io,harborAdminPassword=Pivotal123,persistence.persistentVolumeClaim.registry.size=20Gi,persistence.persistentVolumeClaim.registry.storageClass=tanzu,persistence.persistentVolumeClaim.chartmuseum.storageClass=tanzu,persistence.persistentVolumeClaim.jobservice.storageClass=tanzu,persistence.persistentVolumeClaim.database.storageClass=tanzu,persistence.persistentVolumeClaim.redis.storageClass=tanzu,persistence.persistentVolumeClaim.trivy.storageClass=tanzu,redis.podAnnotations."backup\.velero\.io/backup-volumes"=data,registry.podAnnotations."backup\.velero\.io/backup-volumes"=registry-data,trivy.podAnnotations."backup\.velero\.io/backup-volumes"=data,database.podAnnotations."backup\.velero\.io/backup-volumes"=database-data,chartmuseum.podAnnotations."backup\.velero\.io/backup-volumes"=chartmuseum-data,jobservice.podAnnotations."backup\.velero\.io/backup-volumes"=job-logs
 
+## Deploy - generate certificate
+    helm install harbor harbor/harbor --namespace harbor --set expose.type=loadBalancer,expose.tls.enabled=true,expose.tls.auto.commonName=harbor.caas.pez.pivotal.io,externalURL=harbor.caas.pez.pivotal.io,harborAdminPassword=Pivotal123,persistence.persistentVolumeClaim.registry.size=20Gi,persistence.persistentVolumeClaim.registry.storageClass=tanzu,persistence.persistentVolumeClaim.chartmuseum.storageClass=tanzu,persistence.persistentVolumeClaim.jobservice.storageClass=tanzu,persistence.persistentVolumeClaim.database.storageClass=tanzu,persistence.persistentVolumeClaim.redis.storageClass=tanzu,persistence.persistentVolumeClaim.trivy.storageClass=tanzu,redis.podAnnotations."backup\.velero\.io/backup-volumes"=data,registry.podAnnotations."backup\.velero\.io/backup-volumes"=registry-data,trivy.podAnnotations."backup\.velero\.io/backup-volumes"=data,database.podAnnotations."backup\.velero\.io/backup-volumes"=database-data,chartmuseum.podAnnotations."backup\.velero\.io/backup-volumes"=chartmuseum-data,jobservice.podAnnotations."backup\.velero\.io/backup-volumes"=job-logs
 
 
 ## Fix Harbor after velero restore

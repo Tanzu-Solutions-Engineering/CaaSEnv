@@ -15,7 +15,7 @@
 
 
 ## Create an example pg database
-    kubectl apply -n postgress -f pg-instance-example.yaml
+    kubectl apply -n postgres -f pg-instance-example.yaml
 
 ### Run psql inside the pg instance
     kubectl exec -it pg-instance-example-0 -- bash -c "psql"
@@ -32,8 +32,7 @@
 
 ## Deploy pgAdmin
     helm repo add runix https://helm.runix.net/
-    helm install pgadmin4 runix/pgadmin4 -n postgres \
-    --set service.type=LoadBalancer,persistentVolume.storageClass=vsan,env.email=pgadmin@pgadmin.org,env.password=pgadmin
+    helm install pgadmin4 runix/pgadmin4 -n postgres --set service.type=LoadBalancer,persistentVolume.storageClass=tanzu,env.email=pgadmin@pgadmin.org,env.password=pgadmin
 
 
 ### Using pgadmin
