@@ -4,7 +4,7 @@
     helm repo add harbor https://helm.goharbor.io
 
 ## Create tls secret:
-    kubectl create secret generic harbor-tls --from-file=cert/tls.crt --from-file=cert/private.key -n harbor
+    kubectl create secret generic harbor-tls --from-file=tls.crt --from-file=private.key -n harbor
 
 
 ## Deploy
