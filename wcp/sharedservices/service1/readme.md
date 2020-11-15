@@ -30,6 +30,7 @@ kubectl create ns minio
 kubectl apply -n minio -f ./minio-nfs.yaml
 
 ## Harbor
+See harbor subfolder
 
 ## Email
 kubectl create ns mail
