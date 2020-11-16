@@ -20,19 +20,10 @@ data:
             {
                "access":"proxy",
                 "editable": true,
-                "name": "prometheus-games,
-                "orgId": 1,
-                "type": "prometheus",
-                "url": "http://192.168.105.79:80",
-                "version": 1
-            },
-            {
-               "access":"proxy",
-                "editable": true,
                 "name": "prometheus-services1",
                 "orgId": 1,
                 "type": "prometheus",
-                "url": "http://192.168.105.71:80",
+                "url": "http://10.193.39.38:80",
                 "version": 1
             }
         ]
