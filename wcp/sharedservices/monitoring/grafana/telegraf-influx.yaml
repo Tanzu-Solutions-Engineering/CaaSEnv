@@ -16,17 +16,17 @@ spec:
         run: influxdb
     spec:
       volumes:
-      - name: vol-vsan-influxdb-storage
+      - name: vol-tanzu-influxdb-storage
         persistentVolumeClaim:
-          claimName: vol-vsan-influxdb-storage-claim
+          claimName: vol-tanzu-influxdb-storage-claim
       containers:
-      - image: influxdb:1.7
+      - image: influxdb:latest
         name: influxdb
         ports:
         - containerPort: 8086
         volumeMounts:
           - mountPath: /var/lib/influxdb
-            name: vol-vsan-influxdb-storage
+            name: vol-tanzu-influxdb-storage
         env:
         - name: INFLUXDB_DB
           value: "db0"
@@ -58,7 +58,7 @@ spec:
         configMap:
           name: telegraf
       containers:
-      - image: vsananalytics/telegraf-vsan:0.0.7
+      - image: telegraf:latest
         name: telegraf
         volumeMounts:
           - mountPath: /etc/telegraf
