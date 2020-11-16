@@ -2,3 +2,7 @@ params-*.yml
 refresh*.bat
 refresh*.sh
 private*.*
+*.cer
+*.key
+*.csr
+*.crt
