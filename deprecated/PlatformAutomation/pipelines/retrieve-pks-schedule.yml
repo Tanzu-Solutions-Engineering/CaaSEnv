@@ -68,6 +68,12 @@ resources:
     <<: *s3_credentials_binaries
     regexp: pks-stemcell/\[stemcells-ubuntu-xenial,(.*)\]bosh-stemcell-.*-vsphere.*\.tgz
 
+- name: pks-windows-stemcell
+  type: s3
+  source:
+    <<: *s3_credentials_binaries
+    regexp: pks-windows-stemcell/\[stemcells-windows-server-internal,(.*)\]bosh-stemcell-.*-vsphere-esxi-windows2019-go_agent\.tgz
+
 - name: pks-cli
   type: s3
   source:
@@ -141,7 +147,7 @@ resources:
 - name: weekly-trigger
   type: time
   source:
-    days: [Friday, Saturday]
+    days: [Wednesday,Friday, Saturday]
     start: 9AM
     stop: 11PM
 
@@ -203,6 +209,30 @@ jobs:
     params:
       file: pks-stemcell/*.tgz
 
+- name: fetch-windows-stemcell
+  serial: true
+  build_log_retention:
+    builds: 1
+  plan:
+  - get: platform-automation-image
+    params:
+      unpack: true
+  - get: platform-automation-tasks
+    params:
+      unpack: true
+  - get: config
+  - task: credhub-interpolate
+    <<: *credhub-interpolate
+  - task: download-windows-stemcell
+    image: platform-automation-image
+    file: platform-automation-tasks/tasks/download-product.yml
+    params:
+      CONFIG_FILE: download-product-configs/windows-stemcell.yml
+  - put: pks-windows-stemcell
+    params:
+      file: downloaded-product/*.tgz
+
+
 - name: fetch-pks-cli
   serial: true
 
@@ -249,7 +279,7 @@ jobs:
   - put: kubectl
     params:
       file: downloaded-product/*
-      
+
 - name: fetch-platform-automation
   build_log_retention:
     builds: 1

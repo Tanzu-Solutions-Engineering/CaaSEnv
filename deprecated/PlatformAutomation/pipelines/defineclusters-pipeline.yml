@@ -93,7 +93,7 @@ resources:
   name: weekly-trigger
   type: time
   source:
-    days: [Wednesday, Saturday]
+    days: [Saturday]
     start: 11AM
     stop: 11PM
 
@@ -122,7 +122,7 @@ jobs:
   - task: interpolate-creds
     <<: *interpolate-creds
 
-  - task: create_pks_clusters
+  - task: create-pks-clusters
     image: custom-task-image
     file: custom-tasks/tasks/create_pks_clusters.yml
     input_mapping:
