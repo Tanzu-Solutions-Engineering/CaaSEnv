@@ -5,7 +5,7 @@ metadata:
   name: grafana-storage
   namespace: monitoring
 spec:
-  storageClassName: vsan
+  storageClassName: tanzu
   accessModes:
   - ReadWriteOnce
   resources:
@@ -18,7 +18,7 @@ metadata:
   name: grafana-dashboards
   namespace: monitoring
 spec:
-  storageClassName: vsan
+  storageClassName: tanzu
   accessModes:
   - ReadWriteOnce
   resources:
