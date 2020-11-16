@@ -58,7 +58,7 @@ spec:
         configMap:
           name: telegraf
       containers:
-      - image: telegraf:latest
+      - image: vsananalytics/telegraf-vsan:0.0.7 #telegraf:latest
         name: telegraf
         volumeMounts:
           - mountPath: /etc/telegraf
