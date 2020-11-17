@@ -4,7 +4,7 @@ kubectl apply -f ./allowrunasnonroot-clusterrole.yaml
 ## Add Metrics-Server
 kubectl apply -f ./metrics-server.yaml
 
-## Add kube-state-metrocs
+## Add kube-state-metrics
 kubectl apply -f kube-state-metrics.yaml
 
 ## Add prometheus
@@ -18,8 +18,6 @@ helm install prometheus prometheus-community/prometheus  --namespace monitoring 
 ### Expose Service (NodePort)
 kubectl expose -n monitoring deploy prometheus-server --name=prom-np --port=80 --target-port=9090 --selector="app=prometheus,component=server" --type=NodePort
 
-## Add Kube-State-Metrics
-kubectl apply -f kube-state-metrics.yaml
 
 ## Add Telegraf, InfluxDb, grafana
 kubectl apply -n monitoring -f grafana/
