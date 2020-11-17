@@ -92,3 +92,7 @@ spec:
     app: grafana
     component: core
   type: LoadBalancer
+status:
+  loadBalancer:
+    ingress:
+    - ip: 10.193.39.37
