@@ -13,3 +13,6 @@
 
 ### database
     kubectl vsphere login --tanzu-kubernetes-cluster-name database --server wcp.caas.pez.pivotal.io --insecure-skip-tls-verify --tanzu-kubernetes-cluster-namespace workload -u bragazzi@caas.pez.pivotal.io
+
+### demo1
+    kubectl vsphere login --tanzu-kubernetes-cluster-name demo1 --server wcp.caas.pez.pivotal.io --insecure-skip-tls-verify --tanzu-kubernetes-cluster-namespace demo -u bragazzi@caas.pez.pivotal.io
