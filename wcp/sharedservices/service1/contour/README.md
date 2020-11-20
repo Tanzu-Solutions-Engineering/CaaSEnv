@@ -37,8 +37,6 @@
    Supported configurations are documented in [contour-configurations](../../../ingress/contour/README.md)
 
 
-    ```
-
 6. Create a secret with data values
 
     Vsphere:

@@ -5,6 +5,17 @@ kubectl apply -f ./allowrunasnonroot-clusterrole.yaml
 
 kubectl apply -f ./metrics-server.yaml
 
+
+## Contour
+See contour subfolder
+
+## Minio
+kubectl create ns minio
+kubectl apply -n minio -f ./minio-nfs.yaml
+
+## Harbor
+See harbor subfolder
+
 ## Add prometheus
 
 k create ns monitoring
@@ -22,19 +33,3 @@ kubectl expose -n monitoring deploy prometheus-server --name=prom-lb --port=80 -
     --backup-location-config \
     region=minio,s3ForcePathStyle="true",s3Url=http://minio:9000
     `
-## Contour
-kubectl apply -f https://projectcontour.io/quickstart/contour.yaml
-
-## Minio
-kubectl create ns minio
-kubectl apply -n minio -f ./minio-nfs.yaml
-
-## Harbor
-See harbor subfolder
-
-## Email
-kubectl create ns mail
-kubectl apply -n mail -f iredmail/
-
-## Cert Manager
-kubectl apply -f cert-manager/
