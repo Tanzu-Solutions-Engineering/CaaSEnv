@@ -102,25 +102,25 @@ persistence:
       size: 10Gi
     jobservice:
       existingClaim: ""
-      storageClass: ""
+      storageClass: "tanzu"
       subPath: ""
       accessMode: ReadWriteOnce
       size: 1Gi
     database:
       existingClaim: ""
-      storageClass: ""
+      storageClass: "tanzu"
       subPath: ""
       accessMode: ReadWriteOnce
       size: 1Gi
     redis:
       existingClaim: ""
-      storageClass: ""
+      storageClass: "tanzu"
       subPath: ""
       accessMode: ReadWriteOnce
       size: 1Gi
     trivy:
       existingClaim: ""
-      storageClass: ""
+      storageClass: "tanzu"
       subPath: ""
       accessMode: ReadWriteOnce
       size: 5Gi
