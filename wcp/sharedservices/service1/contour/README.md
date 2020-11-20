@@ -40,7 +40,7 @@
 6. Create a secret with data values
 
     ```sh
-    kubectl create secret generic contour-data-values --from-file=values.yaml=vsphere/contour-data-values.yaml -n tanzu-system-ingress
+    kubectl create secret generic contour-data-values --from-file=values.yaml=contour-data-values.yaml -n tanzu-system-ingress
     ```
 
 
