@@ -6,15 +6,9 @@ monitoring:
   prometheus_server:
     image:
       repository: registry.tkg.vmware.run/prometheus
-    sc:
-      sc_enabled: true
-    pvc:
-      storage_class: tanzu
   alertmanager:
     image:
       repository: registry.tkg.vmware.run/prometheus
-    pvc:
-      storage_class: tanzu
   kube_state_metrics:
     image:
       repository: registry.tkg.vmware.run/prometheus
