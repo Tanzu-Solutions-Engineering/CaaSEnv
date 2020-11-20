@@ -32,31 +32,31 @@ tlsCertificate:
 enableContourHttpProxy: true
 
 # [Required] The initial password of Harbor admin.
-harborAdminPassword:
+harborAdminPassword: Pivotal123!
 
 # [Required] The secret key used for encryption. Must be a string of 16 chars.
-secretKey:
+secretKey: K3QD2Mnpa9y6ksZP
 
 database:
   # [Required] The initial password of the postgres database.
-  password:
+  password: Gk59th1EBjBzPHsU
 
 core:
   replicas: 1
   # [Required] Secret is used when core server communicates with other components.
-  secret:
+  secret: VOjXzKvrQVPABIMc
   # [Required] The XSRF key. Must be a string of 32 chars.
-  xsrfKey:
+  xsrfKey: pccHaGpbPfBz8UbmSc6fNKSF6zwjGP0Y
 jobservice:
   replicas: 1
   # [Required] Secret is used when job service communicates with other components.
-  secret:
+  secret: j2mVuFficOFU0g3K
 registry:
   replicas: 1
   # [Required] Secret is used to secure the upload state from client
   # and registry storage backend.
   # See: https://github.com/docker/distribution/blob/master/docs/configuration.md#http
-  secret:
+  secret: kOKRMtzxKc1Z7Tlr
 notary:
   # Whether to install Notary
   enabled: true
@@ -96,7 +96,7 @@ persistence:
       # Specify the "storageClass" used to provision the volume. Or the default
       # StorageClass will be used(the default).
       # Set it to "-" to disable dynamic provisioning
-      storageClass: ""
+      storageClass: "tanzu"
       subPath: ""
       accessMode: ReadWriteOnce
       size: 10Gi

@@ -10,13 +10,13 @@
 1. Install TMC Extension Manager
 
     ```sh
-    kubectl apply -f tmc-extension-manager.yaml
+    kubectl apply -f ../tmc-extension-manager.yaml
     ```
 
 2. Install kapp-controller
 
     ```sh
-    kubectl apply -f kapp-controller.yaml
+    kubectl apply -f ../kapp-controller.yaml
     ```
 
 3. Create namespace and roles for Harbor extension
@@ -25,17 +25,8 @@
     kubectl apply -f namespace-role.yaml
     ```
 
-4. Copy `harbor-data-values.yaml.example` to `harbor-data-values.yaml`
+4. Review and modify `harbor-data-values.yaml` as needed
 
-    ```sh
-    cp harbor-data-values.yaml.example harbor-data-values.yaml
-    ```
-
-   Specify the mandatory passwords and secrets in `harbor-data-values.yaml`, or run `bash generate-passwords.sh harbor-data-values.yaml` to generate them automatically. This step is needed only once.
-
-   Specify other Harbor configuration (e.g. admin password, hostname, persistence setting, etc.) in `harbor-data-values.yaml`.
-
-   **NOTE**: If the default storageClass in the Workload Cluster, or the specified storageClass in `harbor-data-values.yaml` supports the accessMode [ReadWriteMany](https://kubernetes.io/docs/concepts/storage/persistent-volumes/#access-modes), make sure to update the accessMode to ReadWriteMany in `harbor-data-values.yaml`. [vSphere 7.0 supports the accessMode ReadWriteMany](https://blogs.vmware.com/virtualblocks/2020/03/12/cloud-native-storage-and-vsan-file-services-integration/) whereas vSphere 6.7U3 doesn't support it.
 
 5. Create a secret with data values
 
