@@ -11,7 +11,7 @@ spec:
  topology:
    controlPlane:
      count: 3 #3 control plane nodes
-     class: best-effort-xsmall #2CPU, 2GB
+     class: best-effort-small #2CPU, 2GB
      storageClass: tanzu #Specific storage class for control plane
    workers:
      count: 2 #5 worker nodes
