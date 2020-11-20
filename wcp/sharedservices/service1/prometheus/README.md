@@ -11,13 +11,13 @@
 1. Install TMC's extension manager
 
     ```sh
-    kubectl apply -f tmc-extension-manager.yaml
+    kubectl apply -f ../tmc-extension-manager.yaml
     ```
 
 2. Install kapp-controller
 
     ```sh
-    kubectl apply -f kapp-controller.yaml
+    kubectl apply -f ../kapp-controller.yaml
     ```
 
 3. Deploy cert-manager if its not already installed
