@@ -33,3 +33,8 @@ kubectl expose -n monitoring deploy prometheus-server --name=prom-lb --port=80 -
     --backup-location-config \
     region=minio,s3ForcePathStyle="true",s3Url=http://minio:9000
     `
+
+
+## make tanzu SC the default
+`kubectl patch storageclass tanzu -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
+`
