@@ -8,3 +8,5 @@ contour:
 envoy:
   image:
     repository: registry.tkg.vmware.run
+  service:
+    type: LoadBalancer
