@@ -124,7 +124,7 @@
 123,,
 124,,
 125,,
-126,HAProxy,"Workload" interface for HA Proxy
+126,HAProxy,Workload interface for HA Proxy
 127,RESERVED,
 128,TKGS-NoNSX,HAPROXY LB Range
 129,TKGS-NoNSX,HAPROXY LB Range
