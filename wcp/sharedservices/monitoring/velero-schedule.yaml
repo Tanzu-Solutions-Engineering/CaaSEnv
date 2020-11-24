@@ -1,0 +1,13 @@
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  generation: 3
+  name: cluster-daily
+  namespace: velero
+spec:
+  schedule: 0 0 * * *
+  template:
+    hooks: {}
+    includedNamespaces:
+    - '*'
+    ttl: 168h0m0s
