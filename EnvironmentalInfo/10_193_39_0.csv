@@ -236,8 +236,8 @@
 235,TKGI,Floating IP Pool
 236,TKGI,Floating IP Pool
 237,TKGI,Floating IP Pool
-238,TKGI,Floating IP Pool
-239,,
+238,TKGI,Static SNAT
+239,TKGI,Static SNAT
 240,,
 241,,
 242,,
