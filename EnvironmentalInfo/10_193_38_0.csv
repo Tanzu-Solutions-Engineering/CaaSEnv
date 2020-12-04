@@ -72,12 +72,12 @@
 71,ESXi-VM,nest-esx-01
 72,ESXi-VM,nest-esx-02
 73,ESXi-VM,nest-esx-03
-74,,
-75,,
-76,,
-77,,
-78,,
-79,,
+74,WCP-NEST,Supervisor Control Pane Node Range
+75,WCP-NEST,Supervisor Control Pane Node Range
+76,WCP-NEST,Supervisor Control Pane Node Range
+77,WCP-NEST,Supervisor Control Pane Node Range
+78,WCP-NEST,Supervisor Control Pane Node Range
+79,RESERVED,
 80,TKGI,TKGI Management Console
 81,,
 82,,
