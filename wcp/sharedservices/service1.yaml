@@ -18,6 +18,9 @@ spec:
      class: best-effort-small #2CPU, 4GB
      storageClass: tanzu #Specific storage class for workers
  settings:
+   storage:
+     classes: [tanzu]
+     defaultClass: tanzu
    network:
      cni:
        name: antrea

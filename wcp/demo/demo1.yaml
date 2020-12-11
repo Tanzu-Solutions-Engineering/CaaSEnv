@@ -2,8 +2,7 @@
 apiVersion: run.tanzu.vmware.com/v1alpha1
 kind: TanzuKubernetesCluster
 metadata:
- name: demo1
- namespace: demo
+ name: vdsdemo1
 spec:
  distribution:
    version: v1.17.11
