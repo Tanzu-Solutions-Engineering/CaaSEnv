@@ -49,7 +49,7 @@ imagePullSecrets: #[]
 ## Configuration values for the Concourse application (worker and web components).
 ## The values specified here are almost direct references to the flags under the
 ## `concourse web` and `concourse worker` commands.
-##
+##storage
 concourse:
   ## Configurations for the `web` component based on the possible flags configurable
   ## through the `concourse web` command.
@@ -220,7 +220,7 @@ concourse:
     ##
     ## Example: http://ci.concourse-ci.org
     ##
-    externalUrl:
+    externalUrl: http://concourse.caas.pez.pivotal.io
 
     encryption:
       ## Enable encryption of pipeline configuration. Encryption keys can be set via secrets
@@ -2234,7 +2234,7 @@ persistence:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass:
+    storageClass: tanzu
 
     ## Persistent Volume Access Mode.
     ##
@@ -2249,6 +2249,8 @@ persistence:
 ##
 postgresql:
 
+  image.repository: harbor.caas.pez.pivotal.io/sharedservices/postgresql:11.8.0-debian-10-r76
+  impage.pullSecrets: harbor
   ## Use the PostgreSQL chart dependency.
   ##
   ## Set to false if bringing your own PostgreSQL, and set the corresponding `secrets`
@@ -2300,7 +2302,7 @@ postgresql:
     ##   set, choosing the default provisioner.  (gp2 on AWS, standard on
     ##   GKE, AWS & OpenStack)
     ##
-    storageClass:
+    storageClass: tanzu
 
     ## Persistent Volume Access Mode.
     ##
