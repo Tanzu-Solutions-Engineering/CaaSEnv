@@ -99,19 +99,19 @@ persistence:
       storageClass: "tanzu"
       subPath: ""
       accessMode: ReadWriteOnce
-      size: 10Gi
+      size: 100Gi
     jobservice:
       existingClaim: ""
       storageClass: "tanzu"
       subPath: ""
       accessMode: ReadWriteOnce
-      size: 1Gi
+      size: 5Gi
     database:
       existingClaim: ""
       storageClass: "tanzu"
       subPath: ""
       accessMode: ReadWriteOnce
-      size: 1Gi
+      size: 4Gi
     redis:
       existingClaim: ""
       storageClass: "tanzu"
