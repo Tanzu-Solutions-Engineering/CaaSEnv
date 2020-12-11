@@ -105,13 +105,13 @@ persistence:
       storageClass: "tanzu"
       subPath: ""
       accessMode: ReadWriteOnce
-      size: 5Gi
+      size: 1Gi
     database:
       existingClaim: ""
       storageClass: "tanzu"
       subPath: ""
       accessMode: ReadWriteOnce
-      size: 4Gi
+      size: 1Gi
     redis:
       existingClaim: ""
       storageClass: "tanzu"
