@@ -14,7 +14,7 @@ fullnameOverride:
 
 ## Concourse image to use in both Web and Worker containers.
 ##
-image: concourse/concourse
+image: harbor.caas.pez.pivotal.io/sharedservices/concourse #concourse/concourse
 
 ## Concourse image tag.
 ## ps.: release candidates are published under `concourse/concourse-rc` instead
@@ -42,7 +42,8 @@ imagePullPolicy: IfNotPresent
 ##   imagePullSecrets:
 ##    - myRegistryKeySecretName
 ##
-imagePullSecrets: []
+imagePullSecrets: #[]
+  - harbor
 
 
 ## Configuration values for the Concourse application (worker and web components).
@@ -1978,7 +1979,7 @@ web:
     ##   - concourse.domain.com
     ##
     hosts:
-     concourse.caas.pez.pivotal.io
+     - concourse.caas.pez.pivotal.io
 
     ## TLS configuration.
     ## Secrets must be manually created in the namespace.
@@ -2672,4 +2673,3 @@ secrets:
 
   # Cert file used if conjur instance is using a self signed cert. E.g. /path/to/conjur.pem
   conjurCertFile:
-
