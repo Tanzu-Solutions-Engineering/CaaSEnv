@@ -114,7 +114,7 @@ spec:
       containers:
       - name: redis-server
         imagePullPolicy: IfNotPresent
-        image: harbor.caas.pez.pivotal.io/library/redis:4.0.2
+        image: harbor.caas.pez.pivotal.io/library/redis:4.0.12-alpine
         ports:
         - containerPort: 6379
 ---
