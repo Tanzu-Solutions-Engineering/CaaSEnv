@@ -1,29 +1,30 @@
 # Deploy Tanzu SQL
 
-## Add prometheus
-helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
-helm repo add stable https://charts.helm.sh/stable
-helm repo update
-
-kubectl create ns monitoring
-helm install prometheus prometheus-community/prometheus  --namespace monitoring \
---set server.service.type=LoadBalancer
+## configure cluster
+  kubectl apply -f allowrunasnonroot-clusterrole.yaml
+  kubectl apply -f np-allowall.yaml
 
 
 ## Clone this repo
 * so you have the operator folder and yaml files
 
 ## Create Namespace and Harbor Secret
-    kubectl create ns postgres
-    kubectl create secret docker-registry harbor -n postgres --docker-server=harbor.ragazzilab.com --docker-username=harboradmin@ragazzilab.com --docker-email=harboradmin --docker-password=VMware1!
+    kubectl create secret docker-registry harbor --docker-server=10.193.39.134 --docker-username=bragazzi@caas.pez.pivotal.io --docker-email=bragazzi --docker-password=<PASSWORD>
 
 ## Update helm, install cert-manager
-    kubectl apply -f cert-manager/
+  kubectl create namespace cert-manager
+  helm repo add jetstack https://charts.jetstack.io
+  helm repo update
+  helm install cert-manager jetstack/cert-manager --namespace cert-manager  --version v1.0.2 --set installCRDs=true
 
 
 ## Deploy Postgres-Operator from local chart
 
     helm install -v postgres-operator -n postgres operator/
+
+    or
+
+    helm install postgres-operator operator/
 
 
 ## Create an example pg database
