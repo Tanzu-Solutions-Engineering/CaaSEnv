@@ -1,0 +1,17 @@
+apiVersion: sql.tanzu.vmware.com/v1
+kind: Postgres
+metadata:
+  name: pg-concourse
+spec:
+  memory: 800Mi
+  cpu: "0.8"
+  storageClassName: tanzu
+  storageSize: 5G
+  pgConfig:
+    dbname: concourse #Default: Same as Instance Name
+    username: pgadmin
+  serviceType: LoadBalancer #LoadBalancer or ClusterIP
+  highAvailability:
+    enabled: true #true: Deploy three pods, primary, standby, monitor. Only for 1 AZ
+  backupLocationSecret:
+    name:  backup-secret #access Secret for S3

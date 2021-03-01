@@ -1,0 +1,11 @@
+---
+# specify the url for the docker image for the operator, e.g. gcr.io/<my_project>/postgres-operator
+operatorImageRepository: 10.193.39.134/sharedservices/postgres-operator #pivotalcfreleng/postgres-operator #postgres-operator
+operatorImageTag: v1.0.0
+
+# specify the docker image for postgres instance, e.g. gcr.io/<my_project>/postgres-instance
+postgresImageRepository: 10.193.39.134/sharedservices/postgres-instance #pivotalcfreleng/postgres-instance
+postgresImageTag: v1.0.0
+
+# specify the name of the docker-registry secret to allow the cluster to authenticate with the container registry for pulling images
+dockerRegistrySecretName: harbor #dockerhub-ragazzilab-private

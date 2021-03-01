@@ -19,3 +19,6 @@
 
 ### demo1
     kubectl vsphere login --server wcp.caas.pez.pivotal.io --insecure-skip-tls-verify --tanzu-kubernetes-cluster-namespace demo -u bragazzi@caas.pez.pivotal.io --tanzu-kubernetes-cluster-name demo1
+
+### test-web
+    kubectl vsphere login --server wcp.caas.pez.pivotal.io --insecure-skip-tls-verify --tanzu-kubernetes-cluster-namespace demo -u bragazzi@caas.pez.pivotal.io --tanzu-kubernetes-cluster-name demo1
