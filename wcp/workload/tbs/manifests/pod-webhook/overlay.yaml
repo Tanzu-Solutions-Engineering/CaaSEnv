@@ -1,0 +1,36 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:overlay", "overlay")
+
+#@overlay/match by=overlay.subset({"metadata": {"namespace": "cert-injection-webhook"}}), expects="1+"
+---
+metadata:
+  namespace: build-service
+
+#@overlay/match by=overlay.subset({"metadata": {"name": "defaults.webhook.cert-injection.tanzu.vmware.com"}})
+---
+webhooks:
+  #@overlay/match by=overlay.all
+  - clientConfig:
+      service:
+        namespace: build-service
+
+#@overlay/match by=overlay.subset({"metadata": {"name": "cert-injection-webhook-role-binding"}})
+---
+subjects:
+  #@overlay/match by=overlay.all
+  - namespace: build-service
+
+#@overlay/match by=overlay.subset({"metadata": {"name": "cert-injection-webhook-cluster-role-binding"}})
+---
+subjects:
+#@overlay/match by=overlay.all
+- namespace: build-service
+
+#@overlay/match by=overlay.subset({"metadata": {"name": "cert-injection-webhook"}, "kind": "Deployment"})
+---
+spec:
+  template:
+    spec:
+      #@overlay/match missing_ok=True
+      imagePullSecrets:
+      - name: canonical-registry-secret

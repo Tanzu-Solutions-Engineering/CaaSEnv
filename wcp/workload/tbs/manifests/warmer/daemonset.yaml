@@ -1,0 +1,116 @@
+#@ load("/values.star", "values")
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: build-pod-image-fetcher
+  namespace: build-service
+spec:
+  selector:
+    matchLabels:
+      app: build-pod-image-fetcher
+  template:
+    metadata:
+      labels:
+        app: build-pod-image-fetcher
+    spec:
+      imagePullSecrets:
+      - name: canonical-registry-secret
+      nodeSelector:
+        kubernetes.io/os: linux
+      initContainers:
+      - name: sleeper
+        image: sleeper
+        args:
+        - "--"
+        - "sleeper"
+        - "-mode"
+        - "copy"
+        - "-to"
+        - "/drop/sleeper"
+        volumeMounts:
+        - name: sleeper
+          mountPath: "/drop/"
+        resources:
+          limits:
+            memory: 20M
+            cpu: 1m
+      containers:
+      - name: completion
+        image: completion
+        command:
+        - "/drop/sleeper"
+        args:
+        - "-mode"
+        - "sleep"
+        volumeMounts:
+        - name: sleeper
+          mountPath: "/drop/"
+        resources:
+          limits:
+            memory: 20M
+            cpu: 1m
+        imagePullPolicy: Always
+      - name: rebase
+        image: rebase
+        command:
+        - "/drop/sleeper"
+        args:
+        - "-mode"
+        - "sleep"
+        volumeMounts:
+        - name: sleeper
+          mountPath: "/drop/"
+        resources:
+          limits:
+            memory: 20M
+            cpu: 1m
+        imagePullPolicy: Always
+      - name: build-init
+        image: build-init
+        command:
+        - "/drop/sleeper"
+        args:
+        - "-mode"
+        - "sleep"
+        volumeMounts:
+        - name: sleeper
+          mountPath: "/drop/"
+        resources:
+          limits:
+            memory: 20M
+            cpu: 1m
+        imagePullPolicy: Always
+      - name: setup-ca-certs
+        image: setup-ca-certs
+        command:
+        - "/drop/sleeper"
+        args:
+        - "-mode"
+        - "sleep"
+        volumeMounts:
+        - name: sleeper
+          mountPath: "/drop/"
+        resources:
+          limits:
+            memory: 20M
+            cpu: 1m
+        imagePullPolicy: Always
+      - name: stackify
+        image: stackify
+        command:
+        - "/drop/sleeper"
+        args:
+        - "-mode"
+        - "sleep"
+        volumeMounts:
+        - name: sleeper
+          mountPath: "/drop/"
+        resources:
+          limits:
+            memory: 20M
+            cpu: 1m
+        imagePullPolicy: Always
+      volumes:
+      - name: sleeper
+        emptyDir: {}

@@ -1,0 +1,75 @@
+#@ load("/values.star", "values")
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: build-service-admin-role
+rules:
+- apiGroups:
+  - kpack.io
+  resources:
+  - clusterstores
+  - clusterstacks
+  - clusterbuilders
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - delete
+  - patch
+  - watch
+- apiGroups:
+  - projects.vmware.com
+  resources:
+  - projects
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - delete
+  - patch
+  - watch
+- apiGroups:
+  - stacks.stacks-operator.tanzu.vmware.com
+  resources:
+  - customstacks
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - stacks.stacks-operator.tanzu.vmware.com
+  resources:
+  - customstacks/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: build-service-admin-role-binding
+  annotations:
+    kapp.k14s.io/update-strategy: fallback-on-replace
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: build-service-admin-role
+subjects:
+#@ if values.admin_users:
+#@ for u in (values.admin_users.split(",")):
+- kind: User
+  name: #@ u
+#@ end
+#@ end
+#@ if values.admin_groups:
+#@ for g in (values.admin_groups.split(",")):
+- kind: Group
+  name: #@ g
+#@ end
+#@ end

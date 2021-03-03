@@ -1,0 +1,50 @@
+#@ load("/values.star", "values")
+#@ load("@ytt:base64", "base64")
+
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name:  sleeper-image
+  namespace: build-service
+data:
+  image: sleeper
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: warmer-controller
+  namespace: build-service
+  labels:
+    app: warmer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: warmer
+  template:
+    metadata:
+      labels:
+        app: warmer
+    spec:
+      serviceAccountName: warmer-service-account
+      nodeSelector:
+        kubernetes.io/os: linux
+      imagePullSecrets:
+      - name: canonical-registry-secret
+      containers:
+      - name: server
+        image: warmer
+        imagePullPolicy: Always
+        env:
+        - name: SLEEPER_IMAGE
+          valueFrom:
+            configMapKeyRef:
+              name: sleeper-image
+              key: image
+        - name: IMAGE_PULL_SECRET
+          value: canonical-registry-secret
+#@ if values.disable_smart_warmer == "true":
+        - name: DISABLE_SMART_WARMER
+          value: "true"
+#@ end

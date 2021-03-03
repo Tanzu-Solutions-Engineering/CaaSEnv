@@ -1,0 +1,38 @@
+#@ load("/values.star", "values")
+#@ load("@ytt:base64", "base64")
+#@ load("@ytt:json", "json")
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: secret-syncer-controller
+  namespace: build-service
+  labels:
+    app: secret-syncer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: secret-syncer
+  template:
+    metadata:
+      labels:
+        app: secret-syncer
+    spec:
+      serviceAccountName: secret-syncer-service-account
+      nodeSelector:
+        kubernetes.io/os: linux
+      imagePullSecrets:
+      - name: canonical-registry-secret
+      containers:
+      - name: server
+        image: secret-syncer
+        imagePullPolicy: Always
+        env:
+        - name: SECRET_SYNCER_NAMESPACE
+          value: build-service
+        - name: SYSTEM_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace

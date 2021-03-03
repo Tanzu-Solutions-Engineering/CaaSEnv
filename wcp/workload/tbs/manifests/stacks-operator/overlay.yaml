@@ -1,0 +1,11 @@
+#@ load("@ytt:data", "data")
+#@ load("@ytt:overlay", "overlay")
+
+#@overlay/match by=overlay.subset({"metadata": {"name": "controller-manager"}, "kind": "Deployment"})
+---
+spec:
+  template:
+    spec:
+      #@overlay/match missing_ok=True
+      imagePullSecrets:
+      - name: canonical-registry-secret

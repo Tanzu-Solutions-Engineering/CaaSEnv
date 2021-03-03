@@ -1,0 +1,71 @@
+#@ load("/values.star", "values")
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: warmer-service-account
+  namespace: build-service
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: build-service-warmer-role
+rules:
+- apiGroups:
+  - kpack.io
+  resources:
+  - clusterbuilders
+  verbs:
+  - get
+  - list
+  - watch
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: build-service-warmer-role-binding
+  annotations:
+    kapp.k14s.io/update-strategy: fallback-on-replace
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: build-service-warmer-role
+subjects:
+- kind: ServiceAccount
+  name: warmer-service-account
+  namespace: build-service
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: build-service-warmer-namespace-role
+  namespace: build-service
+rules:
+- apiGroups:
+  - apps
+  resources:
+  - daemonsets
+  verbs:
+  - get
+  - list
+  - watch
+  - update
+  - delete
+  - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: build-service-warmer-namespace-role-binding
+  namespace: build-service
+  annotations:
+    kapp.k14s.io/update-strategy: fallback-on-replace
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: build-service-warmer-namespace-role
+subjects:
+- kind: ServiceAccount
+  name: warmer-service-account
+  namespace: build-service
+

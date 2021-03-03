@@ -1,0 +1,547 @@
+---
+apiVersion: apiextensions.k8s.io/v1beta1
+kind: CustomResourceDefinition
+metadata:
+  annotations:
+    controller-gen.kubebuilder.io/version: v0.2.5
+  creationTimestamp: null
+  name: customstacks.stacks.stacks-operator.tanzu.vmware.com
+spec:
+  group: stacks.stacks-operator.tanzu.vmware.com
+  names:
+    kind: CustomStack
+    listKind: CustomStackList
+    plural: customstacks
+    singular: customstack
+  scope: Namespaced
+  validation:
+    openAPIV3Schema:
+      description: CustomStack is the Schema for the custom stacks API
+      properties:
+        apiVersion:
+          description: 'APIVersion defines the versioned schema of this representation
+            of an object. Servers should convert recognized schemas to the latest
+            internal value, and may reject unrecognized values. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#resources'
+          type: string
+        kind:
+          description: 'Kind is a string value representing the REST resource this
+            object represents. Servers may infer this from the endpoint the client
+            submits requests to. Cannot be updated. In CamelCase. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+          type: string
+        metadata:
+          type: object
+        spec:
+          properties:
+            caCerts:
+              properties:
+                buildRef:
+                  description: LocalObjectReference contains enough information to
+                    let you locate the referenced object inside the same namespace.
+                  properties:
+                    name:
+                      description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+                        TODO: Add other useful fields. apiVersion, kind, uid?'
+                      type: string
+                  type: object
+                runRef:
+                  description: LocalObjectReference contains enough information to
+                    let you locate the referenced object inside the same namespace.
+                  properties:
+                    name:
+                      description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names
+                        TODO: Add other useful fields. apiVersion, kind, uid?'
+                      type: string
+                  type: object
+              type: object
+            destination:
+              properties:
+                build:
+                  properties:
+                    tag:
+                      type: string
+                  required:
+                  - tag
+                  type: object
+                run:
+                  properties:
+                    tag:
+                      type: string
+                  required:
+                  - tag
+                  type: object
+                stack:
+                  description: ObjectReference contains enough information to let
+                    you inspect or modify the referred object.
+                  properties:
+                    apiVersion:
+                      description: API version of the referent.
+                      type: string
+                    fieldPath:
+                      description: 'If referring to a piece of an object instead of
+                        an entire object, this string should contain a valid JSON/Go
+                        field access statement, such as desiredState.manifest.containers[2].
+                        For example, if the object reference is to a container within
+                        a pod, this would take on a value like: "spec.containers{name}"
+                        (where "name" refers to the name of the container that triggered
+                        the event) or if no container name is specified "spec.containers[2]"
+                        (container with index 2 in this pod). This syntax is chosen
+                        only to have some well-defined way of referencing a part of
+                        an object. TODO: this design is not final and this field is
+                        subject to change in the future.'
+                      type: string
+                    kind:
+                      description: 'Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+                      type: string
+                    name:
+                      description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'
+                      type: string
+                    namespace:
+                      description: 'Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/'
+                      type: string
+                    resourceVersion:
+                      description: 'Specific resourceVersion to which this reference
+                        is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency'
+                      type: string
+                    uid:
+                      description: 'UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids'
+                      type: string
+                  type: object
+              required:
+              - build
+              - run
+              type: object
+            mixins:
+              items:
+                properties:
+                  name:
+                    type: string
+                  phase:
+                    type: string
+                required:
+                - name
+                type: object
+              type: array
+            packages:
+              items:
+                properties:
+                  name:
+                    type: string
+                  phase:
+                    type: string
+                required:
+                - name
+                type: object
+              type: array
+            serviceAccountName:
+              type: string
+            source:
+              properties:
+                registryImages:
+                  properties:
+                    build:
+                      properties:
+                        image:
+                          pattern: .*@sha256:[A-Fa-f0-9]{64}
+                          type: string
+                      required:
+                      - image
+                      type: object
+                    run:
+                      properties:
+                        image:
+                          pattern: .*@sha256:[A-Fa-f0-9]{64}
+                          type: string
+                      required:
+                      - image
+                      type: object
+                  required:
+                  - build
+                  - run
+                  type: object
+                stack:
+                  description: ObjectReference contains enough information to let
+                    you inspect or modify the referred object.
+                  properties:
+                    apiVersion:
+                      description: API version of the referent.
+                      type: string
+                    fieldPath:
+                      description: 'If referring to a piece of an object instead of
+                        an entire object, this string should contain a valid JSON/Go
+                        field access statement, such as desiredState.manifest.containers[2].
+                        For example, if the object reference is to a container within
+                        a pod, this would take on a value like: "spec.containers{name}"
+                        (where "name" refers to the name of the container that triggered
+                        the event) or if no container name is specified "spec.containers[2]"
+                        (container with index 2 in this pod). This syntax is chosen
+                        only to have some well-defined way of referencing a part of
+                        an object. TODO: this design is not final and this field is
+                        subject to change in the future.'
+                      type: string
+                    kind:
+                      description: 'Kind of the referent. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#types-kinds'
+                      type: string
+                    name:
+                      description: 'Name of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#names'
+                      type: string
+                    namespace:
+                      description: 'Namespace of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/namespaces/'
+                      type: string
+                    resourceVersion:
+                      description: 'Specific resourceVersion to which this reference
+                        is made, if any. More info: https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md#concurrency-control-and-consistency'
+                      type: string
+                    uid:
+                      description: 'UID of the referent. More info: https://kubernetes.io/docs/concepts/overview/working-with-objects/names/#uids'
+                      type: string
+                  type: object
+              type: object
+            user:
+              properties:
+                groupID:
+                  type: integer
+                userID:
+                  type: integer
+              required:
+              - userID
+              type: object
+          required:
+          - destination
+          - source
+          type: object
+        status:
+          description: CustomStackStatus defines the observed state of CustomStack
+          properties:
+            baseBuildImage:
+              type: string
+            baseRunImage:
+              type: string
+            buildImage:
+              type: string
+            conditions:
+              items:
+                properties:
+                  message:
+                    type: string
+                  reason:
+                    type: string
+                  status:
+                    type: string
+                  type:
+                    type: string
+                required:
+                - status
+                - type
+                type: object
+              type: array
+            lastBuildTime:
+              format: date-time
+              type: string
+            runImage:
+              type: string
+          type: object
+      type: object
+  version: v1alpha1
+  versions:
+  - name: v1alpha1
+    served: true
+    storage: true
+status:
+  acceptedNames:
+    kind: ""
+    plural: ""
+  conditions: []
+  storedVersions: []
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  labels:
+    control-plane: controller-manager
+  name: stacks-operator-system
+---
+apiVersion: v1
+data:
+  image: dev.registry.pivotal.io/core-deps/stackify@sha256:b69bcea0e1e1053a7ea89933fd2f26ed4b7d9b44da0425c171ce858b43a8c74a
+kind: ConfigMap
+metadata:
+  annotations:
+    kbld.k14s.io/images: |
+      - Metas: null
+        URL: dev.registry.pivotal.io/core-deps/stackify@sha256:b69bcea0e1e1053a7ea89933fd2f26ed4b7d9b44da0425c171ce858b43a8c74a
+  name: stackify-image
+  namespace: stacks-operator-system
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kbld.k14s.io/images: |
+      - Metas:
+        - Tag: 68de17cd6b71dc68a488d90d87cbd7a30447cea5
+          Type: resolved
+          URL: dev.registry.pivotal.io/core-deps/stacks-operator:68de17cd6b71dc68a488d90d87cbd7a30447cea5
+        URL: dev.registry.pivotal.io/core-deps/stacks-operator@sha256:2b6b3170a2e62358cbf300252222217974998c2338ec769836b4d44d7581b3d3
+  labels:
+    control-plane: controller-manager
+  name: controller-manager
+  namespace: stacks-operator-system
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      control-plane: controller-manager
+  template:
+    metadata:
+      labels:
+        control-plane: controller-manager
+    spec:
+      containers:
+      - args:
+        - --metrics-addr=127.0.0.1:8080
+        - --enable-leader-election
+        command:
+        - /layers/paketo-buildpacks_go-build/targets/bin/manager
+        env:
+        - name: SYSTEM_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        - name: STACKIFY_IMAGE
+          valueFrom:
+            configMapKeyRef:
+              key: image
+              name: stackify-image
+        - name: REBUILD_INTERVAL
+          value: 24h
+        image: dev.registry.pivotal.io/core-deps/stacks-operator@sha256:2b6b3170a2e62358cbf300252222217974998c2338ec769836b4d44d7581b3d3
+        name: manager
+        resources:
+          limits:
+            cpu: 100m
+            memory: 30Mi
+          requests:
+            cpu: 100m
+            memory: 20Mi
+      terminationGracePeriodSeconds: 10
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: metrics-reader
+rules:
+- nonResourceURLs:
+  - /metrics
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: proxy-role
+rules:
+- apiGroups:
+  - authentication.k8s.io
+  resources:
+  - tokenreviews
+  verbs:
+  - create
+- apiGroups:
+  - authorization.k8s.io
+  resources:
+  - subjectaccessreviews
+  verbs:
+  - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: proxy-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: proxy-role
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: stacks-operator-system
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    control-plane: controller-manager
+  name: controller-manager-metrics-service
+  namespace: stacks-operator-system
+spec:
+  ports:
+  - name: https
+    port: 8443
+    targetPort: https
+  selector:
+    control-plane: controller-manager
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: custom-stack-editor-role
+rules:
+- apiGroups:
+  - stacks.stacks-operator.tanzu.vmware.com
+  resources:
+  - customstacks
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - stacks.stacks-operator.tanzu.vmware.com
+  resources:
+  - customstacks/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: custom-stack-viewer-role
+rules:
+- apiGroups:
+  - stacks.stacks-operator.tanzu.vmware.com
+  resources:
+  - customstacks
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - stacks.stacks-operator.tanzu.vmware.com
+  resources:
+  - customstacks/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: leader-election-role
+  namespace: stacks-operator-system
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+  - create
+  - update
+  - patch
+  - delete
+- apiGroups:
+  - ""
+  resources:
+  - configmaps/status
+  verbs:
+  - get
+  - update
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: leader-election-rolebinding
+  namespace: stacks-operator-system
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: leader-election-role
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: stacks-operator-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: stacks-operator-manager-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts
+  verbs:
+  - get
+- apiGroups:
+  - kpack.io
+  resources:
+  - clusterstacks
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - stacks.stacks-operator.tanzu.vmware.com
+  resources:
+  - customstacks
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - stacks.stacks-operator.tanzu.vmware.com
+  resources:
+  - customstacks/status
+  verbs:
+  - get
+  - patch
+  - update
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: stacks-operator-manager-rolebinding
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: stacks-operator-manager-role
+subjects:
+- kind: ServiceAccount
+  name: default
+  namespace: stacks-operator-system

@@ -1,0 +1,115 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: setup-ca-certs-image
+  namespace: cert-injection-webhook
+data:
+  image: dev.registry.pivotal.io/build-service/setup-ca-certs@sha256:de52c865c102bb8ba65c2378a45ee6c080e95d7d8765f3f52555e763c797d300
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: cert-injection-webhook-tls
+  namespace: cert-injection-webhook
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cert-injection-webhook
+  namespace: cert-injection-webhook
+  labels:
+    app: cert-injection-webhook
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cert-injection-webhook
+  template:
+    metadata:
+      labels:
+        app: cert-injection-webhook
+    spec:
+      serviceAccountName: cert-injection-webhook-sa
+      containers:
+      - name: server
+        image: dev.registry.pivotal.io/build-service/pod-webhook@sha256:d40667df0d832800d894d4f9c1f662f96805de5dd5f6951d99ac0b56d56db2da
+        imagePullPolicy: Always
+        args:
+        - --
+        - pod-webhook
+        - -label=kpack.io/build
+        volumeMounts:
+        - name: webhook-ca-cert
+          mountPath: /run/config_maps/ca_cert
+          readOnly: true
+        ports:
+        - containerPort: 8443
+          name: webhook-port
+        env:
+        - name: HTTP_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: http-proxy
+              key: value
+        - name: HTTPS_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: https-proxy
+              key: value
+        - name: NO_PROXY
+          valueFrom:
+            configMapKeyRef:
+              name: no-proxy
+              key: value
+        - name: SETUP_CA_CERTS_IMAGE
+          valueFrom:
+            configMapKeyRef:
+              name: setup-ca-certs-image
+              key: image
+        - name: SYSTEM_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+      volumes:
+      - name: webhook-ca-cert
+        configMap:
+          name: ca-cert
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cert-injection-webhook
+  namespace: cert-injection-webhook
+spec:
+  selector:
+    app: cert-injection-webhook
+  ports:
+  - port: 443
+    targetPort: webhook-port
+---
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: defaults.webhook.cert-injection.tanzu.vmware.com
+webhooks:
+- name: defaults.webhook.cert-injection.tanzu.vmware.com
+  clientConfig:
+    service:
+      name: cert-injection-webhook
+      namespace: cert-injection-webhook
+  rules:
+  - operations:
+    - CREATE
+    - UPDATE
+    apiGroups:
+    - ""
+    apiVersions:
+    - v1
+    resources:
+    - pods
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: cert-injection-webhook-sa
+  namespace: cert-injection-webhook

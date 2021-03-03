@@ -1,0 +1,63 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: build-service-authenticated-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  resourceNames:
+  - kp-config
+  verbs:
+  - get
+  - list
+  - create
+  - update
+  - delete
+  - patch
+  - watch
+- apiGroups:
+  - kpack.io
+  resources:
+  - clusterstores
+  - clusterstacks
+  - clusterbuilders
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - projects.vmware.com
+  resources:
+  - projects
+  verbs:
+  - create
+- apiGroups:
+  - stacks.stacks-operator.tanzu.vmware.com
+  resources:
+  - customstacks
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - stacks.stacks-operator.tanzu.vmware.com
+  resources:
+  - customstacks/status
+  verbs:
+  - get
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: build-service-authenticated-role-binding
+  annotations:
+    kapp.k14s.io/update-strategy: fallback-on-replace
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: build-service-authenticated-role
+subjects:
+- kind: Group
+  name: system:authenticated
