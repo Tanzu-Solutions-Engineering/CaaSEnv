@@ -2,7 +2,7 @@
 apiVersion: run.tanzu.vmware.com/v1alpha1
 kind: TanzuKubernetesCluster
 metadata:
- name: tbs1
+ name: tbs2
 spec:
  distribution:
    version: v1.18.10
@@ -25,7 +25,7 @@ spec:
        - name: containerd
          mountPath: /var/lib/containerd
          capacity:
-           storage: 32Gi
+           storage: 40Gi
  settings:
    storage:
      classes: ["tanzu"] #Named PVC storage classes
