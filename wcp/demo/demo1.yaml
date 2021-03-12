@@ -5,7 +5,7 @@ metadata:
  name: vdsdemo1
 spec:
  distribution:
-   version: v1.17.11
+   version: v1.18
    #version: v1.16.8---vmware.1-tkg.3.60d2ffd
  topology:
    controlPlane:
