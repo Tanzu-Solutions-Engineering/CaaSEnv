@@ -1,5 +1,5 @@
 ---
-apiVersion: apps/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -7,6 +7,9 @@ metadata:
   name: aspnetapp
 spec:
   replicas: 1
+  selector:
+    matchLabels:
+      app: aspnetapp
   template:
     metadata:
       labels:
@@ -16,9 +19,9 @@ spec:
       containers:
       - name: aspnetapp
         imagePullPolicy: IfNotPresent
-        image: harbor.pkswin.caas.pez.pivotal.io/dotnet/samples:aspnetapp
+        image: harbor.tkgi.caas.pez.pivotal.io/windows/aspnet:4.8 #10.193.39.199/windows/samples:aspnetapp
       imagePullSecrets:
-      - name: harbor      
+      - name: harbor
       tolerations:
       - key: "windows"
         operator: "Exists"
@@ -37,4 +40,4 @@ spec:
   - port: 80
   selector:
     app: aspnetapp
-  type: NodePort
+  type: LoadBalancer

@@ -1,5 +1,8 @@
 ### Windows Sample Apps
 
+kubectl create secret docker-registry harborip --docker-server=10.193.39.199 --docker-username=bragazzi@caas.pez.pivotal.io --docker-email=bragazzi --docker-password=<PASSWORD>
+
+kubectl create secret docker-registry harbor -n test --docker-server=harbor.tkgi.caas.pez.pivotal.io --docker-username=bragazzi@caas.pez.pivotal.io --docker-email=bragazzi --docker-password=<PASSWORD>
 
 #### ASP.NET Private/Public
 
