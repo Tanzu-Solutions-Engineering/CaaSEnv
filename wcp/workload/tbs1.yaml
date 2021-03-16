@@ -5,7 +5,7 @@ metadata:
  name: tbs1
 spec:
  distribution:
-   version: v1.18.10
+   version: v1.18.5
    #version: v1.16.8---vmware.1-tkg.3.60d2ffd
  topology:
    controlPlane:
@@ -18,14 +18,14 @@ spec:
          capacity:
            storage: 4Gi
    workers:
-     count: 2 #5 worker nodes
+     count: 3 #5 worker nodes
      class: best-effort-medium #2CPU, 4GB
      storageClass: tanzu #Specific storage class for workers
      volumes:
        - name: containerd
          mountPath: /var/lib/containerd
          capacity:
-           storage: 32Gi
+           storage: 40Gi
  settings:
    storage:
      classes: ["tanzu"] #Named PVC storage classes

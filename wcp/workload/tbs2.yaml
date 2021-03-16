@@ -18,7 +18,7 @@ spec:
          capacity:
            storage: 4Gi
    workers:
-     count: 2 #5 worker nodes
+     count: 3 #5 worker nodes
      class: best-effort-medium #2CPU, 4GB
      storageClass: tanzu #Specific storage class for workers
      volumes:
