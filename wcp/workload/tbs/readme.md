@@ -36,25 +36,31 @@ kp import -f ./descriptor-<version>.yaml --registry-ca-cert-path <path-to-ca-cer
 ```
 If that fails - because you're trying to move a lot of data over VPN for example, try the multi step version
 
-# Multi-Step
-** You may have to change context and change back to get this to work
-Download the images and tar them up
-```
-kbld package -f ./descriptor-<version>.yaml --output ./packaged-dependencies.tar
-```
-Extract the tar to push and create the relocated.lock file
-```
-kbld unpackage -f descriptor-100.0.80.yaml \
-  --input /tmp/packaged-dependencies.tar \
-  --repository 192.168.105.71/workload/build-service \
-  --lock-output ./dependencies-relocated.lock \
-  --registry-ca-cert-path ./ca.crt
-```
+## Multi-Step
+  ** You may have to change context and change back to get this to work
+  Download the images and tar them up
+  ```
+  kbld package -f ./descriptor-<version>.yaml --output ./packaged-dependencies.tar
+  ```
+  Extract the tar to push and create the relocated.lock file
+  ```
+  kbld unpackage -f descriptor-100.0.80.yaml \
+    --input /tmp/packaged-dependencies.tar \
+    --repository 192.168.105.71/workload/build-service \
+    --lock-output ./dependencies-relocated.lock \
+    --registry-ca-cert-path ./ca.crt
+  ```
 
-Import the images from repo into kp
-```
-kbld -f ./descriptor-100.0.72.yaml -f ./dependencies-relocated.lock | kp import -f - --registry-ca-cert-path ./ca.crt
-```
+  Import the images from repo into kp
+  ```
+  kbld -f ./descriptor-100.0.72.yaml -f ./dependencies-relocated.lock | kp import -f - --registry-ca-cert-path ./ca.crt
+  ```
+
+## Check Readiness
+Check that the "smart-warmer-image-fetcher" pods in the build-service namespace are running
+If not, see if they are timing out pulling imnages from Harbor
+see: https://kb.vmware.com/s/article/82667
+
 
 # Create sample image
 ## First set a secret for the repo:
@@ -69,7 +75,7 @@ or
 ```
 kp image create tbs-java-maven --tag 10.193.39.134/workload/test-app --git https://github.com/buildpacks/samples --sub-path ./apps/java-maven --registry-ca-cert-path ./ca.crt
 ```
-#remove tbs
+# remove tbs
 ```
 kapp delete -a tanzu-build-service -y
 ```
