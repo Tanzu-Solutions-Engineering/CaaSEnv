@@ -53,3 +53,18 @@ helm install kubeapps --namespace kubeapps bitnami/kubeapps --set frontend.servi
 ```
 
 Use Kubeapps to deploy phpMyAdmin, connect it to the mysql instance
+
+
+## Backup
+Add backuplocation to instance in the same namespace as the mysql instances
+```
+kubectl apply -n mysql-instances -f ./backuplocation.yaml
+```
+
+### On-demand backup
+```
+kubectl apply -n mysql-instances -f ./backup-ondemand.yaml
+```
+
+### Backup Schedule
+Uncomment the section in backuplocation

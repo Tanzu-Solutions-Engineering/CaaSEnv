@@ -1,0 +1,39 @@
+---
+apiVersion: mysql.tanzu.vmware.com/v1alpha1
+kind: TanzuMySQLBackupLocation
+metadata:
+  name: backuplocation-mysql
+spec:
+  storage:
+    # For S3 or Minio:
+    s3:
+      bucket: "backup-mysql"
+      bucketPath: "/"
+      # region: "us-east-1"
+      endpoint:  "minio.caas.pez.pivotal.io:9000" # optional, default to AWS
+      forcePathStyle: true
+      disableSSL: true
+      secret:
+        name: minio-creds
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: minio-creds
+stringData:
+  # S3 Credentials
+  accessKeyId: "MYACCESSKEY"
+  secretAccessKey: "MYSECRETKEY"
+# ---
+# apiVersion: mysql.tanzu.vmware.com/v1alpha1
+# kind: TanzuMySQLBackupSchedule
+# metadata:
+#   name: tanzumysqlbackupschedule-sample
+# spec:
+#   backupTemplate:
+#     spec:
+#       location:
+#         name: backuplocation-mysql
+#       cluster:
+#         name: dynmap
+#   schedule: "@daily"

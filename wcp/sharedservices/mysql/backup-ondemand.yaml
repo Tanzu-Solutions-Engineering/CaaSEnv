@@ -1,0 +1,10 @@
+---
+apiVersion: mysql.tanzu.vmware.com/v1alpha1
+kind: TanzuMySQLBackup
+metadata:
+  name: backup-dynmap-1off
+spec:
+  location:
+    name: backuplocation-mysql
+  cluster:
+    name: tanzumysql-sample
