@@ -6,7 +6,7 @@ logging:
     repository: projects.registry.vmware.com/tkg
 tkg:
   instance_name: "WORK"
-  cluster_name: "DEVTEST1"
+  cluster_name: "MYSQL"
 fluent_bit:
   output_plugin: "syslog"
   syslog:
