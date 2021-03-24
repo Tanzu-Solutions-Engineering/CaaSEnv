@@ -1,0 +1,10 @@
+imagePullSecret: tanzu-mysql-image-registry
+operatorImage: "registry.pivotal.io/tanzu-mysql-for-kubernetes/tanzu-mysql-operator:0.2.0"
+tanzuMySQLImage: "registry.pivotal.io/tanzu-mysql-for-kubernetes/tanzu-mysql-instance:0.2.0"
+resources:
+  limits:
+    cpu: 100m
+    memory: 30Mi
+  requests:
+    cpu: 100m
+    memory: 20Mi

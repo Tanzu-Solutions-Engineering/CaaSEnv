@@ -1,0 +1,30 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    control-plane: controller-manager
+  name: mysql-for-kubernetes-controller-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      control-plane: controller-manager
+  template:
+    metadata:
+      labels:
+        control-plane: controller-manager
+    spec:
+      containers:
+      - args:
+        - --enable-leader-election
+        - --mysql-image={{ .Values.tanzuMySQLImage }}
+        - --metrics-addr=127.0.0.1:8080
+        command:
+        - /manager
+        image: {{ .Values.operatorImage }}
+        name: manager
+        resources: {{ toYaml .Values.resources | nindent 10}}
+      imagePullSecrets:
+      - name: {{ .Values.imagePullSecret }}
+      terminationGracePeriodSeconds: 10

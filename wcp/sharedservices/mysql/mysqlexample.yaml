@@ -1,0 +1,39 @@
+apiVersion: mysql.tanzu.vmware.com/v1alpha1
+kind: TanzuMySQL
+metadata:
+  name: tanzumysql-sample
+spec:
+  storageSize: 1Gi
+  imagePullSecret: tanzu-mysql-image-registry
+
+#### Set the storage class name to change storage class of the PVC associated with this resource
+#  storageClassName: standard
+
+#### Set the type of Service used to provide access to the MySQL database.
+#  serviceType: LoadBalancer # Defaults to ClusterIP
+
+#### Set the name of the Secret used for TLS
+#  tls:
+#    secret:
+#      name: mysql-tls-secret
+
+#### Examples to set resource limit/request for mysql/backups containers.
+
+#  resources:
+
+#### This is the container running the mysql server.
+#    mysql:
+#      limits:
+#        cpu: 3
+#        memory: 800Mi
+#      requests:
+#        cpu: 2
+#        memory: 500Mi
+#### This is the sidecar container that takes a backup and streams to the storage backend.
+#    backups:
+#      limits:
+#        cpu: 2
+#        memory: 500Mi
+#      requests:
+#        cpu: 1
+#        memory: 200Mi

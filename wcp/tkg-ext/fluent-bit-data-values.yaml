@@ -1,0 +1,16 @@
+#@data/values
+#@overlay/match-child-defaults missing_ok=True
+---
+logging:
+  image:
+    repository: projects.registry.vmware.com/tkg
+tkg:
+  instance_name: "WORK"
+  cluster_name: "DEVTEST1"
+fluent_bit:
+  output_plugin: "syslog"
+  syslog:
+    host: "syslog.caas.pez.pivotal.io"
+    port: "514"
+    mode: "udp"
+    format: "rfc5424"

@@ -1,0 +1,31 @@
+#@data/values
+#@overlay/match-child-defaults missing_ok=True
+---
+infrastructure_provider: "vsphere"
+monitoring:
+  prometheus_server:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+    service:
+      type: "LoadBalancer"
+  alertmanager:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+  kube_state_metrics:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+  node_exporter:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+  pushgateway:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+  cadvisor:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+  prometheus_server_configmap_reload:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
+  prometheus_server_init_container:
+    image:
+      repository: projects.registry.vmware.com/tkg/prometheus
