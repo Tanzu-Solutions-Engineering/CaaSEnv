@@ -2,9 +2,9 @@
 
 ## Introduction
 
-* TKG Extensions lifecycle is managed by TMC's extension manager and kapp-controller.
+* TKG Extensions lifecycle is managed by kapp-controller.
 * TKG Extensions are packaged as `kind: Extension` objects wrapping `kind: App` objects.
-* TMC's extension manager will deploy kapp objects and kapp-controller will deploy the TKG extensions kubernetes objects.
+* kapp-controller will deploy the TKG extensions kubernetes objects.
 
 ### Prerequisites
 
@@ -14,13 +14,7 @@
 
 ### Workload cluster
 
-1. Install TMC's extension manager
-
-    ```sh
-    kubectl apply -f tmc-extension-manager.yaml
-    ```
-
-2. Install kapp-controller
+1. Install kapp-controller
 
     This step is to be performed only for TKGS. For TKGm, kapp-controller is installed on the workload cluster by default.
 
@@ -36,41 +30,40 @@
     kubectl apply -f kapp-controller.yaml
     ```
 
-3. Create namespace for extension
+2. Create namespace for extension
 
     ```sh
     kubectl apply -f namespace-role.yaml
     ```
 
-4. Copy `<extension-name>-data-values.yaml.example` to `<extension-name>-data-values.yaml` and
+3. Copy `<extension-name>-data-values.yaml.example` to `<extension-name>-data-values.yaml` and
    Configure data values required for the extension in `<extension-name>-data-values.yaml`
 
    ```sh
    cp <extension-name>-data-values.yaml.example <extension-name>-data-values.yaml
    ```
 
-5. Create a secret with data values
+4. Create a secret with data values
 
    ```sh
    kubectl create secret generic <extension-name>-data-values --from-file=values.yaml=<extension-name>-data-values.yaml -n <extension-namespace>
    ```
 
-6. Deploy extensions
+5. Deploy extensions
 
     ```sh
     kubectl apply -f <extension-name>-extension.yaml
     ```
 
-7. List apps
+6. List apps
 
     ```sh
     kapp list -n <extension-namespace>
     ```
 
-8. Retrieve status of an extension
+7. Retrieve status of an extension
 
     ```sh
-    kubectl get extension <extension-name> -n <extension-namespace>
     kubectl get app <extension-name> -n <extension-namespace>
     ```
 
@@ -109,12 +102,9 @@ Below are the steps to modify the image registry to a staging one.
     export IMAGE_TAG=v1.3.0_vmware.1
     ```
 
-2. Replace image registry in `tmc-extension-manager.yaml`, `kapp-controller.yaml` and `cert-manager.yaml`
+2. Replace image registry in `kapp-controller.yaml` and `cert-manager.yaml`
 
     ```sh
-    sed -i -e "s|image: .*/\(.*\):\(.*\)|image: ${STAGING_IMAGE_REGISTRY}/\1:\2|" extensions/tmc-extension-manager.yaml
-    rm -rf extensions/tmc-extension-manager.yaml-e
-
     sed -i -e "s|image: .*/\(.*\):\(.*\)|image: ${STAGING_IMAGE_REGISTRY}/\1:\2|" extensions/kapp-controller.yaml
     rm -rf extensions/kapp-controller.yaml-e
 

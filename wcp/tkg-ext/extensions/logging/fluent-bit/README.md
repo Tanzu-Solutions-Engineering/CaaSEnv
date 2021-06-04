@@ -8,13 +8,7 @@
 
 ### Deploy fluent-bit extension on TKGm or on TKGS
 
-1. Install TMC's extension manager
-
-    ```sh
-    kubectl apply -f ../../tmc-extension-manager.yaml
-    ```
-
-2. Install kapp-controller
+1. Install kapp-controller
 
    This step is to be performed only for TKGS. For TKGm, kapp-controller is installed on the workload cluster by default.
 
@@ -22,13 +16,13 @@
     kubectl apply -f ../../kapp-controller.yaml
     ```
 
-3. Create fluent-bit namespace
+2. Create fluent-bit namespace
 
     ```sh
     kubectl apply -f namespace-role.yaml
     ```
 
-4. Copy `<LOG_BACKEND>/fluent-bit-data-values.yaml.example` to `<LOG_BACKEND>/fluent-bit-data-values.yaml`
+3. Copy `<LOG_BACKEND>/fluent-bit-data-values.yaml.example` to `<LOG_BACKEND>/fluent-bit-data-values.yaml`
 
    Configure fluent-bit data values in `<LOG_BACKEND>/fluent-bit-data-values.yaml`
 
@@ -44,7 +38,7 @@
     cp syslog/fluent-bit-data-values.yaml.example syslog/fluent-bit-data-values.yaml
     ```
 
-5. Create a secret with data values
+4. Create a secret with data values
 
    Create secret for your log backend
 
@@ -56,16 +50,15 @@
    kubectl create secret generic fluent-bit-data-values --from-file=values.yaml=syslog/fluent-bit-data-values.yaml -n tanzu-system-logging
    ```
   
-6. Deploy fluent-bit extension
+5. Deploy fluent-bit extension
 
     ```sh
     kubectl apply -f fluent-bit-extension.yaml
    ```
 
-7. Retrieve status of an extension
+6. Retrieve status of an extension
 
     ```sh
-    kubectl get extension fluent-bit -n tanzu-system-logging
     kubectl get app fluent-bit -n tanzu-system-logging
     ```
 

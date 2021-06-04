@@ -10,31 +10,25 @@
 
 #### vSphere
 
-1. Install TMC's extension manager
-
-    ```sh
-    kubectl apply -f tmc-extension-manager.yaml
-    ```
-
-2. Install kapp-controller
+1. Install kapp-controller
 
     ```sh
     kubectl apply -f kapp-controller.yaml
     ```
 
-3. Deploy cert-manager extension
+2. Deploy cert-manager extension
 
     ```sh
     kubectl apply -f ../../../cert-manager/
     ```
 
-4. Create gangway namespace
+3. Create gangway namespace
 
     ```sh
     kubectl apply -f namespace-role.yaml
     ```
 
-5. Copy `<INFRA_PROVIDER>/gangway-data-values.yaml.example` to `<INFRA_PROVIDER>/gangway-data-values.yaml`
+4. Copy `<INFRA_PROVIDER>/gangway-data-values.yaml.example` to `<INFRA_PROVIDER>/gangway-data-values.yaml`
 
    Configure gangway data values in `<INFRA_PROVIDER>/gangway-data-values.yaml`
 
@@ -44,7 +38,7 @@
     cp vsphere/gangway-data-values.yaml.example vsphere/gangway-data-values.yaml
     ```
 
-6. Create a secret with data values
+5. Create a secret with data values
 
    Use `openssl rand -hex 16` to create `SESSION_KEY` and `CLIENT_SECRET` values to be inserted into gangway-data-values.yaml
   
@@ -57,16 +51,15 @@
     kubectl create secret generic gangway-data-values --from-file=values.yaml=vsphere/gangway-data-values.yaml -n tanzu-system-auth
     ```
 
-7. Deploy gangway extension
+6. Deploy gangway extension
 
     ```sh
     kubectl apply -f gangway-extension.yaml
    ```
 
-8. Retrieve status of an extension
+7. Retrieve status of an extension
 
     ```sh
-    kubectl get extension gangway -n tanzu-system-auth
     kubectl get app gangway -n tanzu-system-auth
     ```
 
@@ -80,31 +73,25 @@
 
 #### AWS
 
-1. Install TMC's extension manager
-
-    ```sh
-    kubectl apply -f tmc-extension-manager.yaml
-    ```
-
-2. Install kapp-controller
+1. Install kapp-controller
 
     ```sh
     kubectl apply -f kapp-controller.yaml
     ```
 
-3. Deploy cert-manager extension
+2. Deploy cert-manager extension
 
     ```sh
     kubectl apply -f ../../cert-manager/cert-manager-extension.yaml
     ```
 
-4. Create gangway namespace
+3. Create gangway namespace
 
     ```sh
     kubectl apply -f namespace-role.yaml
     ```
 
-5. Copy `<INFRA_PROVIDER>/gangway-data-values.yaml.example` to `<INFRA_PROVIDER>/<AUTH_PROVIDER>/gangway-data-values.yaml`
+4. Copy `<INFRA_PROVIDER>/gangway-data-values.yaml.example` to `<INFRA_PROVIDER>/<AUTH_PROVIDER>/gangway-data-values.yaml`
 
    Configure gangway data values in `<INFRA_PROVIDER>/gangway-data-values.yaml`
 
@@ -119,7 +106,7 @@
    ***NOTE***:
    * Remove `dns` in gangway-data-values.yaml first and once gangway is deployed, get gangway svc loadbalancer hostname and update `dns` and redeploy gangway extension
 
-6. Create a secret with data values
+5. Create a secret with data values
   
     Use `openssl rand -hex 16` to create `SESSION_KEY` and `CLIENT_SECRET` values to be inserted into gangway-data-values.yaml
 
@@ -132,16 +119,15 @@
     kubectl create secret generic gangway-data-values --from-file=values.yaml=aws/gangway-data-values.yaml -n tanzu-system-auth
     ```
 
-7. Deploy gangway extension
+6. Deploy gangway extension
 
     ```sh
     kubectl apply -f gangway-extension.yaml
    ```
 
-8. Retrieve status of an extension
+7. Retrieve status of an extension
 
     ```sh
-    kubectl get extension gangway -n tanzu-system-auth
     kubectl get app gangway -n tanzu-system-auth
     ```
 
@@ -153,17 +139,17 @@
    kubectl get app gangway -n tanzu-system-auth -o yaml
    ```
 
-9. Get gangway service loadbalancer hostname (GANGWAY_SVC_LB_HOSTNAME)
+8. Get gangway service loadbalancer hostname (GANGWAY_SVC_LB_HOSTNAME)
 
     ```sh
     kubectl get svc gangwaysvc -n tanzu-system-auth -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
     ```
 
-10. Update GANGWAY_SVC_LB_HOSTNAME in gangway-data-values secret and redeploy gangway following [update gangway extension](#update-gangway-extension)
+9. Update GANGWAY_SVC_LB_HOSTNAME in gangway-data-values secret and redeploy gangway following [update gangway extension](#update-gangway-extension)
 
-11. Update StaticClients in dex in management cluster with gangway information
+10. Update StaticClients in dex in management cluster with gangway information
 
-12. Redeploy dex on management cluster
+11. Redeploy dex on management cluster
 
 ### Update gangway extension
 

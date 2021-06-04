@@ -1,3 +1,5 @@
+#! Source: https://github.com/vmware-tanzu/carvel-kapp-controller/releases/tag/v0.18.0
+
 ---
 apiVersion: v1
 kind: Namespace
@@ -21,8 +23,7 @@ spec:
     name: Description
     type: string
   - JSONPath: .status.deploy.startedAt
-    description: Last time app started being deployed. Does not mean anything was
-      changed.
+    description: Last time app started being deployed. Does not mean anything was changed.
     name: Since-Deploy
     type: date
   - JSONPath: .metadata.creationTimestamp
@@ -65,11 +66,12 @@ spec:
         app: kapp-controller
     spec:
       containers:
-      - args: []
+      - args:
+        - -concurrency=2
         env:
         - name: KAPPCTRL_MEM_TMP_DIR
           value: /etc/kappctrl-mem-tmp
-        image: projects.registry.vmware.com/tkg/kapp-controller:v0.16.0_vmware.1
+        image: projects.registry.vmware.com/tkg/kapp-controller:v0.18.0_vmware.1
         imagePullPolicy: IfNotPresent
         name: kapp-controller
         resources:
@@ -98,9 +100,16 @@ rules:
 - apiGroups:
   - ""
   resources:
-  - serviceaccounts
   - secrets
   - configmaps
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - serviceaccounts
   verbs:
   - get
 - apiGroups:

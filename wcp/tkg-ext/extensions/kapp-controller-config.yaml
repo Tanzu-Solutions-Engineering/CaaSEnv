@@ -33,3 +33,7 @@ data:
   # A comma delimited list of domain names which kapp controller should
   # bypass the proxy for when making requests (optional)
   noProxy: ""
+
+  # A comma delimited list of hostnames for which kapp controller should
+  # skip TLS verification (optional)
+  dangerousSkipTLSVerify: ""

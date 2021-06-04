@@ -10,31 +10,25 @@
 
 #### vSphere
 
-1. Install TMC's extension manager
-
-    ```sh
-    kubectl apply -f tmc-extension-manager.yaml
-    ```
-
-2. Install kapp-controller
+1. Install kapp-controller
 
     ```sh
     kubectl apply -f kapp-controller.yaml
     ```
 
-3. Deploy cert-manager if its not already installed(not required for management cluster)
+2. Deploy cert-manager if its not already installed(not required for management cluster)
 
     ```sh
     kubectl apply -f ../../../cert-manager/
     ```
 
-4. Create dex namespace
+3. Create dex namespace
 
     ```sh
     kubectl apply -f namespace-role.yaml
     ```
 
-5. Copy `<INFRA_PROVIDER>/<AUTH_PROVIDER>/dex-data-values.yaml.example` to `<INFRA_PROVIDER>/<AUTH_PROVIDER>/dex-data-values.yaml`
+4. Copy `<INFRA_PROVIDER>/<AUTH_PROVIDER>/dex-data-values.yaml.example` to `<INFRA_PROVIDER>/<AUTH_PROVIDER>/dex-data-values.yaml`
 
    Configure dex data values in `<INFRA_PROVIDER>/<AUTH_PROVIDER>/dex-data-values.yaml`
 
@@ -54,7 +48,7 @@
 
    ***NOTE: Remove `staticClients` in dex-data-values.yaml first and once workload cluster is deployed, add `staticClients` and redeploy dex extension***
 
-6. Create a secret with data values after setting appropriate values for params.
+5. Create a secret with data values after setting appropriate values for params.
 
     *OIDC*:
 
@@ -68,16 +62,15 @@
     kubectl create secret generic dex-data-values --from-file=values.yaml=vsphere/ldap/dex-data-values.yaml -n tanzu-system-auth
     ```
 
-7. Deploy dex extension
+6. Deploy dex extension
 
     ```sh
     kubectl apply -f dex-extension.yaml
    ```
 
-8. Retrieve status of an extension
+7. Retrieve status of an extension
 
     ```sh
-    kubectl get extension dex -n tanzu-system-auth
     kubectl get app dex -n tanzu-system-auth
     ```
 
@@ -89,7 +82,7 @@
    kubectl get app dex -n tanzu-system-auth -o yaml
    ```
 
-9. Deploy workload cluster with oidc enabled.
+8. Deploy workload cluster with oidc enabled.
 
    Set the following env vars
 
@@ -109,37 +102,31 @@
     tanzu cluster create workload-cluster-1 --enable-cluster-options="oidc" --plan dev --vsphere-controlplane-endpoint <WORKLOAD_CLUSTER_VIP>
     ```
 
-10. Deploy gangway on workload cluster
+9. Deploy gangway on workload cluster
 
-11. Update dex-data-values secret with staticClient and redeploy dex following [update dex extension](#update-dex-extension)
+10. Update dex-data-values secret with staticClient and redeploy dex following [update dex extension](#update-dex-extension)
 
 #### AWS
 
-1. Install TMC's extension manager
-
-    ```sh
-    kubectl apply -f tmc-extension-manager.yaml
-    ```
-
-2. Install kapp-controller
+1. Install kapp-controller
 
     ```sh
     kubectl apply -f kapp-controller.yaml
     ```
 
-3. Deploy cert-manager extension
+2. Deploy cert-manager extension
 
     ```sh
     kubectl apply -f ../../cert-manager/cert-manager-extension.yaml
     ```
 
-4. Create dex namespace
+3. Create dex namespace
 
     ```sh
     kubectl apply -f namespace-role.yaml
     ```
 
-5. Copy `<INFRA_PROVIDER>/<AUTH_PROVIDER>/dex-data-values.yaml.example` to `<INFRA_PROVIDER>/<AUTH_PROVIDER>/dex-data-values.yaml`
+4. Copy `<INFRA_PROVIDER>/<AUTH_PROVIDER>/dex-data-values.yaml.example` to `<INFRA_PROVIDER>/<AUTH_PROVIDER>/dex-data-values.yaml`
 
    Configure dex data values in `<INFRA_PROVIDER>/<AUTH_PROVIDER>/dex-data-values.yaml`
 
@@ -155,7 +142,7 @@
    * Remove `staticClients` in dex-data-values.yaml first and once workload cluster is deployed, add `staticClients` and redeploy dex extension
    * Remove `dns` in dex-data-values.yaml first and once dex is deployed, get dex svc loadbalancer hostname and update `dns` and redeploy dex extension
 
-6. Create a secret with data values
+5. Create a secret with data values
 
     *OIDC*:
 
@@ -163,22 +150,21 @@
     kubectl create secret generic dex-data-values --from-file=values.yaml=aws/oidc/dex-data-values.yaml -n tanzu-system-auth
     ```
 
-7. Deploy cert-manager extension
+6. Deploy cert-manager extension
 
     ```sh
     kubectl apply -f ../../cert-manager/cert-manager-extension.yaml
     ```
 
-8. Deploy dex extension
+7. Deploy dex extension
 
     ```sh
     kubectl apply -f dex-extension.yaml
    ```
 
-9. Retrieve status of an extension
+8. Retrieve status of an extension
 
     ```sh
-    kubectl get extension dex -n tanzu-system-auth
     kubectl get app dex -n tanzu-system-auth
     ```
 
@@ -190,15 +176,15 @@
    kubectl get app dex -n tanzu-system-auth -o yaml
    ```
 
-10. Get dex service loadbalancer hostname (DEX_SVC_LB_HOSTNAME)
+9. Get dex service loadbalancer hostname (DEX_SVC_LB_HOSTNAME)
 
     ```sh
     kubectl get svc dexsvc -n tanzu-system-auth -o jsonpath='{.status.loadBalancer.ingress[0].hostname}'
     ```
 
-11. Update DEX_SVC_LB_HOSTNAME in dex-data-values secret and redeploy dex following [update dex extension](#update-dex-extension)
+10. Update DEX_SVC_LB_HOSTNAME in dex-data-values secret and redeploy dex following [update dex extension](#update-dex-extension)
 
-12. Deploy workload cluster with oidc plan by setting env vars as below.
+11. Deploy workload cluster with oidc plan by setting env vars as below.
 
     ```sh
     # replace <DEX_LB> with AWS ELB endpoint of Dex
@@ -215,9 +201,9 @@
     tanzu cluster create workload-cluster-1 --enable-cluster-options="oidc" --plan dev
     ```
 
-13. Deploy gangway on workload cluster
+12. Deploy gangway on workload cluster
 
-14. Update dex-data-values secret with staticClient and redeploy dex following [update dex extension](#update-dex-extension)
+13. Update dex-data-values secret with staticClient and redeploy dex following [update dex extension](#update-dex-extension)
 
 ### Update dex extension
 

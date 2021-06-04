@@ -8,13 +8,7 @@
 
 ### Deploy ExternalDNS extension
 
-1. Install TMC's extension manager
-
-    ```sh
-    kubectl apply -f ../../tmc-extension-manager.yaml
-    ```
-
-2. Install kapp-controller
+1. Install kapp-controller
 
    This step is to be performed only for TKGS. For TKGm, kapp-controller is installed on the workload cluster by default.
 
@@ -22,13 +16,13 @@
     kubectl apply -f ../../kapp-controller.yaml
     ```
 
-3. Create external-dns namespace
+2. Create external-dns namespace
 
     ```sh
     kubectl apply -f namespace-role.yaml
     ```
 
-4. Copy `external-dns-data-values.yaml.example` to `external-dns-data-values.yaml`
+3. Copy `external-dns-data-values.yaml.example` to `external-dns-data-values.yaml`
 
    Configure ExternalDNS data values in `external-dns-data-values.yaml`
 
@@ -38,22 +32,21 @@
     cp external-dns-data-values.yaml.example external-dns-data-values.yaml
     ```
 
-5. Create a secret with data values
+4. Create a secret with data values
 
     ```sh
     kubectl create secret generic external-dns-data-values --from-file=values.yaml=external-dns-data-values.yaml -n tanzu-system-service-discovery
     ```
 
-6. Deploy ExternalDNS extension
+5. Deploy ExternalDNS extension
 
     ```sh
     kubectl apply -f external-dns-extension.yaml
    ```
 
-7. Retrieve status of an extension
+6. Retrieve status of an extension
 
     ```sh
-    kubectl get extension external-dns -n tanzu-system-service-discovery
     kubectl get app external-dns -n tanzu-system-service-discovery
     ```
 

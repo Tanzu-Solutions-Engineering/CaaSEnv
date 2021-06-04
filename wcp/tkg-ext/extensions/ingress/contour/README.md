@@ -8,13 +8,7 @@
 
 ### Deploy contour extension on TKGm or on TKGS
 
-1. Install TMC's extension manager
-
-    ```sh
-    kubectl apply -f ../../tmc-extension-manager.yaml
-    ```
-
-2. Install kapp-controller
+1. Install kapp-controller
 
    This step is to be performed only for TKGS. For TKGm, kapp-controller is installed on the workload cluster by default.
 
@@ -22,19 +16,19 @@
     kubectl apply -f ../../kapp-controller.yaml
     ```
 
-3. Deploy cert-manager if its not already installed
+2. Deploy cert-manager if its not already installed
 
     ```sh
     kubectl apply -f ../../../cert-manager/
     ```
 
-4. Create contour namespace
+3. Create contour namespace
 
     ```sh
     kubectl apply -f namespace-role.yaml
     ```
 
-5. Copy `<INFRA_PROVIDER>/contour-data-values.yaml.example*` to `<INFRA_PROVIDER>/contour-data-values.yaml`
+4. Copy `<INFRA_PROVIDER>/contour-data-values.yaml.example*` to `<INFRA_PROVIDER>/contour-data-values.yaml`
 
    Configure contour data values in `<INFRA_PROVIDER>/contour-data-values.yaml`
 
@@ -64,7 +58,7 @@
     cp aws/contour-data-values.yaml.example azure/contour-data-values.yaml
     ```
 
-6. Create a secret with data values
+5. Create a secret with data values
 
     vSphere (TKGm and TKGS):
 
@@ -84,16 +78,15 @@
     kubectl create secret generic contour-data-values --from-file=values.yaml=azure/contour-data-values.yaml -n tanzu-system-ingress
     ```
 
-7. Deploy contour extension
+6. Deploy contour extension
 
     ```sh
     kubectl apply -f contour-extension.yaml
    ```
 
-8. Retrieve status of an extension
+7. Retrieve status of an extension
 
     ```sh
-    kubectl get extension contour -n tanzu-system-ingress
     kubectl get app contour -n tanzu-system-ingress
     ```
 

@@ -37,13 +37,13 @@ EOF
 }
 
 function inject_passwords_inline() {
-  yq w -i "$1" 'harborAdminPassword' "$harborAdminPassword"
-  yq w -i "$1" 'secretKey' "$secretKey"
-  yq w -i "$1" 'database.password' "$databasePassword"
-  yq w -i "$1" 'core.secret' "$coreSecret"
-  yq w -i "$1" 'core.xsrfKey' "$coreXsrfKey"
-  yq w -i "$1" 'jobservice.secret' "$jobserviceSecret"
-  yq w -i "$1" 'registry.secret' "$registrySecret"
+  yq eval ".harborAdminPassword = \"$harborAdminPassword\"" -i "$1"
+  yq eval ".secretKey = \"$secretKey\"" -i "$1"
+  yq eval ".database.password = \"$databasePassword\"" -i "$1"
+  yq eval ".core.secret = \"$coreSecret\"" -i "$1"
+  yq eval ".core.xsrfKey = \"$coreXsrfKey\"" -i "$1"
+  yq eval ".jobservice.secret = \"$jobserviceSecret\"" -i "$1"
+  yq eval ".registry.secret = \"$registrySecret\"" -i "$1"
   # shellcheck disable=SC1004
   sed -i -e '3i\
 ---
@@ -55,7 +55,7 @@ function inject_passwords_inline() {
 
 function install_yq() {
   if ! which yq >/dev/null; then
-    echo 'Please install yq from https://github.com/mikefarah/yq/releases/tag/3.4.1'
+    echo 'Please install yq version 4.5 or above from https://github.com/mikefarah/yq/releases'
     exit 1
   fi
 }

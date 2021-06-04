@@ -13,13 +13,7 @@
 
 ### Deploy grafana extension
 
-1. Install TMC's extension manager
-
-    ```sh
-    kubectl apply -f tmc-extension-manager.yaml
-    ```
-
-2. Install kapp-controller
+1. Install kapp-controller
 
    This step is to be performed only for TKGS. For TKGm, kapp-controller is installed on the workload cluster by default.
 
@@ -27,40 +21,39 @@
     kubectl apply -f kapp-controller.yaml
     ```
 
-3. Deploy cert-manager if its not already installed
+2. Deploy cert-manager if its not already installed
 
     ```sh
     kubectl apply -f ../../../cert-manager/
     ```
 
-4. Create grafana namespace
+3. Create grafana namespace
 
     ```sh
     kubectl apply -f namespace-role.yaml
     ```
 
-5. Copy `grafana-data-values.yaml.example` to `grafana-data-values.yaml`
+4. Copy `grafana-data-values.yaml.example` to `grafana-data-values.yaml`
 
    Configure grafana data values in `grafana-data-values.yaml`
 
    Supported configurations are documented in [grafana-configurations](../../../monitoring/grafana/README.md)
 
-6. Create a secret with data values
+5. Create a secret with data values
 
     ```sh
     kubectl create secret generic grafana-data-values --from-file=values.yaml=grafana-data-values.yaml -n tanzu-system-monitoring
     ```
 
-7. Deploy grafana extension
+6. Deploy grafana extension
 
     ```sh
     kubectl apply -f grafana-extension.yaml
     ```
 
-8. Retrieve status of an extension
+7. Retrieve status of an extension
 
     ```sh
-    kubectl get extension grafana -n tanzu-system-monitoring
     kubectl get app grafana -n tanzu-system-monitoring
     ```
 

@@ -13,13 +13,7 @@
 
 ### Deploy prometheus extension
 
-1. Install TMC's extension manager
-
-    ```sh
-    kubectl apply -f tmc-extension-manager.yaml
-    ```
-
-2. Install kapp-controller
+1. Install kapp-controller
 
    This step is to be performed only for TKGS. For TKGm, kapp-controller is installed on the workload cluster by default.
 
@@ -27,40 +21,39 @@
     kubectl apply -f kapp-controller.yaml
     ```
 
-3. Deploy cert-manager if its not already installed
+2. Deploy cert-manager if its not already installed
 
     ```sh
     kubectl apply -f ../../../cert-manager/
     ```
 
-4. Create prometheus namespace
+3. Create prometheus namespace
 
     ```sh
     kubectl apply -f namespace-role.yaml
     ```
 
-5. Copy `prometheus-data-values.yaml.example` to `prometheus-data-values.yaml`
+4. Copy `prometheus-data-values.yaml.example` to `prometheus-data-values.yaml`
 
    Configure prometheus data values in `prometheus-data-values.yaml`
 
    Supported configurations are documented in [prometheus-configurations](../../../monitoring/prometheus/README.md)
 
-6. Create a secret with data values
+5. Create a secret with data values
 
     ```sh
     kubectl create secret generic prometheus-data-values --from-file=values.yaml=prometheus-data-values.yaml -n tanzu-system-monitoring
     ```
 
-7. Deploy prometheus extension
+6. Deploy prometheus extension
 
     ```sh
     kubectl apply -f prometheus-extension.yaml
     ```
 
-8. Retrieve status of an extension
+7. Retrieve status of an extension
 
     ```sh
-    kubectl get extension prometheus -n tanzu-system-monitoring
     kubectl get app prometheus -n tanzu-system-monitoring
     ```
 
