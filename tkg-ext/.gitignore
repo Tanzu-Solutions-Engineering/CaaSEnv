@@ -20,5 +20,3 @@ themes
 *.crt
 TanzuServiceConfiguration.yaml
 harbor-data-values.yaml
-extensions/
-cert-manager

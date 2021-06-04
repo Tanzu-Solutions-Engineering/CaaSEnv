@@ -9,8 +9,7 @@ kubectl apply -f cert-manager/
 ## FluentBit
 ```
 kubectl apply -f extensions/logging/fluent-bit/namespace-role.yaml
-kubectl create secret generic fluent-bit-data-values --from-file=values.yaml=fluent-bit-data-values.yaml \
-  -n tanzu-system-logging
+kubectl create secret generic fluent-bit-data-values --from-file=values.yaml=fluent-bit-data-values.yaml -n tanzu-system-logging
 kubectl apply -f extensions/logging/fluent-bit/fluent-bit-extension.yaml
 ```
 
@@ -20,11 +19,17 @@ kubectl create secret generic fluent-bit-data-values --from-file=values.yaml=flu
   -n tanzu-system-logging -o yaml --dry-run | kubectl replace -f-
 ```
 
+### Remove FluentBit
+```
+kubectl delete -f extensions/logging/fluent-bit/fluent-bit-extension.yaml
+kubectl delete app fluent-bit -n tanzu-system-logging
+kubectl delete -f extensions/logging/fluent-bit/namespace-role.yaml
+```
+
 ## Contour
 ```
 kubectl apply -f extensions/ingress/contour/namespace-role.yaml
-kubectl create secret generic contour-data-values --from-file=values.yaml=contour-data-values.yaml \
-  -n tanzu-system-ingress
+kubectl create secret generic contour-data-values --from-file=values.yaml=contour-data-values.yaml -n tanzu-system-ingress
 kubectl apply -f extensions/ingress/contour/contour-extension.yaml
 ```
 
@@ -34,10 +39,16 @@ kubectl create secret generic contour-data-values --from-file=values.yaml=contou
   -n tanzu-system-ingress -o yaml --dry-run | kubectl replace -f-
 ```
 
-
 ### Validate
 ```
 kubectl get app contour -n tanzu-system-ingress
+```
+
+### Remove
+```
+kubectl delete -f extensions/ingress/contour/contour-extension.yaml
+kubectl delete app contour -n tanzu-system-ingress
+kubectl delete -f extensions/ingress/contour/namespace-role.yaml
 ```
 
 ## Prometheus

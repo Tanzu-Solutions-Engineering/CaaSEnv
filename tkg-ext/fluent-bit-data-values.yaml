@@ -5,8 +5,8 @@ logging:
   image:
     repository: projects.registry.vmware.com/tkg
 tkg:
-  instance_name: "WORK"
-  cluster_name: "monitoring"
+  instance_name: "VxRail"
+  cluster_name: "HarborL"
 fluent_bit:
   output_plugin: "syslog"
   syslog:
@@ -14,6 +14,3 @@ fluent_bit:
     port: "514"
     mode: "udp"
     format: "rfc5424"
-audit_logging:
-  kube_apiserver: true
-  auditd: true
