@@ -1,0 +1,40 @@
+# harbour k14s objects managed by kapp-controller
+---
+apiVersion: kappctrl.k14s.io/v1alpha1
+kind: App
+metadata:
+  name: harbor
+  namespace: tanzu-system-registry
+  annotations:
+    tmc.cloud.vmware.com/managed: "false"
+spec:
+  syncPeriod: 5m
+  serviceAccountName: harbor-extension-sa
+  fetch:
+    - image:
+        url: projects.registry.vmware.com/tkg/tkg-extensions-templates:v1.3.1_vmware.1
+  template:
+    - ytt:
+        ignoreUnknownComments: true
+        paths:
+          - tkg-extensions/common
+          - tkg-extensions/registry/harbor
+        inline:
+          pathsFrom:
+            - secretRef:
+                name: harbor-data-values
+          paths:
+            update-harbor-http-proxy.yaml: |
+              #@ load("@ytt:overlay", "overlay")
+              #@ harbor_httpproxy = overlay.subset({"kind": "HTTPProxy", "metadata": {"name": "harbor-httpproxy"}})
+              #@overlay/match by=harbor_httpproxy
+              ---
+              spec:
+                routes:
+                  - #@overlay/match by=overlay.index(3)
+                    #@overlay/match missing_ok=True
+                    timeoutPolicy:
+                      response: 60s
+  deploy:
+    - kapp:
+        rawOptions: ["--wait-timeout=5m"]
