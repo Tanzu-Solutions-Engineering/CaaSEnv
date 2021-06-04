@@ -6,3 +6,4 @@ private*.*
 *.key
 *.csr
 *.crt
+certs/
