@@ -2,11 +2,11 @@
 apiVersion: run.tanzu.vmware.com/v1alpha1
 kind: TanzuKubernetesCluster
 metadata:
- name: service1
+ name: services1
  namespace: sharedservices
 spec:
  distribution:
-   version: v1.18.5
+   version: v1.19
    #version: v1.16.8---vmware.1-tkg.3.60d2ffd
  topology:
    controlPlane:
@@ -14,8 +14,8 @@ spec:
      class: best-effort-small #2CPU, 2GB
      storageClass: tanzu #Specific storage class for control plane
    workers:
-     count: 2 #5 worker nodes
-     class: best-effort-small #2CPU, 4GB
+     count: 3 #5 worker nodes
+     class: best-effort-medium #2CPU, 4GB
      storageClass: tanzu #Specific storage class for workers
  settings:
    storage:

@@ -2,11 +2,10 @@
 apiVersion: run.tanzu.vmware.com/v1alpha1
 kind: TanzuKubernetesCluster
 metadata:
- name: harbor
- namespace: sharedservices
+ name: harbor2
 spec:
  distribution:
-   version: v1.19
+   version: v1.18.5
    #version: v1.16.8---vmware.1-tkg.3.60d2ffd
  topology:
    controlPlane:

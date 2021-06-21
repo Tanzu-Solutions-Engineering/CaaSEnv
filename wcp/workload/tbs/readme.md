@@ -8,7 +8,7 @@
 # relocate images:
 This will pull the images down and push them into the repo here:
 ```
-kbld relocate -f ./images.lock --lock-output ./images-relocated.lock --registry-verify-certs=false --repository 10.193.39.134/workload/build-service --concurrency 1
+kbld relocate -f ./images.lock --lock-output ./images-relocated.lock --registry-verify-certs=false --repository harbor.caas.pez.pivotal.io/build-service --concurrency 1
 ```
 
 # Deploy
@@ -17,7 +17,7 @@ This uses kapp to install TBS from the repo
 ytt -f ./values.yaml \
     -f ./manifests/ \
     -f ./ca.crt \
-    -v docker_repository="10.193.39.134/workload/build-service" \
+    -v docker_repository="harbor.caas.pez.pivotal.io/build-service" \
     -v docker_username="bragazzi@caas.pez.pivotal.io" \
     -v docker_password="<PASSWORD>" \
     | kbld -f ./images-relocated.lock -f- --registry-verify-certs=false \

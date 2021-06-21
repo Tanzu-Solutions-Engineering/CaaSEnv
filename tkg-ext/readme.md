@@ -54,8 +54,7 @@ kubectl delete -f extensions/ingress/contour/namespace-role.yaml
 ## Prometheus
 ```
 kubectl apply -f extensions/monitoring/prometheus/namespace-role.yaml
-kubectl create secret generic prometheus-data-values --from-file=values.yaml=prometheus-data-values.yaml \
-  -n tanzu-system-monitoring
+kubectl create secret generic prometheus-data-values --from-file=values.yaml=prometheus-data-values.yaml -n tanzu-system-monitoring
 kubectl apply -f extensions/monitoring/prometheus/prometheus-extension.yaml
 ```
 
@@ -103,8 +102,7 @@ kubectl create secret generic grafana-data-values --from-file=values.yaml=grafan
 Requires contour
 ```
 kubectl apply -f extensions/registry/harbor/namespace-role.yaml
-kubectl create secret generic harbor-data-values --from-file=values.yaml=harbor-data-values.yaml \
-  -n tanzu-system-registry
+kubectl create secret generic harbor-data-values --from-file=values.yaml=harbor-data-values.yaml -n tanzu-system-registry
 kubectl apply -f extensions/registry/harbor/harbor-extension.yaml
 ```
 
