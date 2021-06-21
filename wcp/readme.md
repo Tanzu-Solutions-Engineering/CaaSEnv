@@ -3,9 +3,9 @@
 ## Namespaces and Clusters
 
 - **sharedservices** - Clusters hosting common Services
- - harbor2 - Harbor for TKGS
- - mysql - Tanzu SQL with mySQL
- - postgres - Tanzu SQL with postgres
+ * harbor2 - Harbor for TKGS
+ * mysql - Tanzu SQL with mySQL
+ * postgres - Tanzu SQL with postgres
 - **test-tmc** - Clusters provisioned via TMC
 - **test-web** - Clusters for demos
  - vdsdemo1 - demo cluster
