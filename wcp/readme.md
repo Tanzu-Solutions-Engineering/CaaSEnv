@@ -1,24 +1,14 @@
-## Config repo for vSphere with Tanzu
+# Config repo for vSphere with Tanzu
 
-## Login
+## Namespaces and Clusters
 
-### WCP
-    kubectl vsphere login  --insecure-skip-tls-verify --server wcp.caas.pez.pivotal.io -u bragazzi@caas.pez.pivotal.io
-
-### WCPVDS
-    kubectl vsphere login  --insecure-skip-tls-verify --server wcpvds.caas.pez.pivotal.io -u bragazzi@caas.pez.pivotal.io    
-
-### service2
-    kubectl vsphere login --tanzu-kubernetes-cluster-name service2 --server wcp.caas.pez.pivotal.io --insecure-skip-tls-verify --tanzu-kubernetes-cluster-namespace sharedservices -u bragazzi@caas.pez.pivotal.io
-
-### monitoring
-    kubectl vsphere login --tanzu-kubernetes-cluster-name monitoring --server wcp.caas.pez.pivotal.io --insecure-skip-tls-verify --tanzu-kubernetes-cluster-namespace sharedservices -u bragazzi@caas.pez.pivotal.io
-
-### database
-    kubectl vsphere login --tanzu-kubernetes-cluster-name database --server wcp.caas.pez.pivotal.io --insecure-skip-tls-verify --tanzu-kubernetes-cluster-namespace workload -u bragazzi@caas.pez.pivotal.io
-
-### demo1
-    kubectl vsphere login --server wcp.caas.pez.pivotal.io --insecure-skip-tls-verify --tanzu-kubernetes-cluster-namespace demo -u bragazzi@caas.pez.pivotal.io --tanzu-kubernetes-cluster-name demo1
-
-### test-web
-    kubectl vsphere login --server wcp.caas.pez.pivotal.io --insecure-skip-tls-verify --tanzu-kubernetes-cluster-namespace demo -u bragazzi@caas.pez.pivotal.io --tanzu-kubernetes-cluster-name demo1
+- **sharedservices** - Clusters hosting common Services
+ - harbor2 - Harbor for TKGS
+ - mysql - Tanzu SQL with mySQL
+ - postgres - Tanzu SQL with postgres
+- **test-tmc** - Clusters provisioned via TMC
+- **test-web** - Clusters for demos
+ - vdsdemo1 - demo cluster
+- **workload** - Long-living clusters
+ - tbs2 - Tanzu Build Service
+ - tbs3 - TAnzu Build Service
