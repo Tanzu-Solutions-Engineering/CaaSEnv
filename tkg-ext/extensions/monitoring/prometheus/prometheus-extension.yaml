@@ -23,14 +23,6 @@ spec:
           pathsFrom:
             - secretRef:
                 name: prometheus-data-values
-          paths:
-            update-server-service.yaml: |
-              #@ load("/values.star", "values")
-              #@ load("@ytt:overlay", "overlay")
-              #@overlay/match by=overlay.subset({"kind": "Service", "metadata": {"name": "prometheus-server"}})
-              ---
-              spec:
-                type: #@ values.monitoring.prometheus_server.service.type
   deploy:
     - kapp:
         rawOptions: ["--wait-timeout=5m"]

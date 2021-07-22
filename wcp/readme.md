@@ -14,7 +14,7 @@
   - tkgs-kirti-cluster1
   - tester333
 - **demo** - Short-lived Clusters for demos
-  - vdsdemo1 - demo cluster
+  - demo1 - demo cluster
 - **workload** - Long-lived clusters
   - tbs2 - Tanzu Build Service
   - tbs3 - TAnzu Build Service
