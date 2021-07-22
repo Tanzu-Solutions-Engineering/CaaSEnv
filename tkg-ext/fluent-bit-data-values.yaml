@@ -6,7 +6,7 @@ logging:
     repository: projects.registry.vmware.com/tkg
 tkg:
   instance_name: "VxRail"
-  cluster_name: "HarborL"
+  cluster_name: "demo1"
 fluent_bit:
   output_plugin: "syslog"
   syslog:
