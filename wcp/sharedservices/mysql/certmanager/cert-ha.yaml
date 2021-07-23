@@ -1,0 +1,28 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: mysql-ha-secret
+spec:
+  # Secret names are always required.
+  secretName: mysql-ha-secret
+  duration: 2160h # 90d
+  renewBefore: 360h # 15d
+  subject:
+    organizations:
+    - ragazzilab.com
+  # The use of the common name field has been deprecated since 2000 and is
+  # discouraged from being used.
+  commonName: mysql-ha.ragazzilab.com
+  dnsNames:
+  - mysql-ha.ragazzilab.com
+  - mysql-ha
+  - mysql-ha.mysql-instances.svc.cluster.local
+  # Issuer references are always required.
+  issuerRef:
+    name: ca-issuer
+    # We can reference ClusterIssuers by changing the kind here.
+    # The default value is Issuer (i.e. a locally namespaced Issuer)
+    kind: Issuer
+    # This is optional since cert-manager will default to this value however
+    # if you are using an external issuer, change this to that issuer group.
+    group: cert-manager.io

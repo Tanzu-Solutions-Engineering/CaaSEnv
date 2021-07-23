@@ -11,7 +11,7 @@ kubectl apply -f allowrunasnonroot-clusterrole.yaml
 
 # relocate images:
 docker login -u bragazzi@caas.pez.pivotal.io harbor.caas.pez.pivotal.io
-kbld relocate -f ./images.lock --lock-output ./images-relocated.lock --registry-verify-certs=false --repository harbor.caas.pez.pivotal.io/build-service/tbs
+Not needed? kbld relocate -f ./images.lock --lock-output ./images-relocated.lock --registry-verify-certs=false --repository harbor.caas.pez.pivotal.io/build-service/tbs
 ```
 imgpkg copy -b "registry.pivotal.io/build-service/bundle:1.2.1" --to-repo harbor.caas.pez.pivotal.io/tbs/build-service --registry-verify-certs=false
 imgpkg pull -b "harbor.caas.pez.pivotal.io/tbs/build-service:1.2.1" -o /tmp/bundle --registry-verify-certs=false

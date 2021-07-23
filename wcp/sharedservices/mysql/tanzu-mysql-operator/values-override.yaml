@@ -1,6 +1,6 @@
 imagePullSecret: harbor
-operatorImage: "harbor.ragazzilab.com/tanzu-sql/tanzu-mysql-operator:0.2.0"
-tanzuMySQLImage: "harbor.ragazzilab.com/tanzu-sql/tanzu-mysql-instance:0.2.0"
+operatorImage: "harbor.caas.pez.pivotal.io/tanzu-sql/tanzu-mysql-operator:1.0.0"
+tanzuMySQLImage: "harbor.caas.pez.pivotal.io/tanzu-sql/tanzu-mysql-instance:1.0.0"
 resources:
   limits:
     cpu: 100m

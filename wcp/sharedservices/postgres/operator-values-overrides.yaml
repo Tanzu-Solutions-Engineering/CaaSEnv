@@ -1,0 +1,4 @@
+operatorImageRepository: harbor.caas.pez.pivotal.io/tanzu-sql/postgres-operator
+postgresImageRepository: harbor.caas.pez.pivotal.io/tanzu-sql/postgres-instance
+dockerRegistrySecretName: harbor
+certManagerClusterIssuerName: ca-issuer

@@ -3,7 +3,6 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: postgres-operator
-  namespace: default
   labels:
     app: postgres-operator
 spec:
@@ -20,19 +19,20 @@ spec:
       containers:
         - name: postgres-operator
           image: {{ .Values.operatorImageRepository }}:{{ .Values.operatorImageTag }}
-          command: ["./manager", "--webhook-cert-directory", "/tmp/postgres-operator-webhook-server-cert-secret"]
+          command: [ "./manager", "--webhook-cert-directory", "/tmp/postgres-operator-webhook-server-cert-secret", "--cert-manager-cluster-issuer-name", "{{.Values.certManagerClusterIssuerName}}" ]
           imagePullPolicy: IfNotPresent
+          terminationMessagePolicy: "FallbackToLogsOnError"
           env:
-          - name: POSTGRES_IMAGE_REPO
-            value: {{ .Values.postgresImageRepository }}
-          - name: POSTGRES_IMAGE_TAG
-            value: {{ .Values.postgresImageTag }}
-          - name: OPERATOR_IMAGE_REPO
-            value: {{ .Values.operatorImageRepository }}
-          - name: OPERATOR_IMAGE_TAG
-            value: {{ .Values.operatorImageTag }}
-          - name: DOCKER_REGISTRY_SECRET_NAME
-            value: {{ .Values.dockerRegistrySecretName }}
+            - name: POSTGRES_IMAGE_REPO
+              value: {{ .Values.postgresImageRepository }}
+            - name: POSTGRES_IMAGE_TAG
+              value: {{ .Values.postgresImageTag }}
+            - name: OPERATOR_IMAGE_REPO
+              value: {{ .Values.operatorImageRepository }}
+            - name: OPERATOR_IMAGE_TAG
+              value: {{ .Values.operatorImageTag }}
+            - name: DOCKER_REGISTRY_SECRET_NAME
+              value: {{ .Values.dockerRegistrySecretName }}
           readinessProbe:
             exec:
               command:

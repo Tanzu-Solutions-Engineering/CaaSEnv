@@ -1,34 +1,78 @@
-# Deploy Tanzu SQL
+# Deploy Tanzu SQL with Postgres
 
-## configure cluster
-  kubectl apply -f allowrunasnonroot-clusterrole.yaml
-  kubectl apply -f np-allowall.yaml
-
-
-## Clone this repo
-* so you have the operator folder and yaml files
-
-## Create Namespace and Harbor Secret
-    kubectl create secret docker-registry harbor --docker-server=10.193.39.134 --docker-username=bragazzi@caas.pez.pivotal.io --docker-email=bragazzi --docker-password=<PASSWORD>
-
-## Update helm, install cert-manager
-  kubectl create namespace cert-manager
-  helm repo add jetstack https://charts.jetstack.io
-  helm repo update
-  helm install cert-manager jetstack/cert-manager --namespace cert-manager  --version v1.0.2 --set installCRDs=true
+## Prep Cluster
+```
+kubectl apply -f ./allowrunasnonroot-clusterrole.yaml
+```
 
 
-## Deploy Postgres-Operator from local chart
+## Install CertManager:
+```
+kubectl create namespace cert-manager
+helm repo add jetstack https://charts.jetstack.io
+helm repo update
+helm install cert-manager jetstack/cert-manager --namespace cert-manager --version v1.0.2 --set installCRDs=true
+```
 
-    helm install -v postgres-operator -n postgres operator/
 
-    or
+## Download postgres-for-kubernetes-v*.tar.gz
+  Extract it
+  change to postgres-for-kubernetes-v* folder
 
-    helm install postgres-operator operator/
+## Copy images to local repo
+  ```
+  docker load -i ./images/postgres-instance
+  docker load -i ./images/postgres-operator
+  PROJECT=tanzu-sql
+  REGISTRY="harbor.caas.pez.pivotal.io/${PROJECT}"
+
+  INSTANCE_IMAGE_NAME="${REGISTRY}/postgres-instance:$(cat ./images/postgres-instance-tag)"
+  docker tag $(cat ./images/postgres-instance-id) ${INSTANCE_IMAGE_NAME}
+  docker push ${INSTANCE_IMAGE_NAME}
+
+  OPERATOR_IMAGE_NAME="${REGISTRY}/postgres-operator:$(cat ./images/postgres-operator-tag)"
+  docker tag $(cat ./images/postgres-operator-id) ${OPERATOR_IMAGE_NAME}
+  docker push ${OPERATOR_IMAGE_NAME}
+```
+
+## Create Namespace for Operator, harbor secret and CA
+```
+kubectl create ns postgres
+kubectl --namespace postgres create secret docker-registry harbor --docker-server=https://harbor.caas.pez.pivotal.io --docker-username=admin@caas.pez.pivotal.io --docker-password=<PASSWORD>
+kubectl --namespace postgres apply -f certmanager/cabootstrap.yaml
+```
+
+## get Chart:
+```
+export HELM_EXPERIMENTAL_OCI=1
+helm registry login registry.pivotal.io --username=<USERNAME> --password=<PASSWORD>
+helm chart pull registry.pivotal.io/tanzu-sql-postgres/postgres-operator-chart:v1.2.0
+helm chart export registry.pivotal.io/tanzu-sql-postgres/postgres-operator-chart:v1.2.0  --destination=./
+```
+
+### Create operator-values-overrides.yaml
+  copy ./postgres-operator/values.yaml to ./operator-values-overrides.yaml
+  modify the registry, tags, etc.
+  Set certManagerClusterIssuerName to 'selfsigned-issuer' (it was created by cabootstrap)
+
+
+## Deploy operator via helm
+```
+helm install postgres-operator -n postgres -f ./operator-values-overrides.yaml postgres-operator/
+```
+
+### Confirm the pod is running:
+```
+kubectl get all -n postgres
+```
+## Create Namespace for postgres databases:
+```
+kubectl create ns postgres-databases
+```
 
 
 ## Create an example pg database
-    kubectl apply -n postgres -f pg-instance-example.yaml
+    kubectl apply -n postgres-databases -f pg-instance-example.yaml
 
 ### Run psql inside the pg instance
     kubectl exec -it pg-instance-example-0 -- bash -c "psql"
