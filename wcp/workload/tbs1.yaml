@@ -3,9 +3,10 @@ apiVersion: run.tanzu.vmware.com/v1alpha1
 kind: TanzuKubernetesCluster
 metadata:
  name: tbs1
+ namespace: workload
 spec:
  distribution:
-   version: v1.20.7
+   version: v1.20.7+vmware.1-tkg.1.7fb9067
    #version: v1.16.8---vmware.1-tkg.3.60d2ffd
  topology:
    controlPlane:
