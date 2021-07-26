@@ -33,7 +33,7 @@ or - without dynamic updates to clusterstacks
 ytt -f /tmp/bundle/values.yaml \
     -f /tmp/bundle/config/ \
     -v docker_repository="harbor.caas.pez.pivotal.io/tbs/build-service" \
-    -v docker_username="bragazzi@caas.pez.pivotal.io" \
+    -v docker_username="username@caas.pez.pivotal.io" \
     -v docker_password='<PASSWORD>' \
     | kbld -f /tmp/bundle/.imgpkg/images.yml -f- --registry-verify-certs=false \
     | kapp deploy -a tanzu-build-service -f- -y

@@ -5,8 +5,9 @@ metadata:
 spec:
   memory: 800Mi
   cpu: "0.8"
-  storageClassName: vsan
-  storageSize: 100M
+  storageClassName: tanzu
+  monitorStorageClassName: tanzu
+  storageSize: 500M
   pgConfig:
     dbname: pg-instance-example #Default: Same as Instance Name
     username: pgadmin

@@ -39,7 +39,6 @@ helm install cert-manager jetstack/cert-manager --namespace cert-manager --versi
 ```
 kubectl create ns postgres
 kubectl --namespace postgres create secret docker-registry harbor --docker-server=https://harbor.caas.pez.pivotal.io --docker-username=admin@caas.pez.pivotal.io --docker-password=<PASSWORD>
-kubectl --namespace postgres apply -f certmanager/cabootstrap.yaml
 ```
 
 ## get Chart:
