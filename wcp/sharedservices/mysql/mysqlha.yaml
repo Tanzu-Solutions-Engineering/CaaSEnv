@@ -1,10 +1,13 @@
 apiVersion: with.sql.tanzu.vmware.com/v1
 kind: MySQL
 metadata:
-  name: mysql-tls
+  name: mysql-ha
 spec:
   storageSize: 2Gi
   imagePullSecret: harbor
+#### Set highAvailability.enabled:true to create three pods; one primary and two standby, plus two proxy pods
+  highAvailability:
+    enabled: true
 
 #### Set the storage class name to change storage class of the PVC associated with this resource
   storageClassName: tanzu
