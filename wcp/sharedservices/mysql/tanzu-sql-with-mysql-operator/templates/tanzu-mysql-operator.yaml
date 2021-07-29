@@ -3,22 +3,23 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    control-plane: controller-manager
-  name: mysql-for-kubernetes-controller-manager
+    {{- include "tanzu-mysql-operator.labels" . | nindent 4 }}
+  name: {{ include "tanzu-mysql-operator.fullname" . }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      control-plane: controller-manager
+      {{- include "tanzu-mysql-operator.selectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        control-plane: controller-manager
+        {{- include "tanzu-mysql-operator.selectorLabels" . | nindent 8 }}
     spec:
+      serviceAccountName: {{ include "tanzu-mysql-operator.serviceAccountName" . }}
       containers:
       - args:
         - --enable-leader-election
-        - --mysql-image={{ .Values.tanzuMySQLImage }}
+        - --mysql-image={{ .Values.instanceImage }}
         - --metrics-addr=127.0.0.1:8080
         command:
         - /manager

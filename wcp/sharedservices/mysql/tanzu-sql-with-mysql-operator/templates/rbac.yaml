@@ -1,3 +1,8 @@
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: '{{ include "tanzu-mysql-operator.serviceAccountName" . }}'
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -31,55 +36,6 @@ rules:
   - events
   verbs:
   - create
----
-apiVersion: rbac.authorization.k8s.io/v1
-kind: ClusterRole
-metadata:
-  creationTimestamp: null
-  name: mysql-for-kubernetes-backup-sidecar-controller-role
-rules:
-- apiGroups:
-  - ""
-  resources:
-  - events
-  verbs:
-  - create
-  - patch
-- apiGroups:
-  - ""
-  resources:
-  - secrets
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - mysql.tanzu.vmware.com
-  resources:
-  - tanzumysqlbackuplocations
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - mysql.tanzu.vmware.com
-  resources:
-  - tanzumysqlbackups
-  verbs:
-  - create
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - mysql.tanzu.vmware.com
-  resources:
-  - tanzumysqlbackups/status
-  verbs:
-  - get
-  - patch
-  - update
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -169,94 +125,6 @@ rules:
   - list
   - watch
 - apiGroups:
-  - mysql.tanzu.vmware.com
-  resources:
-  - tanzumysqlbackuplocations
-  verbs:
-  - get
-  - list
-  - watch
-- apiGroups:
-  - mysql.tanzu.vmware.com
-  resources:
-  - tanzumysqlbackups
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - mysql.tanzu.vmware.com
-  resources:
-  - tanzumysqlbackups/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - mysql.tanzu.vmware.com
-  resources:
-  - tanzumysqlbackupschedules
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - mysql.tanzu.vmware.com
-  resources:
-  - tanzumysqlbackupschedules/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - mysql.tanzu.vmware.com
-  resources:
-  - tanzumysqlrestores
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - mysql.tanzu.vmware.com
-  resources:
-  - tanzumysqlrestores/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
-  - mysql.tanzu.vmware.com
-  resources:
-  - tanzumysqls
-  verbs:
-  - create
-  - delete
-  - get
-  - list
-  - patch
-  - update
-  - watch
-- apiGroups:
-  - mysql.tanzu.vmware.com
-  resources:
-  - tanzumysqls/status
-  verbs:
-  - get
-  - patch
-  - update
-- apiGroups:
   - rbac.authorization.k8s.io
   resources:
   - rolebindings
@@ -266,18 +134,183 @@ rules:
   - list
   - update
   - watch
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqlbackuplocations
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqlbackups
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqlbackups/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqlbackupschedules
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqlbackupschedules/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqlrestores
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqlrestores/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqls
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqls/status
+  verbs:
+  - get
+  - patch
+  - update
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  name: mysql-for-kubernetes-tanzumysqlbackup-creator-role
+  name: mysql-for-kubernetes-mysqlbackup-creator-role
 rules:
 - apiGroups:
-  - mysql.tanzu.vmware.com
+  - with.sql.tanzu.vmware.com
   resources:
-  - tanzumysqlbackups
+  - mysqlbackups
   verbs:
   - create
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  creationTimestamp: null
+  name: mysql-for-kubernetes-sidecar-controller-role
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - events
+  verbs:
+  - create
+  - patch
+- apiGroups:
+  - ""
+  resources:
+  - pods
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqlbackuplocations
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqlbackups
+  verbs:
+  - create
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqlbackups/status
+  verbs:
+  - get
+  - patch
+  - update
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqls
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - with.sql.tanzu.vmware.com
+  resources:
+  - mysqls/status
+  verbs:
+  - get
+  - patch
+  - update
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
@@ -289,7 +322,7 @@ roleRef:
   name: mysql-for-kubernetes-leader-election-role
 subjects:
 - kind: ServiceAccount
-  name: default
+  name: '{{ include "tanzu-mysql-operator.serviceAccountName" . }}'
   namespace: '{{ .Release.Namespace }}'
 ---
 apiVersion: rbac.authorization.k8s.io/v1
@@ -302,5 +335,5 @@ roleRef:
   name: mysql-for-kubernetes-manager-role
 subjects:
 - kind: ServiceAccount
-  name: default
+  name: '{{ include "tanzu-mysql-operator.serviceAccountName" . }}'
   namespace: '{{ .Release.Namespace }}'
