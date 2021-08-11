@@ -1,0 +1,16 @@
+Item,Area,Value,Type,Notes
+Management Network,	Infra,	10.193.38.0/24,	CIDR	,
+Workload Network,	Infra,	10.193.37.128/25,	CIDR,
+Frontend Network,	Infra,	10.193.37.0/25,	CIDR,	aka "Data Network" or "VIP Network" used for AVI Virtual IPs
+Management Network Gateway,	Infra,	10.193.38.1,	IP Address	,
+Workload Network Gateway,	Infra,	10.193.37.129,	IP Address,
+Frontend Network Gateway,	Infra,	10.193.37.1,	IP Address,
+AVI Controller IP,	AVI,	10.193.38.70,	IP Address	,
+AVI Management Network Range,	AVI,	10.193.38.71-10.193.38.78,	IP Range,
+VIP VIP Network,	AVI,	10.193.37.0/25,	Copied,
+AVI VIP Network Static IP Pool,	AVI,	10.193.37.11-10.193.37.124,	IP Range,
+WCP Workload Network,	WCP,	10.193.37.140-10.193.37.250,	IP Range,	Unused Range of Workload Network
+WCP Management Network Starting IP,	WCP,	10.193.38.51,	IP Address	,
+WCP Management Network Gateway IP,	WCP,	10.193.38.1,	Copied,
+WCP Workload Network Gateway,	WCP,	10.193.37.129,	Copied	,
+WCP Services IP Address,	WCP,	10.96.0.0/24,	CIDR,	
