@@ -1,0 +1,303 @@
+credentials:
+
+- name: /foundation/tkgi/opsman_host
+  type: value
+  value: https://om.tkgi.caas.pez.pivotal.io
+- name: /foundation/tkgi/opsman_decryption_passphrase
+  type: value
+  value: pivotal123
+- name: /foundation/tkgi/opsman_password
+  type: value
+  value: pivotal123
+- name: /foundation/tkgi/opsman_userid
+  type: value
+  value: admin
+- name: /foundation/tkgi/opsman_ssh_password
+  type: value
+  value: pivotal123
+- name: /foundation/tkgi/opsman-vcenter-ca-cert
+  type: value
+  value: |
+    -----BEGIN CERTIFICATE-----
+    MIIDfzCCAmegAwIBAgIQLjYGHcW8Ia1JvAwqn7vuFDANBgkqhkiG9w0BAQUFADBS
+    MRMwEQYKCZImiZPyLGQBGRYDY29tMRowGAYKCZImiZPyLGQBGRYKcmFnYXp6aWxh
+    YjEfMB0GA1UEAxMWcmFnYXp6aWxhYi1DT1JFQURDMS1DQTAeFw0xNDEyMTgxOTMz
+    MzlaFw0yNDEyMTgxOTQzMzlaMFIxEzARBgoJkiaJk/IsZAEZFgNjb20xGjAYBgoJ
+    kiaJk/IsZAEZFgpyYWdhenppbGFiMR8wHQYDVQQDExZyYWdhenppbGFiLUNPUkVB
+    REMxLUNBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA+NGGixl/a5DB
+    nv1RKMJz32aXvgYbcg03oEwdAQlM3ENvoGaC6ESFnki6izBl5tQ9EnUBvirq2LPZ
+    RL/1a8Ah2RgDD1pdL4h3Wv2EY/8zqlK26OxYOapdysqWLojPUkdNfyyBw9W1dCk7
+    YDwoC55aQVkmL83KIOSQP/GEc0E25CXKkA8scktXRBqUSL8VNqb4wH4UEXvIgK+x
+    NVSR0bNjNdcaXBiwLQov7Dk7+9zZ4pXudogNh4mmGPfrgYnskc7TscFl1ymNOQ8+
+    l412RqrO7/83mGbpf7LT+rGXXZWhY0CtqRew3PgljhBnuA2K/C+T8p05XA/GSETb
+    CpskdZazFQIDAQABo1EwTzALBgNVHQ8EBAMCAYYwDwYDVR0TAQH/BAUwAwEB/zAd
+    BgNVHQ4EFgQUYiWuvUtgt6ruwFYsGG22doeTOkIwEAYJKwYBBAGCNxUBBAMCAQAw
+    DQYJKoZIhvcNAQEFBQADggEBAJDjTjVQXJJ51W+lefpuunpzT0EPDM3I1+/A94yl
+    FzKX4FlONkYCj/7wNtZ+B65a3CihOf0/q0hqmcHKiu6Ldt5tTYL3hvWs7l9m17Jg
+    1M9IpuOUuEPo0v9qUn45J+42Of1L1/cSq5Q1mM59oN1UmNy9ik9DyS/yKDVdLGLo
+    gL5nn4UebvZ2ofiAEQQgKCVox3HXseQ5ZQHU50S/7UYoOySIwdEwcdZhrQ8iNvNE
+    Y+ZO5iSv4zVA1BuzFSa1pq6RhOm4XRt2s09FZOIpWtMqbixUil5ddYmWpIGkpGGy
+    SyIq7aD3tt6rkNFhFiPKgOC4lRmjNlLNKzJ8zJNAd6wEcMk=
+    -----END CERTIFICATE-----
+- name: /foundation/pks/properties_cloud_provider_vsphere_vcenter_master_creds_password
+  type: value
+  value: FHG2UwqyL*X}ZyuGBfr9
+- name: /foundation/tkgi/vcenter_password
+  type: value
+  value: FHG2UwqyL*X}ZyuGBfr9
+- name: /foundation/tkgi/pivnet_token
+  type: value
+  value: XPrUX-i1o5xba9jYS3rJ
+- name: /foundation/tkgi/nsx_admin_user
+  type: value
+  value: admin
+- name: /foundation/tkgi/nsx_admin_password
+  type: value
+  value: aVe,QjXThy*FDn6ifAM4
+- name: /foundation/tkgi/nsx_ca_cert
+  type: value
+  value: |
+    -----BEGIN CERTIFICATE-----
+    MIIDmDCCAoCgAwIBAgIGAWUAyOeWMA0GCSqGSIb3DQEBCwUAMIGMMSowKAYDVQQD
+    DCFzYzItbnN4bWdyLTAxLmNhYXMucGV6LnBpdm90YWwuaW8xHTAbBgNVBAoMFFBp
+    dm90YWwgU29mdHdhcmUgSW5jMQ0wCwYDVQQLDARDQUFTMRYwFAYDVQQHDA1TYW4g
+    RnJhbmNpc2NvMQswCQYDVQQIDAJDQTELMAkGA1UEBhMCVVMwHhcNMTgwODAzMTcx
+    NDUxWhcNMjgwNzMxMTcxNDUxWjCBjDEqMCgGA1UEAwwhc2MyLW5zeG1nci0wMS5j
+    YWFzLnBlei5waXZvdGFsLmlvMR0wGwYDVQQKDBRQaXZvdGFsIFNvZnR3YXJlIElu
+    YzENMAsGA1UECwwEQ0FBUzEWMBQGA1UEBwwNU2FuIEZyYW5jaXNjbzELMAkGA1UE
+    CAwCQ0ExCzAJBgNVBAYTAlVTMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKC
+    AQEAzWy/xtGu9lf3ahIl83xQQ0Dfuyyq0P4HftRTDsnvryUUEeT0WVRkAX6iluNg
+    4+W9fxSYBcdfkh5NGFV9v8gJep0NT/lrrrbyhXDabkarNK1dXg+zEO8NlA/nVJwW
+    1WxLLc4aSj0xLZKWTQZrCfjwMQ26vECAiPV98E0SiN2pYf0wccsEin9/qCa9Lk7I
+    jJOfice/XjhEp4ntEtpS81kXIU/5Bdwd/ucg0Tpw0E10KOQnmqOn3rllFaPxDlyA
+    yvcwG9FCBB5mwWYTOgQBsjdBEgXnNPkxKrkkKzXUkiZaszYbj7zDdq8IlrVzLxI7
+    GQnZX+9PL5+iOXEGkVBmAHerRwIDAQABMA0GCSqGSIb3DQEBCwUAA4IBAQCGHOOp
+    A91s3gZFOAbFJh1Grq8/rW0y41CFwNHXiJpY2mp3PCmj3+p5QS9+R0Hk+gZFL9B0
+    CVc4ZD9dfE+XOrFsuT0SwrEwiZNx+j2DjqlbxWapS8ZofPjxYqiM5FGEKJa3Dipy
+    Diqdiy1rw76HhkO9p5I0Z7eGa0hTr24ygPNg6md2KNysDBudKyYkZGZNiA4+75j/
+    lYJzPNtria7uQ1H2ZHm+s3mJFbPUnk6rxywuHBFtOsL/yDwAoeoAAo7x08+SFIca
+    lrFuECnYbenNCS68NzdCKR9V5zEbGiJraz4Tk6NLECF5TWm/cZdUIULuYlPETRji
+    yOF3OqAAlOjwEcR7
+    -----END CERTIFICATE-----
+- name: /foundation/tkgi/director-trusted_certificates
+  type: value
+  value: |
+    -----BEGIN CERTIFICATE-----
+    MIIDizCCAnOgAwIBAgIUV2MRxryJCD845AU2VKLBVQ31fHIwDQYJKoZIhvcNAQEL
+    BQAwHzELMAkGA1UEBhMCVVMxEDAOBgNVBAoMB1Bpdm90YWwwHhcNMTgxMTI2MTg1
+    MTEyWhcNMjAxMTI2MTg1MTEyWjBEMQswCQYDVQQGEwJVUzEQMA4GA1UECgwHUGl2
+    b3RhbDEjMCEGA1UEAwwaaGFyYm9yLmNhYXMucGV6LnBpdm90YWwuaW8wggEiMA0G
+    CSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDBpVU35kdX+JCK0WnXQJ4DvsJhARCx
+    skEmsxlY+YpT8J9k/FlsQ0qrtdFkkt11sDCUgfp7mKGY1bI6yvX6X9XqPhr/Lpt1
+    yLX1Zq+GZS4JLgWNjXttjS/jzCqQ/5I58TMRKCvZGV7ZimapBAd6R8ZrRMTRXCkH
+    b/tXnlAWyWO1hSvTg3dYrnLFypcjq6Vs2cQEQvpOMrwUjPbgvYT1GfKtjdak28+X
+    9eoUAxe6atJLIWLtB56pH5UYm20tU1v3ShKxpOLh2/GOwEi3k8y2KcnexU9CWBX4
+    BpQXpJ1mkf0n0bdn7gDsWbqTbYpHJWkARETIB8d00p0di+PxOrGSLweJAgMBAAGj
+    gZkwgZYwHQYDVR0OBBYEFJcVYtGZByhYGIhHfdjdMbVnKrn8MB8GA1UdIwQYMBaA
+    FM95b4O4nG6fEPCYkHE92l+1yEiNMB0GA1UdJQQWMBQGCCsGAQUFBwMCBggrBgEF
+    BQcDATAOBgNVHQ8BAf8EBAMCB4AwJQYDVR0RBB4wHIIaaGFyYm9yLmNhYXMucGV6
+    LnBpdm90YWwuaW8wDQYJKoZIhvcNAQELBQADggEBALoQpsK8uSF4wNJhwoirHC96
+    xLQjnnl39plGj/0FeHyrzoh/DDbdfREa/4OxapNmRKr1ALRsuxN50Q1VhwlkGSFr
+    8QcGWqTy62/lYejQhXD5b6X/OSOV1BEXsFjYdfFAYVPFjMcDn7JvVVnMVozsvWHA
+    a3bv4UtjzUoCbOGOmWklOHsaVc7CW/VyAn1/i74IdiqB05Okgt895ftA4KDoaKas
+    1VT3UyIqUScellEBc2PHpcWhGpcw3YyllzsWoB3eeCqofTjnBGcLdMExp9jVP75U
+    m5MRgPAdbOB4cHxrZxU3EuscwIG/ED1M7uUMn8dSIU9/wH4f/GgV3JGSptquUiA=
+    -----END CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
+    MIIDwTCCAqmgAwIBAgIQGqd0k74VRqNKSsmRf/CXBjANBgkqhkiG9w0BAQsFADBz
+    MRIwEAYKCZImiZPyLGQBGRYCaW8xFzAVBgoJkiaJk/IsZAEZFgdwaXZvdGFsMRMw
+    EQYKCZImiZPyLGQBGRYDcGV6MRQwEgYKCZImiZPyLGQBGRYEY2FhczEZMBcGA1UE
+    AxMQY2Fhcy1DQUFTQURDMS1DQTAeFw0yMDA0MjMxOTIxNDNaFw0zMDA0MjMxOTMx
+    NDJaMHMxEjAQBgoJkiaJk/IsZAEZFgJpbzEXMBUGCgmSJomT8ixkARkWB3Bpdm90
+    YWwxEzARBgoJkiaJk/IsZAEZFgNwZXoxFDASBgoJkiaJk/IsZAEZFgRjYWFzMRkw
+    FwYDVQQDExBjYWFzLUNBQVNBREMxLUNBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+    MIIBCgKCAQEAvdToshEoTJ2kV27tF4nyAnYoRNwAnnddVCGGl2xyZ37Wb3PITVmS
+    0wqeqWqbXsD0JFpE/H1VqA9yCzaTkkRo4f5IN/SYlatdZExkIamXitkclh1TjfJk
+    EBG0vKxxvl2FABCfnK/5A/Ev/MZn94dOg+jXqYISp0zMPnJFczca3IUIFuWcgJFg
+    vVPPvh1P8aAFjfOFJYA743L24AdqzFqkCvRLikpGsOJufjyL7JuuAAK4kKeVX1dQ
+    EjRuBtSa83zAt0a+0z3pzu+hAEsuyBdQXfT7wm1UEPI5iRkVmDDELdDGzM1l1O3c
+    QmR+6gp6ef4qkyLszuUnoe6D4gS5ODWzRwIDAQABo1EwTzALBgNVHQ8EBAMCAYYw
+    DwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUydOr0Ze4nCPq40ue9+IM5X04P84w
+    EAYJKwYBBAGCNxUBBAMCAQAwDQYJKoZIhvcNAQELBQADggEBADSmfeC93Zzja6Iz
+    dBEWoa4UgXEMDwYW7QXU9t9j0Gg77q4+C1MeGDmn1lZryybG5EC9x/0PGJjRS1Mo
+    Gz6OC7KhHAQNuYg6uZE/twSR5l4ozGzGtmEjHoG0+qngBQtrxjYN/1j/YN2Nq+2Y
+    ei64YddtsEuHgAlM3dUoKLJ7BuoB/ddl223vm4f4hZlr0zNjS1w0S5z8w9m5Q90C
+    pSO+m8OB3/vWrSjh6y/8x8VgXI9fxLk0hdlykyyptFNI8fWh/yZWJ2lajpzEzQoT
+    wzl1Tw32KwVurStEHkzH/7Iq1s2D718lHi4lqbXJ1j6TE+M1dayDlkdJuHMwXH3f
+    28qq5Tg=
+    -----END CERTIFICATE-----
+- name: /foundation/tkgi/properties_cloud_provider_vsphere_vcenter_master_creds_password
+  type: value
+  value: FHG2UwqyL*X}ZyuGBfr9
+- name: /foundation/tkgi/properties_network_selector_nsx_nsx-t-superuser-certificate_cert_pem
+  type: value
+  value: |
+    -----BEGIN CERTIFICATE-----
+    MIIC1jCCAb6gAwIBAgIJALMQ+eWZkQPyMA0GCSqGSIb3DQEBCwUAMB4xHDAaBgNV
+    BAMME3Brcy1uc3gtdC1zdXBlcnVzZXIwHhcNMTgxMTI3MTg0MjA1WhcNMjAxMTI2
+    MTg0MjA1WjAeMRwwGgYDVQQDDBNwa3MtbnN4LXQtc3VwZXJ1c2VyMIIBIjANBgkq
+    hkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAnijdACA56C9ei5+IEOe+BK66+yC/hLev
+    AqIRYw+tbBJkEkX0XnDeGUEd2sTLmiaVRV3arQ82EgSBk7xVXaGcbMfex9J92xNd
+    oPvwwqRD0R6tEu0A87sO3n9daKgLTHqg9SkkVVvJ7TB5mur80HHljOmX8A4yPEjP
+    S62MNfcEDqSJ0EvazwGm2qHVMQ+6Y/ojk47GpI7EETP1B0J3CaIacbJqIhokDRZ6
+    JMcMLFYQgpblxM2dQMj75c9/KRmjGFZOZMaKUm7D1N7AELIwxK6PdwuFezmGAH4s
+    BjGykBRW5WW+xEZaPAixLhdFM4bfF7LfwFTcGk4WU16yPQ4ei7kuJQIDAQABoxcw
+    FTATBgNVHSUEDDAKBggrBgEFBQcDAjANBgkqhkiG9w0BAQsFAAOCAQEAIcCiFsSI
+    uJpPuWL+Bf9Xn9+FLfG13feG7yNQh+8wZYazxkDj8STc8L0cA2K9k4Tz3azwZAJe
+    QIzE2WPFPjnOe5MpR0ptG/ntUWvFBTuiuD7bBFKxWohm64sEXtMELaG5HQD5oqyB
+    h4SyFH0MYA9ZExrrj/7jeznka5GnQtbsWEZPCYRBKYC7FFkcAk/0PlS/OsDZTXWI
+    3G+L5+XHMen2w1YsOVlXDLrlL6Pp0vXpwynE2Stt0cQ7oKwr8a3d5RtP3coR442Z
+    +HHMmMFxeozkII6AmUwB3yYN6C2sWGl6r8VssX9zZtRC8InGsEg0+bpemu0ozLp/
+    lLMuYerOJSlrow==
+    -----END CERTIFICATE-----
+- name: /foundation/tkgi/properties_network_selector_nsx_nsx-t-superuser-certificate_private_key_pem
+  type: value
+  value: |
+    -----BEGIN PRIVATE KEY-----
+    MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCeKN0AIDnoL16L
+    n4gQ574Errr7IL+Et68CohFjD61sEmQSRfRecN4ZQR3axMuaJpVFXdqtDzYSBIGT
+    vFVdoZxsx97H0n3bE12g+/DCpEPRHq0S7QDzuw7ef11oqAtMeqD1KSRVW8ntMHma
+    6vzQceWM6ZfwDjI8SM9LrYw19wQOpInQS9rPAabaodUxD7pj+iOTjsakjsQRM/UH
+    QncJohpxsmoiGiQNFnokxwwsVhCCluXEzZ1AyPvlz38pGaMYVk5kxopSbsPU3sAQ
+    sjDEro93C4V7OYYAfiwGMbKQFFblZb7ERlo8CLEuF0Uzht8Xst/AVNwaThZTXrI9
+    Dh6LuS4lAgMBAAECggEBAJNv+IVzhUfjULnMICXSQxtOX9RXdPId4bIMrzSvmrVS
+    d6NpPyMDCKh2QYR9TGgJa8Hcekw2D+u/86NrQBEm5RGrSQzyNo0RgojeFFT+mJHL
+    jQBFnEuZp4TXKpazgMTs1Dt2/P3tsVHBjLtUMBWI97riz9bjBQWZwlUEFd8AxPF4
+    DiHgsPdbexroknBPOJ1wTgJGOG6jHt5chUyU/3SVujiCKTKtm0PXqcAmakViOUd/
+    kz6crm/R9JLpI4AWxAf5Umbw/6E1MnPru5/VlOTchTGq79oe7jMVdpVIMXYbGc9m
+    iSZKL40HV9iC+8tY/wW//RbBof2AqIAFGbDrUqJtC4kCgYEAzLOkFBLNZzxy0CK2
+    iylobIb6+daIVlraN8IYMvhLQVFAXQUo0vMHpSjpTM/7QSRED0cG+dElWPc9IYW9
+    Z0mmnTPfn5y9hqkZCu6/BZHPk+ynZ8JiQ0cm+iz55OjZyWLrmVjfummuY5BO2FAi
+    RI4QEHfhlrMcHreMGL7KdMVJDfMCgYEAxctgp9YBgKHlyPjruPfoGG/TtPvVv4Zz
+    M2fmsYtYrhvGpT/pRZBpiT/y7F+YjhOw/5SLz6QqrbsVPiW34fCa4bi4KNNJ9W/2
+    wJcyYUjn6FkwPh3hsWwdjgohwmnn8j3UrcAhfFESKxbT6eyiJhH/7BeWudqq8tIQ
+    J+DZPaAfoYcCgYEAtA7EIgAT+14Zo+kU5r4Ko4Pr2b2SeVs7Hda2EIeFMrQ0yF3U
+    dhHeRLIC3VUIrlknIMUaZr5IesQnWohYfTU0wIyzhKOLtpqhc5NkJZMHoxeEfWln
+    o8Q/jcnoGimUAGfp0x5w1XlGMz/piq6aJfFMQiAhJ7zu3DoZml6gmSw8QW8CgYBq
+    RAwX3+hKvbCAuwuaAsbVai8pyytZjNiTw7yzopPwZsfgvGeNkjrBHHRc/jcuDfJI
+    PfyngCHV2O9exlD2uJfdsapvdKUFkjPV4OWWUt8Ve+VpWhCJi/aM+3CLzO5qvUFo
+    YBMdgUjrkYYk5ZdwMLd4lmvKSmsRrj4zzp+odkDIPQKBgAGt4H9Y8rdQrUwQjUN/
+    W3UaO2CPyYGWNaHyNlJ/I12ms4ltmd62M3uLGJtJ0kG8YUkOiNRyOjHkN4OYVwMk
+    WXtPsSVtGmYqU3o/qNE0GB9Lo+lIj/GJcNfV/3L/yzCqqFV3uG2QcXwY+5fvxzSy
+    5xplQB0dfyvst3beOvv+x+JX
+    -----END PRIVATE KEY-----
+- name: /foundation/tkgi/pivotal-container-service_pks_tls_cert_pem
+  type: value
+  value: |
+    -----BEGIN CERTIFICATE-----
+    MIIF9zCCBN+gAwIBAgITPQAAAAOZr9FsypY3ggAAAAAAAzANBgkqhkiG9w0BAQsF
+    ADBzMRIwEAYKCZImiZPyLGQBGRYCaW8xFzAVBgoJkiaJk/IsZAEZFgdwaXZvdGFs
+    MRMwEQYKCZImiZPyLGQBGRYDcGV6MRQwEgYKCZImiZPyLGQBGRYEY2FhczEZMBcG
+    A1UEAxMQY2Fhcy1DQUFTQURDMS1DQTAeFw0yMDA0MjMyMTQzNTdaFw0yMjA0MjMy
+    MTQzNTdaMIGIMQswCQYDVQQGEwJVUzELMAkGA1UECBMCY2ExFjAUBgNVBAcTDVNh
+    biBGcmFuY2lzY28xHjAcBgNVBAoTFVBpdm90YWwgU29mdHdhcmUgSW5jLjENMAsG
+    A1UECxMEQ2FhUzElMCMGA1UEAxMcYXBpLnRrZ2kuY2Fhcy5wZXoucGl2b3RhbC5p
+    bzCCASIwDQYJKoZIhvcNAQEBBQADggEPADCCAQoCggEBAL+uqB/JoivRYuPGG6c1
+    5TDjrkzSXOLJEfOOqJYz036uyEMZmD+vdRJlZ8UFE9+Plgev4PSqApfbebly/pdZ
+    TTt63UgyS5mPoKTsBBntG84xyFk3aGWxdvbtiVpiZqcrpf1YxwXaGmMdYCaEWt7j
+    L/k2gZm5VGCdnhKJBGejyhpv1wPzijaFh0k2aFBVu1AEpoNdcsu/Pe+6yOhjdhbI
+    E6bhpqZz3EBkZaJxzJz5gb4psk5jhPXh91WV0G19S35LacuG7uEUunF4DkTPi4pj
+    Psopx8LRrXYX0sRUMIJuOXp5xFC9hUxPfgvgsG8OUVoxrAs6xWQ2KhKfwT99sFZc
+    +fkCAwEAAaOCAmwwggJoMA4GA1UdDwEB/wQEAwIFoDATBgNVHSUEDDAKBggrBgEF
+    BQcDATArBgNVHREEJDAiggR0a2dpghoqLnRrZ2kuY2Fhcy5wZXoucGl2b3RhbC5p
+    bzAdBgNVHQ4EFgQUPvAAo4jfRVUDDGFaQgSG9dgb6e0wHwYDVR0jBBgwFoAUydOr
+    0Ze4nCPq40ue9+IM5X04P84wgd0GA1UdHwSB1TCB0jCBz6CBzKCByYaBxmxkYXA6
+    Ly8vQ049Y2Fhcy1DQUFTQURDMS1DQSxDTj1jYWFzYWRjMSxDTj1DRFAsQ049UHVi
+    bGljJTIwS2V5JTIwU2VydmljZXMsQ049U2VydmljZXMsQ049Q29uZmlndXJhdGlv
+    bixEQz1jYWFzLERDPXBleixEQz1waXZvdGFsLERDPWlvP2NlcnRpZmljYXRlUmV2
+    b2NhdGlvbkxpc3Q/YmFzZT9vYmplY3RDbGFzcz1jUkxEaXN0cmlidXRpb25Qb2lu
+    dDCB0AYIKwYBBQUHAQEEgcMwgcAwgb0GCCsGAQUFBzAChoGwbGRhcDovLy9DTj1j
+    YWFzLUNBQVNBREMxLUNBLENOPUFJQSxDTj1QdWJsaWMlMjBLZXklMjBTZXJ2aWNl
+    cyxDTj1TZXJ2aWNlcyxDTj1Db25maWd1cmF0aW9uLERDPWNhYXMsREM9cGV6LERD
+    PXBpdm90YWwsREM9aW8/Y0FDZXJ0aWZpY2F0ZT9iYXNlP29iamVjdENsYXNzPWNl
+    cnRpZmljYXRpb25BdXRob3JpdHkwIQYJKwYBBAGCNxQCBBQeEgBXAGUAYgBTAGUA
+    cgB2AGUAcjANBgkqhkiG9w0BAQsFAAOCAQEARPzXhQ1sWIBJOsTuY8WzeZwgfsIO
+    MxDFmEAuL8sNAwWGnVo969OCO+Zg0HAbXCFYyLYMWsFKCU73QRN/iMBxtCVK4mky
+    Ux77ZBob0jkDwAHw8s42LZOZwM9PZ70DASIqz4g7dPSQa78JoL7D2s/r61g8COs3
+    JZVIMUE0J/oauMvVEwn174r9MewVQcL3tlKM9Nhmpqcsda0GHZ1JoGveqojfvjW2
+    Xkld960C9dpykb8w1NQ2RGHbGOrc2cHR2UtIvDs0+GsuGEJTnP4w7R8ZHNWgdkOs
+    TBN/T/c4CzRBlTHGtMjv3kS1dc58QovK8xfVwovxOHNa+dfSZbNB6ojqZg==
+    -----END CERTIFICATE-----
+    -----BEGIN CERTIFICATE-----
+    MIIDwTCCAqmgAwIBAgIQGqd0k74VRqNKSsmRf/CXBjANBgkqhkiG9w0BAQsFADBz
+    MRIwEAYKCZImiZPyLGQBGRYCaW8xFzAVBgoJkiaJk/IsZAEZFgdwaXZvdGFsMRMw
+    EQYKCZImiZPyLGQBGRYDcGV6MRQwEgYKCZImiZPyLGQBGRYEY2FhczEZMBcGA1UE
+    AxMQY2Fhcy1DQUFTQURDMS1DQTAeFw0yMDA0MjMxOTIxNDNaFw0zMDA0MjMxOTMx
+    NDJaMHMxEjAQBgoJkiaJk/IsZAEZFgJpbzEXMBUGCgmSJomT8ixkARkWB3Bpdm90
+    YWwxEzARBgoJkiaJk/IsZAEZFgNwZXoxFDASBgoJkiaJk/IsZAEZFgRjYWFzMRkw
+    FwYDVQQDExBjYWFzLUNBQVNBREMxLUNBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+    MIIBCgKCAQEAvdToshEoTJ2kV27tF4nyAnYoRNwAnnddVCGGl2xyZ37Wb3PITVmS
+    0wqeqWqbXsD0JFpE/H1VqA9yCzaTkkRo4f5IN/SYlatdZExkIamXitkclh1TjfJk
+    EBG0vKxxvl2FABCfnK/5A/Ev/MZn94dOg+jXqYISp0zMPnJFczca3IUIFuWcgJFg
+    vVPPvh1P8aAFjfOFJYA743L24AdqzFqkCvRLikpGsOJufjyL7JuuAAK4kKeVX1dQ
+    EjRuBtSa83zAt0a+0z3pzu+hAEsuyBdQXfT7wm1UEPI5iRkVmDDELdDGzM1l1O3c
+    QmR+6gp6ef4qkyLszuUnoe6D4gS5ODWzRwIDAQABo1EwTzALBgNVHQ8EBAMCAYYw
+    DwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUydOr0Ze4nCPq40ue9+IM5X04P84w
+    EAYJKwYBBAGCNxUBBAMCAQAwDQYJKoZIhvcNAQELBQADggEBADSmfeC93Zzja6Iz
+    dBEWoa4UgXEMDwYW7QXU9t9j0Gg77q4+C1MeGDmn1lZryybG5EC9x/0PGJjRS1Mo
+    Gz6OC7KhHAQNuYg6uZE/twSR5l4ozGzGtmEjHoG0+qngBQtrxjYN/1j/YN2Nq+2Y
+    ei64YddtsEuHgAlM3dUoKLJ7BuoB/ddl223vm4f4hZlr0zNjS1w0S5z8w9m5Q90C
+    pSO+m8OB3/vWrSjh6y/8x8VgXI9fxLk0hdlykyyptFNI8fWh/yZWJ2lajpzEzQoT
+    wzl1Tw32KwVurStEHkzH/7Iq1s2D718lHi4lqbXJ1j6TE+M1dayDlkdJuHMwXH3f
+    28qq5Tg=
+    -----END CERTIFICATE-----
+- name: /foundation/tkgi/pivotal-container-service_pks_tls_private_key_pem
+  type: value
+  value: |
+    -----BEGIN PRIVATE KEY-----
+    MIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC/rqgfyaIr0WLj
+    xhunNeUw465M0lziyRHzjqiWM9N+rshDGZg/r3USZWfFBRPfj5YHr+D0qgKX23m5
+    cv6XWU07et1IMkuZj6Ck7AQZ7RvOMchZN2hlsXb27YlaYmanK6X9WMcF2hpjHWAm
+    hFre4y/5NoGZuVRgnZ4SiQRno8oab9cD84o2hYdJNmhQVbtQBKaDXXLLvz3vusjo
+    Y3YWyBOm4aamc9xAZGWiccyc+YG+KbJOY4T14fdVldBtfUt+S2nLhu7hFLpxeA5E
+    z4uKYz7KKcfC0a12F9LEVDCCbjl6ecRQvYVMT34L4LBvDlFaMawLOsVkNioSn8E/
+    fbBWXPn5AgMBAAECggEBAJl5BWHWNoNw9gW7Y/7Al05Krg8SS47FQRtKeM8ylb8T
+    wIKBJravDER7btd/1kakl5J2Dt62lLbz4oVKfm+976mVGUGqC3/bUNtboXkEsMOq
+    dmiAhZUOv1q8G8KDkP9+Yjvz7f5Qf9ol9gtA4+Ub8BhQvPnROq7U5HCgxicZLEN3
+    Lgf7f4nzOpTUIh816dZRbzKW1WmsmCDmkJnn/FLXwqLxupIDxe+XFqSJPKNx9cMi
+    To5PCM3v1fv+lfCX6Ht0PNFYUqXema3uvx/4y+CVWRBprfzCBsVZ428wxcCZOH19
+    X8sCHUxR6u/MtmLOw8DyXQAv2cWbyH7Rvf29g45nxkUCgYEA9aOOvLrBHf4b2U57
+    oKMspUF+RbTsuQpZQyU78uHcl/uW6zY+Nvctr14fcdbI/FbwjMmMmj7x2IQ1s1iS
+    grdscPC1Ey+MW3BU6XfaT30z7JMUOo+gftL2RyU1yp5kDBYVbYgupFIhAyJAsY7d
+    i0DOuXDKEpt5ucSlECw2OvP4CosCgYEAx8R3yvu/FMeFkDmoxAOB9i67hIhQxCVc
+    mPKsxei9EdZAgQCkS3ek6TFM3D3lMCcBK3zIKwGZNOyRCFsqkCrivLPS2T0ScgTe
+    DmOlj69pBzOSoTST3a2htHrzse2qYjSbEl4YeKYnmFPhQI9dR4rPknm/sImlnFn4
+    TpOvHWR8UgsCgYBLj8SYydoeH8zxS/M7tvZE36C4UK+BPG24+fs2+8Of/QSv1j/N
+    KLwk9g82NZweA6B7roRR7or2z7S1Nsna7BGvrFwHStkiR6vXJcdCLIGMhLH0UbpN
+    SRf5SrkBWzfrf9+XkgzG/3yoOiEsfYYpEAaHhOqkTq9jNdqQ3wjPmbzzgQKBgQCR
+    JoUwXRlrPMokkHC69B2DRlOEKhQdYVRV4cZ+Cu0OP9Igqdm26BlQQz0ormSQR1cH
+    RSSgcwniNZ3wJ2XW2QJkwHiM1l5HsJe0dtz+eSLkU6nQLkbehOIBJHFbsGfj8XtX
+    rj0ztO8CNLhv03uglxDZylLpMCrAX3MXjSFpRvE6HwKBgHFTfNgeMLB6izeyUfXc
+    fRLg4nfztX3LSYqoKGTVG0kQHNiRj0kIDEM/V4NdFpBzBRKNfmDMUrIdcIuF+zQJ
+    GOivsVCw9hnsi7AvlP+sVzyNdHYQvTNcygOqRL2Ut5z3nNzlzEeOjCp/ZSi8h/kp
+    wjBYwcDuf9u6Pn3hqHUTzXoO
+    -----END PRIVATE KEY-----
+- name: /foundation/tkgi/ldap_server_ssl_cert
+  type: value
+  value: |
+    -----BEGIN CERTIFICATE-----
+    MIIDwTCCAqmgAwIBAgIQGqd0k74VRqNKSsmRf/CXBjANBgkqhkiG9w0BAQsFADBz
+    MRIwEAYKCZImiZPyLGQBGRYCaW8xFzAVBgoJkiaJk/IsZAEZFgdwaXZvdGFsMRMw
+    EQYKCZImiZPyLGQBGRYDcGV6MRQwEgYKCZImiZPyLGQBGRYEY2FhczEZMBcGA1UE
+    AxMQY2Fhcy1DQUFTQURDMS1DQTAeFw0yMDA0MjMxOTIxNDNaFw0zMDA0MjMxOTMx
+    NDJaMHMxEjAQBgoJkiaJk/IsZAEZFgJpbzEXMBUGCgmSJomT8ixkARkWB3Bpdm90
+    YWwxEzARBgoJkiaJk/IsZAEZFgNwZXoxFDASBgoJkiaJk/IsZAEZFgRjYWFzMRkw
+    FwYDVQQDExBjYWFzLUNBQVNBREMxLUNBMIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8A
+    MIIBCgKCAQEAvdToshEoTJ2kV27tF4nyAnYoRNwAnnddVCGGl2xyZ37Wb3PITVmS
+    0wqeqWqbXsD0JFpE/H1VqA9yCzaTkkRo4f5IN/SYlatdZExkIamXitkclh1TjfJk
+    EBG0vKxxvl2FABCfnK/5A/Ev/MZn94dOg+jXqYISp0zMPnJFczca3IUIFuWcgJFg
+    vVPPvh1P8aAFjfOFJYA743L24AdqzFqkCvRLikpGsOJufjyL7JuuAAK4kKeVX1dQ
+    EjRuBtSa83zAt0a+0z3pzu+hAEsuyBdQXfT7wm1UEPI5iRkVmDDELdDGzM1l1O3c
+    QmR+6gp6ef4qkyLszuUnoe6D4gS5ODWzRwIDAQABo1EwTzALBgNVHQ8EBAMCAYYw
+    DwYDVR0TAQH/BAUwAwEB/zAdBgNVHQ4EFgQUydOr0Ze4nCPq40ue9+IM5X04P84w
+    EAYJKwYBBAGCNxUBBAMCAQAwDQYJKoZIhvcNAQELBQADggEBADSmfeC93Zzja6Iz
+    dBEWoa4UgXEMDwYW7QXU9t9j0Gg77q4+C1MeGDmn1lZryybG5EC9x/0PGJjRS1Mo
+    Gz6OC7KhHAQNuYg6uZE/twSR5l4ozGzGtmEjHoG0+qngBQtrxjYN/1j/YN2Nq+2Y
+    ei64YddtsEuHgAlM3dUoKLJ7BuoB/ddl223vm4f4hZlr0zNjS1w0S5z8w9m5Q90C
+    pSO+m8OB3/vWrSjh6y/8x8VgXI9fxLk0hdlykyyptFNI8fWh/yZWJ2lajpzEzQoT
+    wzl1Tw32KwVurStEHkzH/7Iq1s2D718lHi4lqbXJ1j6TE+M1dayDlkdJuHMwXH3f
+    28qq5Tg=
+    -----END CERTIFICATE-----
+- name: /foundation/tkgi/properties_uaa_ldap_credentials_password
+  type: value
+  value: Pivotal123

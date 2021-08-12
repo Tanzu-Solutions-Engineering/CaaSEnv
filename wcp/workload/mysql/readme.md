@@ -29,7 +29,7 @@ helm chart export registry.pivotal.io/tanzu-mysql-for-kubernetes/tanzu-mysql-ope
 ## Create Operator Deployment
 ```
 kubectl create namespace tanzu-mysql
-kubectl --namespace tanzu-mysql create secret docker-registry harbor --docker-server=https://harbor.caas.pez.pivotal.io --docker-username=harboradmin@caas.pez.pivotal.io --docker-password=<PASSWORD>
+kubectl --namespace tanzu-mysql create secret docker-registry harbor --docker-server=https://harbor.caas.pez.pivotal.io --docker-username=admin@caas.pez.pivotal.io --docker-password=<PASSWORD>
 helm install --namespace tanzu-mysql --values=./tanzu-sql-with-mysql-operator/values-override.yaml tanzu-mysql-operator ./tanzu-sql-with-mysql-operator/
 ```
 
