@@ -1,3 +1,5 @@
+private-*
+
 #################
 ## MAC Crap
 #################
@@ -45,7 +47,7 @@ local.properties
 .loadpath
 
 ##############
-## UltraEdit    
+## UltraEdit
 ##############
 *.bak
 
@@ -317,4 +319,3 @@ pip-log.txt
 # Gradle
 ##############
 .gradle/*
-
