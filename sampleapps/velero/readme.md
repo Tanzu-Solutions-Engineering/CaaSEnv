@@ -3,14 +3,14 @@
 
 `velero install \
     --provider aws \
-    --plugins velero/velero-plugin-for-aws:v1.1.0 \
+    --plugins velero/velero-plugin-for-aws:v1.2.0 \
     --bucket backup-mc \
     --secret-file ./credentials-velero \
     --use-volume-snapshots=false \
     --use-restic \
     --backup-location-config \
     --cacert ./minio-caas-pez-pivotal-io.pem \
-    region=minio,s3ForcePathStyle="true",s3Url=https://minio.caas.pez.pivotal.io:443
+    region=minio,s3ForcePathStyle="true",s3Url=http://minio.caas.pez.pivotal.io:80
     `
 
 `velero install --provider aws --plugins velero/velero-plugin-for-aws:v1.1.0 --use-volume-snapshots=false --use-restic --bucket velero-backup-ws1 --secret-file credentials-velero --backup-location-config region=minio,s3ForcePathStyle="true",s3Url=https://minio.caas.pez.pivotal.io:443 --cacert minio-caas-pez-pivotal-io.pem`

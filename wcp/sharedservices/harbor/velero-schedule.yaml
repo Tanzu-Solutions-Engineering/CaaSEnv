@@ -1,0 +1,13 @@
+---
+apiVersion: velero.io/v1
+kind: Schedule
+metadata:
+  name: harbor-daily
+spec:
+  schedule: '0 0 * * *'
+  template:
+    hooks: {}
+    includedNamespaces:
+    - tanzu-system-ingress
+    - tanzu-system-registry
+    ttl: 360h0m0s

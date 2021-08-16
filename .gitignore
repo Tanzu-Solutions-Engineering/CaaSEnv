@@ -1,8 +1,9 @@
 private-*
 *.cer
 *.crt
-*.key
 *.csr
+*.ppk
+*.key
 
 #################
 ## MAC Crap
