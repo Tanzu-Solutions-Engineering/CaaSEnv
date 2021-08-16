@@ -28,17 +28,17 @@ ytt -f /tmp/bundle/values.yaml \
     | kbld -f /tmp/bundle/.imgpkg/images.yml -f- --registry-verify-certs=false \
     | kapp deploy -a tanzu-build-service -f- -y
 ```
-or - without dynamic updates to clusterstacks
+or - without dynamic updates to clusterstacks - include the CA CERT!!
 ```
 ytt -f /tmp/bundle/values.yaml \
     -f /tmp/bundle/config/ \
+    -f caas-root-ca.cer \
     -v docker_repository="harbor.caas.pez.pivotal.io/tbs/build-service" \
     -v docker_username="username@caas.pez.pivotal.io" \
-    -v docker_password='<PASSWORD>' \
+    -v docker_password='password' \
     | kbld -f /tmp/bundle/.imgpkg/images.yml -f- --registry-verify-certs=false \
     | kapp deploy -a tanzu-build-service -f- -y
 ```
-
 
 # Verify
 kapp inspect -a tanzu-build-service
@@ -53,9 +53,9 @@ kp import -f ./descriptor-<version>.yaml --registry-ca-cert-path <path-to-ca-cer
 ## Two-Step for dependencies
 ** You may have to change context and change back to get this to work
 
-kbld package -f ./descriptor-100.0.80.yaml --output /tmp/packaged-dependencies.tar
+kbld package -f ./descriptor-100.0.146.yaml --output /tmp/packaged-dependencies.tar
 
-kbld unpackage -f descriptor-100.0.122.yaml \
+kbld unpackage -f descriptor-100.0.146.yaml \
   --input /tmp/packaged-dependencies.tar \
   --repository harbor.caas.pez.pivotal.io/tbs/build-service \
   --lock-output ./dependencies-relocated.lock \
