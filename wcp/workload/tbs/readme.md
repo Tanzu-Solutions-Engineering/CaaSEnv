@@ -13,19 +13,20 @@ kubectl apply -f allowrunasnonroot-clusterrole.yaml
 docker login -u bragazzi@caas.pez.pivotal.io harbor.caas.pez.pivotal.io
 Not needed? kbld relocate -f ./images.lock --lock-output ./images-relocated.lock --registry-verify-certs=false --repository harbor.caas.pez.pivotal.io/build-service/tbs
 ```
-imgpkg copy -b "registry.pivotal.io/build-service/bundle:1.2.1" --to-repo harbor.caas.pez.pivotal.io/tbs/build-service --registry-verify-certs=false
-imgpkg pull -b "harbor.caas.pez.pivotal.io/tbs/build-service:1.2.1" -o /tmp/bundle --registry-verify-certs=false
+imgpkg copy -b "registry.pivotal.io/build-service/bundle:1.2.1" --to-repo harbor.caas.pez.pivotal.io/tbs/build-service --registry-ca-cert-path ./ca.cer --include-non-distributable-layers
+imgpkg pull -b "harbor.caas.pez.pivotal.io/tbs/build-service:1.2.1" -o /tmp/bundle --registry-ca-cert-path ./ca.cer
 ```
 # Deploy
 ```
 ytt -f /tmp/bundle/values.yaml \
     -f /tmp/bundle/config/ \
+    -f caas-root-ca.cer \
     -v docker_repository="harbor.caas.pez.pivotal.io/tbs/build-service" \
-    -v docker_username="bragazzi@caas.pez.pivotal.io" \
-    -v docker_password="<REGISTRY-PASSWORD>" \
-    -v tanzunet_username="<TANZUNET-USERNAME>" \
-    -v tanzunet_password="<TANZUNET-PASSWORD>" \
-    | kbld -f /tmp/bundle/.imgpkg/images.yml -f- --registry-verify-certs=false \
+    -v docker_username="username@caas.pez.pivotal.io" \
+    -v docker_password="password" \
+    -v tanzunet_username="username@pivotal.io" \
+    -v tanzunet_password='password' \
+    | kbld -f /tmp/bundle/.imgpkg/images.yml -f- --registry-ca-cert-path caas-root-ca.cer \
     | kapp deploy -a tanzu-build-service -f- -y
 ```
 or - without dynamic updates to clusterstacks - include the CA CERT!!
@@ -75,11 +76,9 @@ see: https://kb.vmware.com/s/article/82667
 # Create sample image
 kp secret create harbor-creds --registry harbor.caas.pez.pivotal.io --registry-user "bragazzi@caas.pez.pivotal.io"
 
-kp image create tbs-java-maven --tag harbor.caas.pez.pivotal.io/tbs/test-app --git https://github.com/buildpacks/samples --sub-path ./apps/java-maven --wait
+kp image create tbs-java-maven --tag harbor.caas.pez.pivotal.io/tbs/test-app --git https://github.com/buildpacks/samples --sub-path ./apps/java-maven --registry-ca-cert-path caas-root-ca.cer --wait
 
-or
 
-kp image create tbs-java-maven --tag harbor.caas.pez.pivotal.io/tbs/test-app --git https://github.com/buildpacks/samples --sub-path ./apps/java-maven --registry-ca-cert-path ./ca.crt
 
 ## troubleshoot
 kp build status tbs-java-maven
