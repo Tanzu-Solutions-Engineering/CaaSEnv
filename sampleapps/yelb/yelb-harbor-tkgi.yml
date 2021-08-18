@@ -86,7 +86,7 @@ spec:
       containers:
       - name: yelb-ui
         imagePullPolicy: IfNotPresent
-        image:  harbor.tkgi.caas.pez.pivotal.io/library/yelb-ui:0.5
+        image:  harbor.tkgi.caas.pez.pivotal.io/library/yelb-ui:0.7
         ports:
         - containerPort: 80
 ---
@@ -114,7 +114,7 @@ spec:
       containers:
       - name: redis-server
         imagePullPolicy: IfNotPresent
-        image: harbor.tkgi.caas.pez.pivotal.io/library/redis:4.0.4
+        image: harbor.tkgi.caas.pez.pivotal.io/library/redis:4.0.5
         ports:
         - containerPort: 6379
 ---
