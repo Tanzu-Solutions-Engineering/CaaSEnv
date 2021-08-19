@@ -33,7 +33,7 @@ spec:
     spec:
      containers:
       - name: windowswebserver
-        image: mcr.microsoft.com/windows/servercore:ltsc2019
+        image: harbor.tkgi.caas.pez.pivotal.io/windows/servercore:ltsc2019
         command:
         - powershell.exe
         - -command
@@ -47,4 +47,3 @@ spec:
           operator: "Equal"
           value: "2019"
           effect: "NoSchedule"
-          
