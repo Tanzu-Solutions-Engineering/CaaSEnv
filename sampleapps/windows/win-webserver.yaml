@@ -32,11 +32,15 @@ spec:
         name: win-webserver
     spec:
       containers:
-      - image: harbor.tkgi.caas.pez.pivotal.io/windows/servercore:ltsc2019
-        name: windows-webserver
-        #kubernetes.io/os: windows
+      - name: windows-webserver
+        image: harbor.tkgi.caas.pez.pivotal.io/windows/servercore:ltsc2019        
+        imagePullPolicy: IfNotPresent
+      imagePullSecrets:
+      - name: harbor
       tolerations:
       - key: "windows"
         operator: "Equal"
         value: "2019"
         effect: "NoSchedule"
+      nodeSelector:
+        beta.kubernetes.io/os: windows        
