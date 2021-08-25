@@ -10,3 +10,4 @@ envoy:
     repository: projects.registry.vmware.com/tkg
   service:
     type: "LoadBalancer"
+    externalTrafficPolicy: Cluster
