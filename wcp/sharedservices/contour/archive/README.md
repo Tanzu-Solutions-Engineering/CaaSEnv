@@ -6,87 +6,54 @@
 * ytt installed (<https://github.com/k14s/ytt/releases>)
 * kapp installed (<https://github.com/k14s/kapp/releases>)
 
-### Deploy contour extension on TKGm or on TKGS
+### Deploy contour extension
 
-1. Install kapp-controller
-
-   This step is to be performed only for TKGS. For TKGm, kapp-controller is installed on the workload cluster by default.
+1. Install TMC's extension manager
 
     ```sh
-    kubectl apply -f ../../kapp-controller.yaml
+    kubectl apply -f ../tmc-extension-manager.yaml
     ```
 
-2. Deploy cert-manager if its not already installed
+2. Install kapp-controller
 
     ```sh
-    kubectl apply -f ../../../cert-manager/
+    kubectl apply -f ../kapp-controller.yaml
     ```
 
-3. Create contour namespace
+3. Deploy cert-manager if its not already installed
+
+    ```sh
+    kubectl apply -f ../cert-manager/
+    ```
+
+4. Create contour namespace
 
     ```sh
     kubectl apply -f namespace-role.yaml
     ```
 
-4. Copy `<INFRA_PROVIDER>/contour-data-values.yaml.example*` to `<INFRA_PROVIDER>/contour-data-values.yaml`
-
-   Configure contour data values in `<INFRA_PROVIDER>/contour-data-values.yaml`
+5. Review and modify `contour-data-values.yaml` as needed
 
    Supported configurations are documented in [contour-configurations](../../../ingress/contour/README.md)
 
-    vSphere (TKGm):
 
-    ```sh
-    cp vsphere/contour-data-values.yaml.example vsphere/contour-data-values.yaml
-    ```
-
-    vSphere (TKGS):
-
-    ```sh
-    cp vsphere/contour-data-values-lb.yaml.example vsphere/contour-data-values.yaml
-    ```
-
-    AWS:
-
-    ```sh
-    cp aws/contour-data-values.yaml.example aws/contour-data-values.yaml
-    ```
-
-    Azure:
-
-    ```sh
-    cp aws/contour-data-values.yaml.example azure/contour-data-values.yaml
-    ```
-
-5. Create a secret with data values
-
-    vSphere (TKGm and TKGS):
+6. Create a secret with data values
 
     ```sh
     kubectl create secret generic contour-data-values --from-file=values.yaml=contour-data-values.yaml -n tanzu-system-ingress
     ```
 
-    AWS:
 
-    ```sh
-    kubectl create secret generic contour-data-values --from-file=values.yaml=aws/contour-data-values.yaml -n tanzu-system-ingress
-    ```
-
-    Azure:
-
-    ```sh
-    kubectl create secret generic contour-data-values --from-file=values.yaml=azure/contour-data-values.yaml -n tanzu-system-ingress
-    ```
-
-6. Deploy contour extension
+7. Deploy contour extension
 
     ```sh
     kubectl apply -f contour-extension.yaml
    ```
 
-7. Retrieve status of an extension
+8. Retrieve status of an extension
 
     ```sh
+    kubectl get extension contour -n tanzu-system-ingress
     kubectl get app contour -n tanzu-system-ingress
     ```
 

@@ -4,8 +4,8 @@
 ---
 # Docker images setting
 image:
-  repository: projects.registry.vmware.com/tkg/harbor
-  tag: v2.1.3_vmware.1
+  repository: registry.tkg.vmware.run/harbor
+  tag: v2.0.2_vmware.1
   pullPolicy: IfNotPresent
 
 # The namespace to install Harbor
