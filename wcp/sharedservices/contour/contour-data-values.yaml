@@ -8,6 +8,6 @@ contour:
 envoy:
   image:
     repository: projects.registry.vmware.com/tkg
+    tag: v1.17.3_vmware.1
   service:
     type: "LoadBalancer"
-    externalTrafficPolicy: Cluster
