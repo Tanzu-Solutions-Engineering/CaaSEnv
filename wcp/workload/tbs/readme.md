@@ -40,14 +40,12 @@ kp clusterstore status default
 kubectl get TanzuNetDependencyUpdater -A
 ```
 
-
 ## Check Readiness
 Check that the "smart-warmer-image-fetcher" pods in the build-service namespace are running
 ```
  k get po -n build-service -l app=build-pod-image-fetcher
 ```
-If not, see if they are timing out pulling images from Harbor
-see: https://kb.vmware.com/s/article/82667
+
 
 
 # Create sample image
@@ -63,5 +61,7 @@ kp image status tbs-java-maven
 kp build logs tbs-java-maven
 
 
-#remove tbs
+# Remove tbs
+```
 kapp delete -a tanzu-build-service -y
+```
