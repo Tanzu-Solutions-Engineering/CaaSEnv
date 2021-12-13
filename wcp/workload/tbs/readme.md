@@ -1,4 +1,4 @@
-# TBS 1.3.0
+# TBS 1.3.x
 # 11/2/21
 
 
@@ -11,8 +11,8 @@ docker login -u bragazzi@caas.pez.pivotal.io harbor.caas.pez.pivotal.io --tlscac
 docker login registry.tanzu.vmware.com
 
 ```
-imgpkg copy -b "registry.pivotal.io/build-service/bundle:1.3.0" --to-repo harbor.caas.pez.pivotal.io/tbs/build-service --registry-ca-cert-path ./caas-root-ca.cer --include-non-distributable-layers
-imgpkg pull -b "harbor.caas.pez.pivotal.io/tbs/build-service:1.3.0" -o /tmp/bundle --registry-ca-cert-path ./caas-root-ca.cer
+imgpkg copy -b "registry.tanzu.vmware.com/build-service/bundle:1.3.4" --to-repo harbor.caas.pez.pivotal.io/tbs/build-service --registry-ca-cert-path ./caas-root-ca.cer --include-non-distributable-layers
+imgpkg pull -b "harbor.caas.pez.pivotal.io/tbs/build-service:1.3.4" -o /tmp/bundle --registry-ca-cert-path ./caas-root-ca.cer
 ```
 # Deploy - passing the tanzuNet credentials enables the automatic dependency updater
 ```
