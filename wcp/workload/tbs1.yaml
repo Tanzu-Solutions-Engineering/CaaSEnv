@@ -6,7 +6,7 @@ metadata:
  namespace: workload
 spec:
  distribution:
-   version: v1.20.7+vmware.1-tkg.1.7fb9067
+   version: v1.20.12
    #version: v1.16.8---vmware.1-tkg.3.60d2ffd
  topology:
    controlPlane:

@@ -147,8 +147,8 @@ notary:
   enabled: true
 clair:
   # Whether to install Clair scanner
-  enabled: true
-  replicas: 1
+  enabled: false
+  replicas: 0
   # The interval of clair updaters, the unit is hour, set to 0 to
   # disable the updaters
   updatersInterval: 12
