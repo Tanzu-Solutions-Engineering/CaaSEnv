@@ -1,0 +1,8 @@
+private-*
+*.cer
+*.crt
+*.csr
+*.ppk
+*.key
+certs/
+*.lock
