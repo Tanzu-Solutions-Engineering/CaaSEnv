@@ -1,0 +1,16 @@
+---
+apiVersion: projectcontour.io/v1
+kind: HTTPProxy
+metadata:
+  name: yelb
+spec:
+  virtualhost:
+    fqdn: yelb.demo.caas.pez.pivotal.io
+    tls:
+      secretName: yelb-cert
+  routes:
+    - conditions:
+      - prefix: /
+      services:
+        - name: yelb-ui
+          port: 80
